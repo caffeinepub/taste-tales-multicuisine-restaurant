@@ -1,0 +1,69 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T10:03:42.039Z",
+  "summary": "Most core pages and routing are implemented (Home, About, Menu, Offers, Gallery, Contact) with a sticky responsive header, shared footer layout, and per-page SEO via a `Seo` component. However, the diff does not provide evidence of the static PDF asset required for menu download, and the Gallery implementation appears to omit the required “family seating” theme/images. There are also additional authentication/backend scaffolding pieces not requested in the BuildRequest.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Provide a prominent “Download Menu (PDF)” button that downloads a static PDF file shipped with the frontend.",
+      "reason": "The Menu page opens `/assets/menu.pdf`, but the diff summary does not show any added static PDF asset at that path (or similar), so the download target may not exist in the shipped frontend.",
+      "evidence": [
+        "frontend/src/pages/MenuPage.tsx (handleDownloadMenu opens '/assets/menu.pdf')"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Gallery page must showcase imagery across three themes: food, ambience, and family seating.",
+      "reason": "The Gallery page data structure includes `food` and `ambience` only; no `family seating` theme/category or images are shown in the provided diff summary.",
+      "evidence": [
+        "frontend/src/pages/GalleryPage.tsx (galleryImages includes only food, ambience)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication/provider scaffolding and actor creation hooks (React Query + actor management) despite the site being a marketing website with no requested authentication features.",
+      "reason": "BuildRequest does not ask for login/auth or actor hooks; non-goals explicitly exclude an authenticated admin/dashboard. The diff adds II context/provider and actor hooks anyway.",
+      "evidence": [
+        "frontend/src/main.tsx (wraps app in InternetIdentityProvider, QueryClientProvider)",
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "description": "Added an empty backend canister (`actor {}`) even though requirements are frontend-only for a marketing site and no backend behavior is specified.",
+      "reason": "No backend functionality is requested; the backend file adds a canister with no methods.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Section.tsx",
+    "frontend/src/components/Seo.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/MenuPage.tsx",
+    "frontend/src/pages/OffersPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "kind": "build_request",
+  "title": "Taste & Tales – Modern, premium, mobile-first restaurant website",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a complete mobile-first marketing website for “Taste & Tales – Multicuisine Restaurant” (Raysan, Near GIFT City, Gandhinagar) with the following top-level pages and navigation: Home, About Us, Menu, Offers & Deals, Gallery, Contact & Location. Include a sticky header with clear navigation and prominent CTAs.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a modern, premium, mobile-first restaurant website for “Taste & Tales – Multicuisine Restaurant” located in Raysan, Near GIFT City, Gandhinagar.\n\nPages & Sections:\n\n1. Home Page\n...\n2. About Us\n...\n3. Menu Page\n...\n4. Offers & Deals\n...\n5. Gallery\n...\n6. Contact & Location\n...\n7. Footer"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All listed pages are accessible via on-site navigation on mobile and desktop.",
+        "Navigation remains usable on small screens (e.g., collapsible menu) and does not obscure content.",
+        "Site content is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement the Home page hero section with: tagline “A World of Flavours Under One Roof”, two CTA buttons (Order Online, Book a Table), and a highlights strip/cards containing: “⭐ 4.2 Dining Rating”, “👨‍👩‍👧 Family Friendly”, “🕚 Open 11 AM – 11 PM”, “💳 Digital Payments Accepted”.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Hero section with tagline:\n“A World of Flavours Under One Roof”\n\nCTA buttons: Order Online | Book a Table\n\nHighlights:\n\n⭐ 4.2 Dining Rating\n\n👨‍👩‍👧 Family Friendly\n\n🕚 Open 11 AM – 11 PM\n\n💳 Digital Payments Accepted"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home page displays the exact tagline text.",
+        "Both CTA buttons are visible above the fold on common mobile sizes.",
+        "All four highlights appear and remain readable on mobile without horizontal scrolling."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create the About Us page with a concise brand story emphasizing passion for global cuisines, quality ingredients, and hygiene, aligned to the positioning: family-friendly, premium yet affordable, popular for dining + delivery, and serving multiple cuisines (North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Brand Positioning:\n\nFamily-friendly, premium yet affordable multicuisine restaurant\n\nPopular for dining + delivery\n\nServes North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes\n\n2. About Us\n\nShort story about passion for global cuisines\n\nEmphasis on quality ingredients & hygiene"
+        ]
+      },
+      "acceptanceCriteria": [
+        "About page includes copy that mentions global cuisines, quality ingredients, and hygiene.",
+        "About page reflects family-friendly and premium-yet-affordable positioning."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create the Menu page with clearly separated cuisine categories: North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts, Shakes. Include a prominent “Download Menu (PDF)” button that downloads a static PDF file shipped with the frontend.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "3. Menu Page\n\nCategories:\n\nNorth Indian\n\nChinese\n\nMexican\n\nThai\n\nItalian\n\nFast Food\n\nDesserts\n\nShakes\n\nOption to download menu PDF"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All eight categories are displayed as distinct sections/cards.",
+        "Clicking “Download Menu (PDF)” downloads a PDF from a static asset URL (no backend required).",
+        "Menu layout is readable and usable on mobile screens."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create the Offers & Deals page listing the following offers with clear visual hierarchy: “Flat 15% Pre-book offer”, “Instant 10% off on bill payments”, and “Bank & RuPay offers”.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "4. Offers & Deals\n\nFlat 15% Pre-book offer\n\nInstant 10% off on bill payments\n\nBank & RuPay offers"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All three offers are present with the exact offer titles.",
+        "Offers page is responsive and readable on mobile."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create the Gallery page showcasing high-quality imagery for food, ambience, and family seating using a responsive grid/lightbox-style experience suitable for mobile-first browsing.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "5. Gallery\n\nFood, ambience, family seating"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Gallery shows multiple images across the three themes (food, ambience, family seating).",
+        "Images adapt to screen size without layout breaking or excessive CLS (cumulative layout shift)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create the Contact & Location page with: address text for Raysan, Near GIFT City, Gandhinagar; a Google Map embed (iframe); phone number +91 75676 78009 with a prominent “Call Now” button (tel link); and a WhatsApp click-to-chat button linking to the restaurant’s WhatsApp number.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "6. Contact & Location\n\nAddress with Google Map embed\n\nPhone: +91 75676 78009\n\nWhatsApp click-to-chat\n\nTechnical Requirements:\n...\nWhatsApp integration\n\nCall now button"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Contact page shows the phone number as “+91 75676 78009”.",
+        "Call Now button uses a tel: link to +917567678009 and works on mobile devices.",
+        "WhatsApp button links to wa.me/917567678009 (optionally with a prefilled message) and opens WhatsApp when available.",
+        "Google Map is embedded via an iframe and is responsive (no horizontal overflow)."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add a site-wide footer containing: opening hours (11 AM – 11 PM), social media icons (placeholders are acceptable if URLs are not provided), and “Order via Zomato / Swiggy” buttons (use configurable placeholder URLs if actual links are not provided).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "7. Footer\n\nOpening hours\n\nSocial media icons\n\n“Order via Zomato / Swiggy” buttons"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Footer appears on all pages.",
+        "Footer includes opening hours and labels/buttons for Zomato and Swiggy.",
+        "Social icons are present and accessible (keyboard focusable, with labels)."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply a consistent, clean, modern, elegant visual theme across the site using warm food colors (dark green, deep red, beige, soft gold accents) and professional typography, with a premium yet family-friendly feel and a strong focus on large, high-quality imagery.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Website Style:\n\nClean, modern, elegant\n\nWarm food colors (dark green, deep red, beige, soft gold accents)\n\nProfessional typography\n\nHigh-quality food imagery focus"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette reflects dark green, deep red, beige, and soft gold accents (no dominant blue/purple theme).",
+        "Typography choices are consistent across headings/body and look professional.",
+        "Key sections (especially Home and Gallery) emphasize large, high-quality imagery without degrading readability."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Implement performance and SEO basics suitable for a restaurant marketing site: optimized images (proper sizing/compression), sensible page titles/meta descriptions, Open Graph metadata, and on-page SEO targeting the phrase “Restaurant near GIFT City Gandhinagar”.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Technical Requirements:\n\nFully responsive (mobile-first)\n\nFast loading\n\nSEO-optimized for “Restaurant near GIFT City Gandhinagar”"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each page has an appropriate, unique <title> and meta description including relevant restaurant/location keywords.",
+        "The site includes Open Graph tags for social sharing.",
+        "Images are served in appropriately sized responsive formats to avoid unnecessarily large transfers.",
+        "Visible page content includes “Restaurant near GIFT City Gandhinagar” in a natural, non-spammy way (e.g., on Home and/or Contact)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend must be fully responsive and mobile-first.",
+    "Do not modify files under frontend/src/components/ui or other immutablePaths if present in the template; compose them instead.",
+    "Do not introduce unsupported technologies (no Next.js, no external DBs, no third-party auth beyond Internet Identity)."
+  ],
+  "nonGoals": [
+    "Building a full online ordering system with payments and order management.",
+    "Building an authenticated admin dashboard for managing menu/offers/gallery.",
+    "Integrating real-time chat or push notifications.",
+    "Using external CMS platforms or third-party databases."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Premium restaurant hero banner photo with elegant plating and warm moody lighting (taste-tales-hero.dim_1920x1080.png)",
+      "Minimal premium logo mark with dark green/deep red/beige/soft gold palette (taste-tales-logo.dim_512x512.png)",
+      "Favicon icon derived from the logo mark, simple and high-contrast (taste-tales-favicon.dim_64x64.png)",
+      "High-quality food photo: North Indian thali with warm lighting (gallery-north-indian.dim_1200x800.png)",
+      "High-quality food photo: Chinese noodles/dumplings with vibrant colors (gallery-chinese.dim_1200x800.png)",
+      "High-quality food photo: Mexican tacos/platter with rustic styling (gallery-mexican.dim_1200x800.png)",
+      "High-quality food photo: Thai curry with herbs and steam (gallery-thai.dim_1200x800.png)",
+      "High-quality food photo: Italian pasta/pizza with premium plating (gallery-italian.dim_1200x800.png)",
+      "High-quality food photo: Fast food burger/fries with premium styling (gallery-fast-food.dim_1200x800.png)",
+      "High-quality dessert photo: plated dessert with soft gold highlights (gallery-desserts.dim_1200x800.png)",
+      "High-quality shakes photo: tall milkshakes with creamy texture and garnish (gallery-shakes.dim_1200x800.png)",
+      "Interior ambience photo: warm family-friendly seating, premium decor (gallery-ambience.dim_1200x800.png)"
+    ],
+    "edits": []
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Modern, premium, mobile-first website for “Taste & Tales – Multicuisine Restaurant” (Raysan, near GIFT City, Gandhinagar) with clean elegant design, warm food color palette, high-quality imagery, core pages (Home, About, Menu with PDF download, Offers, Gallery, Contact/Location), and integrations for ordering, table booking, WhatsApp, calling, and SEO/performance optimization.",
+  "architectural_notes": [
+    "Design style: clean, modern, elegant with warm food colors (dark green, deep red, beige, soft gold accents) and professional typography.",
+    "Mobile-first responsive implementation required across all pages.",
+    "SEO target keyword phrase: “Restaurant near GIFT City Gandhinagar”.",
+    "Include WhatsApp click-to-chat and prominent Call Now entry points.",
+    "Performance requirement: fast-loading pages and optimized media."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Premium restaurant hero banner photo with elegant plating and warm moody lighting (taste-tales-hero.dim_1920x1080.png)\n- Minimal premium logo mark with dark green/deep red/beige/soft gold palette (taste-tales-logo.dim_512x512.png)\n- Favicon icon derived from the logo mark, simple and high-contrast (taste-tales-favicon.dim_64x64.png)\n- High-quality food photo: North Indian thali with warm lighting (gallery-north-indian.dim_1200x800.png)\n- High-quality food photo: Chinese noodles/dumplings with vibrant colors (gallery-chinese.dim_1200x800.png)\n- High-quality food photo: Mexican tacos/platter with rustic styling (gallery-mexican.dim_1200x800.png)\n- High-quality food photo: Thai curry with herbs and steam (gallery-thai.dim_1200x800.png)\n- High-quality food photo: Italian pasta/pizza with premium plating (gallery-italian.dim_1200x800.png)\n- High-quality food photo: Fast food burger/fries with premium styling (gallery-fast-food.dim_1200x800.png)\n- High-quality dessert photo: plated dessert with soft gold highlights (gallery-desserts.dim_1200x800.png)\n- High-quality shakes photo: tall milkshakes with creamy texture and garnish (gallery-shakes.dim_1200x800.png)\n- Interior ambience photo: warm family-friendly seating, premium decor (gallery-ambience.dim_1200x800.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-complete-mobile-first-marketing-website-for-taste-tales-multicuisine-restaurant-raysan-near-gift-city-gandhinagar-with-the-following-top-level-pages-and-navigation-home-about-us-menu-offers-deals-gallery-contact-location-include-a-sticky-header-with-clear-navigation-and-prominent-ctas",
+      "title": "Create a complete mobile-first marketing website for “Taste & Tales – Multicuisine Restaurant” (Raysan, Near GIFT City, Gandhinagar) with the following top-level pages and navigation: Home, About Us, Menu, Offers & Deals, Gallery, Contact & Location. Include a sticky header with clear navigation and prominent CTAs.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-home-page-hero-section-with-tagline-a-world-of-flavours-under-one-roof-two-cta-buttons-order-online-book-a-table-and-a-highlights-strip-cards-containing-4-2-dining-rating-family-friendly-open-11-am-11-pm-digital-payments-accepted",
+      "title": "Implement the Home page hero section with: tagline “A World of Flavours Under One Roof”, two CTA buttons (Order Online, Book a Table), and a highlights strip/cards containing: “⭐ 4.2 Dining Rating”, “👨‍👩‍👧 Family Friendly”, “🕚 Open 11 AM – 11 PM”, “💳 Digital Payments Accepted”.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-about-us-page-with-a-concise-brand-story-emphasizing-passion-for-global-cuisines-quality-ingredients-and-hygiene-aligned-to-the-positioning-family-friendly-premium-yet-affordable-popular-for-dining-delivery-and-serving-multiple-cuisines-north-indian-chinese-mexican-thai-italian-fast-food-desserts-shakes",
+      "title": "Create the About Us page with a concise brand story emphasizing passion for global cuisines, quality ingredients, and hygiene, aligned to the positioning: family-friendly, premium yet affordable, popular for dining + delivery, and serving multiple cuisines (North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-menu-page-with-clearly-separated-cuisine-categories-north-indian-chinese-mexican-thai-italian-fast-food-desserts-shakes-include-a-prominent-download-menu-pdf-button-that-downloads-a-static-pdf-file-shipped-with-the-frontend",
+      "title": "Create the Menu page with clearly separated cuisine categories: North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts, Shakes. Include a prominent “Download Menu (PDF)” button that downloads a static PDF file shipped with the frontend.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-offers-deals-page-listing-the-following-offers-with-clear-visual-hierarchy-flat-15-pre-book-offer-instant-10-off-on-bill-payments-and-bank-rupay-offers",
+      "title": "Create the Offers & Deals page listing the following offers with clear visual hierarchy: “Flat 15% Pre-book offer”, “Instant 10% off on bill payments”, and “Bank & RuPay offers”.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-gallery-page-showcasing-high-quality-imagery-for-food-ambience-and-family-seating-using-a-responsive-grid-lightbox-style-experience-suitable-for-mobile-first-browsing",
+      "title": "Create the Gallery page showcasing high-quality imagery for food, ambience, and family seating using a responsive grid/lightbox-style experience suitable for mobile-first browsing.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-contact-location-page-with-address-text-for-raysan-near-gift-city-gandhinagar-a-google-map-embed-iframe-phone-number-91-75676-78009-with-a-prominent-call-now-button-tel-link-and-a-whatsapp-click-to-chat-button-linking-to-the-restaurant-s-whatsapp-number",
+      "title": "Create the Contact & Location page with: address text for Raysan, Near GIFT City, Gandhinagar; a Google Map embed (iframe); phone number +91 75676 78009 with a prominent “Call Now” button (tel link); and a WhatsApp click-to-chat button linking to the restaurant’s WhatsApp number.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-site-wide-footer-containing-opening-hours-11-am-11-pm-social-media-icons-placeholders-are-acceptable-if-urls-are-not-provided-and-order-via-zomato-swiggy-buttons-use-configurable-placeholder-urls-if-actual-links-are-not-provided",
+      "title": "Add a site-wide footer containing: opening hours (11 AM – 11 PM), social media icons (placeholders are acceptable if URLs are not provided), and “Order via Zomato / Swiggy” buttons (use configurable placeholder URLs if actual links are not provided).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-consistent-clean-modern-elegant-visual-theme-across-the-site-using-warm-food-colors-dark-green-deep-red-beige-soft-gold-accents-and-professional-typography-with-a-premium-yet-family-friendly-feel-and-a-strong-focus-on-large-high-quality-imagery",
+      "title": "Apply a consistent, clean, modern, elegant visual theme across the site using warm food colors (dark green, deep red, beige, soft gold accents) and professional typography, with a premium yet family-friendly feel and a strong focus on large, high-quality imagery.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-performance-and-seo-basics-suitable-for-a-restaurant-marketing-site-optimized-images-proper-sizing-compression-sensible-page-titles-meta-descriptions-open-graph-metadata-and-on-page-seo-targeting-the-phrase-restaurant-near-gift-city-gandhinagar",
+      "title": "Implement performance and SEO basics suitable for a restaurant marketing site: optimized images (proper sizing/compression), sensible page titles/meta descriptions, Open Graph metadata, and on-page SEO targeting the phrase “Restaurant near GIFT City Gandhinagar”.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Home page with hero tagline (“A World of Flavours Under One Roof”), CTA buttons (Order Online, Book a Table), and key highlights (4.2 rating, family friendly, hours, digital payments).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create About Us page with brand story emphasizing global cuisines, quality ingredients, and hygiene.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create Menu page with cuisine categories (North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts, Shakes) and menu PDF download option.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create Offers & Deals page listing offers (Flat 15% pre-book, Instant 10% off bill payments, Bank & RuPay offers).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create Gallery page focusing on food, ambience, and family seating with high-quality imagery presentation.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create Contact & Location page with address, Google Map embed, phone (+91 75676 78009), and WhatsApp click-to-chat integration.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add site-wide footer with opening hours, social media icons, and “Order via Zomato / Swiggy” buttons.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Implement technical requirements: fully responsive mobile-first UI, fast loading/performance, SEO optimized for “Restaurant near GIFT City Gandhinagar”, WhatsApp integration, and a Call Now button.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Taste & Tales – Multicuisine Restaurant",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

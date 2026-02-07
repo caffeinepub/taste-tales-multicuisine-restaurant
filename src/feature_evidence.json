@@ -1,0 +1,200 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-complete-mobile-first-marketing-website-for-taste-tales-multicuisine-restaurant-raysan-near-gift-city-gandhinagar-with-the-following-top-level-pages-and-navigation-home-about-us-menu-offers-deals-gallery-contact-location-include-a-sticky-header-with-clear-navigation-and-prominent-ctas",
+      "featureTitle": "Create a complete mobile-first marketing website for “Taste & Tales – Multicuisine Restaurant” (Raysan, Near GIFT City, Gandhinagar) with the following top-level pages and navigation: Home, About Us, Menu, Offers & Deals, Gallery, Contact & Location. Include a sticky header with clear navigation and prominent CTAs.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/SiteFooter.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/pages/AboutPage.tsx",
+        "frontend/src/pages/ContactPage.tsx",
+        "frontend/src/pages/GalleryPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/MenuPage.tsx",
+        "frontend/src/pages/OffersPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-home-page-hero-section-with-tagline-a-world-of-flavours-under-one-roof-two-cta-buttons-order-online-book-a-table-and-a-highlights-strip-cards-containing-4-2-dining-rating-family-friendly-open-11-am-11-pm-digital-payments-accepted",
+      "featureTitle": "Implement the Home page hero section with: tagline “A World of Flavours Under One Roof”, two CTA buttons (Order Online, Book a Table), and a highlights strip/cards containing: “⭐ 4.2 Dining Rating”, “👨‍👩‍👧 Family Friendly”, “🕚 Open 11 AM – 11 PM”, “💳 Digital Payments Accepted”.",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-about-us-page-with-a-concise-brand-story-emphasizing-passion-for-global-cuisines-quality-ingredients-and-hygiene-aligned-to-the-positioning-family-friendly-premium-yet-affordable-popular-for-dining-delivery-and-serving-multiple-cuisines-north-indian-chinese-mexican-thai-italian-fast-food-desserts-shakes",
+      "featureTitle": "Create the About Us page with a concise brand story emphasizing passion for global cuisines, quality ingredients, and hygiene, aligned to the positioning: family-friendly, premium yet affordable, popular for dining + delivery, and serving multiple cuisines (North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes).",
+      "files": [
+        "frontend/src/components/Section.tsx",
+        "frontend/src/pages/AboutPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-menu-page-with-clearly-separated-cuisine-categories-north-indian-chinese-mexican-thai-italian-fast-food-desserts-shakes-include-a-prominent-download-menu-pdf-button-that-downloads-a-static-pdf-file-shipped-with-the-frontend",
+      "featureTitle": "Create the Menu page with clearly separated cuisine categories: North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts, Shakes. Include a prominent “Download Menu (PDF)” button that downloads a static PDF file shipped with the frontend.",
+      "files": [
+        "frontend/src/pages/MenuPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-offers-deals-page-listing-the-following-offers-with-clear-visual-hierarchy-flat-15-pre-book-offer-instant-10-off-on-bill-payments-and-bank-rupay-offers",
+      "featureTitle": "Create the Offers & Deals page listing the following offers with clear visual hierarchy: “Flat 15% Pre-book offer”, “Instant 10% off on bill payments”, and “Bank & RuPay offers”.",
+      "files": [
+        "frontend/src/pages/OffersPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-gallery-page-showcasing-high-quality-imagery-for-food-ambience-and-family-seating-using-a-responsive-grid-lightbox-style-experience-suitable-for-mobile-first-browsing",
+      "featureTitle": "Create the Gallery page showcasing high-quality imagery for food, ambience, and family seating using a responsive grid/lightbox-style experience suitable for mobile-first browsing.",
+      "files": [
+        "frontend/src/pages/GalleryPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-contact-location-page-with-address-text-for-raysan-near-gift-city-gandhinagar-a-google-map-embed-iframe-phone-number-91-75676-78009-with-a-prominent-call-now-button-tel-link-and-a-whatsapp-click-to-chat-button-linking-to-the-restaurant-s-whatsapp-number",
+      "featureTitle": "Create the Contact & Location page with: address text for Raysan, Near GIFT City, Gandhinagar; a Google Map embed (iframe); phone number +91 75676 78009 with a prominent “Call Now” button (tel link); and a WhatsApp click-to-chat button linking to the restaurant’s WhatsApp number.",
+      "files": [
+        "frontend/src/pages/ContactPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-site-wide-footer-containing-opening-hours-11-am-11-pm-social-media-icons-placeholders-are-acceptable-if-urls-are-not-provided-and-order-via-zomato-swiggy-buttons-use-configurable-placeholder-urls-if-actual-links-are-not-provided",
+      "featureTitle": "Add a site-wide footer containing: opening hours (11 AM – 11 PM), social media icons (placeholders are acceptable if URLs are not provided), and “Order via Zomato / Swiggy” buttons (use configurable placeholder URLs if actual links are not provided).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/SiteFooter.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-consistent-clean-modern-elegant-visual-theme-across-the-site-using-warm-food-colors-dark-green-deep-red-beige-soft-gold-accents-and-professional-typography-with-a-premium-yet-family-friendly-feel-and-a-strong-focus-on-large-high-quality-imagery",
+      "featureTitle": "Apply a consistent, clean, modern, elegant visual theme across the site using warm food colors (dark green, deep red, beige, soft gold accents) and professional typography, with a premium yet family-friendly feel and a strong focus on large, high-quality imagery.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-performance-and-seo-basics-suitable-for-a-restaurant-marketing-site-optimized-images-proper-sizing-compression-sensible-page-titles-meta-descriptions-open-graph-metadata-and-on-page-seo-targeting-the-phrase-restaurant-near-gift-city-gandhinagar",
+      "featureTitle": "Implement performance and SEO basics suitable for a restaurant marketing site: optimized images (proper sizing/compression), sensible page titles/meta descriptions, Open Graph metadata, and on-page SEO targeting the phrase “Restaurant near GIFT City Gandhinagar”.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/Seo.tsx",
+        "frontend/src/pages/ContactPage.tsx",
+        "frontend/src/pages/GalleryPage.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

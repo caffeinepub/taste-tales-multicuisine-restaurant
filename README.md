@@ -1,2 +1,3 @@
-# taste-tales-multicuisine-restaurant
-Exported from Caffeine project: Taste &amp; Tales – Multicuisine Restaurant
+## Taste &amp; Tales – Multicuisine Restaurant
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

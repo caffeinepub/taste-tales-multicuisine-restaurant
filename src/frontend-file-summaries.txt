@@ -1,0 +1,17 @@
+{
+  "frontend/src/index.css": "Global styles with warm restaurant color palette (dark green, deep red, beige, soft gold) using OKLCH color system, Playfair Display serif font for headings, and Inter for body text.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with warm color palette, custom fonts (Playfair Display, Inter), warm shadow utilities, and restaurant-themed design tokens.",
+  "frontend/index.html": "HTML entry point with SEO meta tags, Open Graph tags for social sharing, and favicon links for the restaurant website.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Home, About, Menu, Offers, Gallery, Contact) with shared header/footer layout.",
+  "frontend/src/components/SiteHeader.tsx": "Sticky header component with logo, desktop/mobile navigation, CTA buttons (Order Online, Book a Table), and collapsible mobile menu using Sheet component.",
+  "frontend/src/components/SiteFooter.tsx": "Site-wide footer with brand info, quick links, contact details, opening hours, social media icons, and Zomato/Swiggy order buttons.",
+  "frontend/src/components/Seo.tsx": "SEO helper component that dynamically updates document title, meta description, and Open Graph tags for each page route.",
+  "frontend/src/components/Section.tsx": "Reusable section wrapper component providing consistent spacing and container layout across all pages.",
+  "frontend/src/pages/HomePage.tsx": "Home page with hero section featuring tagline, CTAs, highlights (rating, family-friendly, hours, payments), cuisine showcase, and value propositions.",
+  "frontend/src/pages/AboutPage.tsx": "About page with brand story emphasizing global cuisines, quality ingredients, hygiene, family-friendly positioning, and core values.",
+  "frontend/src/pages/MenuPage.tsx": "Menu page displaying 8 cuisine categories (North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts, Shakes) with PDF download button, using cards on desktop and accordion on mobile.",
+  "frontend/src/pages/OffersPage.tsx": "Offers page showcasing three main deals (15% pre-book, 10% bill payment, bank offers) with detailed descriptions and terms & conditions.",
+  "frontend/src/pages/GalleryPage.tsx": "Gallery page with tabbed interface (All, Food, Ambience) displaying high-quality food and restaurant images in responsive grid with lightbox dialog view.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with address, phone, hours, Google Maps embed, call/WhatsApp buttons, social media links, and prominent CTAs for ordering online.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for React Query hooks; currently empty as backend has no methods."
+}
