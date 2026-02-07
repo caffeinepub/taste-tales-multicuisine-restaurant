@@ -7,56 +7,56 @@
 @layer base {
     :root {
         --radius: 0.5rem;
-        /* Warm restaurant palette - light mode */
+        /* Premium olive-green palette - light mode */
         --background: 0.98 0.01 60;
         --foreground: 0.25 0.02 30;
         --card: 1 0 0;
         --card-foreground: 0.25 0.02 30;
         --popover: 1 0 0;
         --popover-foreground: 0.25 0.02 30;
-        /* Deep red primary */
-        --primary: 0.45 0.15 15;
+        /* Olive green primary */
+        --primary: 0.48 0.08 135;
         --primary-foreground: 0.98 0.01 60;
-        /* Beige secondary */
+        /* Warm beige secondary */
         --secondary: 0.88 0.04 65;
         --secondary-foreground: 0.25 0.02 30;
-        /* Muted beige */
-        --muted: 0.92 0.02 65;
+        /* Soft cream muted */
+        --muted: 0.94 0.02 65;
         --muted-foreground: 0.50 0.02 30;
-        /* Soft gold accent */
-        --accent: 0.75 0.12 75;
+        /* Muted gold accent */
+        --accent: 0.72 0.10 75;
         --accent-foreground: 0.25 0.02 30;
         --destructive: 0.55 0.22 25;
         --destructive-foreground: 0.98 0.01 60;
         --border: 0.88 0.02 65;
         --input: 0.88 0.02 65;
-        --ring: 0.45 0.15 15;
-        /* Dark green for charts/accents */
-        --chart-1: 0.42 0.10 145;
-        --chart-2: 0.45 0.15 15;
-        --chart-3: 0.75 0.12 75;
+        --ring: 0.48 0.08 135;
+        /* Chart colors with olive-green theme */
+        --chart-1: 0.48 0.08 135;
+        --chart-2: 0.72 0.10 75;
+        --chart-3: 0.88 0.04 65;
         --chart-4: 0.55 0.08 35;
         --chart-5: 0.65 0.10 50;
         --sidebar: 0.98 0.01 60;
         --sidebar-foreground: 0.25 0.02 30;
-        --sidebar-primary: 0.45 0.15 15;
+        --sidebar-primary: 0.48 0.08 135;
         --sidebar-primary-foreground: 0.98 0.01 60;
-        --sidebar-accent: 0.92 0.02 65;
+        --sidebar-accent: 0.94 0.02 65;
         --sidebar-accent-foreground: 0.25 0.02 30;
         --sidebar-border: 0.88 0.02 65;
-        --sidebar-ring: 0.45 0.15 15;
+        --sidebar-ring: 0.48 0.08 135;
     }
 
     .dark {
-        /* Dark mode with warm tones */
+        /* Dark mode with warm olive tones */
         --background: 0.18 0.02 30;
         --foreground: 0.95 0.01 60;
         --card: 0.22 0.02 30;
         --card-foreground: 0.95 0.01 60;
         --popover: 0.22 0.02 30;
         --popover-foreground: 0.95 0.01 60;
-        /* Lighter red for dark mode */
-        --primary: 0.60 0.18 15;
+        /* Lighter olive for dark mode */
+        --primary: 0.58 0.10 135;
         --primary-foreground: 0.98 0.01 60;
         /* Darker beige */
         --secondary: 0.35 0.03 65;
@@ -64,26 +64,26 @@
         --muted: 0.30 0.02 30;
         --muted-foreground: 0.70 0.02 60;
         /* Gold accent */
-        --accent: 0.65 0.12 75;
+        --accent: 0.68 0.12 75;
         --accent-foreground: 0.18 0.02 30;
         --destructive: 0.60 0.20 25;
         --destructive-foreground: 0.95 0.01 60;
         --border: 0.30 0.02 30;
         --input: 0.30 0.02 30;
-        --ring: 0.60 0.18 15;
-        --chart-1: 0.50 0.12 145;
-        --chart-2: 0.60 0.18 15;
-        --chart-3: 0.65 0.12 75;
+        --ring: 0.58 0.10 135;
+        --chart-1: 0.58 0.10 135;
+        --chart-2: 0.68 0.12 75;
+        --chart-3: 0.35 0.03 65;
         --chart-4: 0.55 0.08 35;
         --chart-5: 0.65 0.10 50;
         --sidebar: 0.22 0.02 30;
         --sidebar-foreground: 0.95 0.01 60;
-        --sidebar-primary: 0.60 0.18 15;
+        --sidebar-primary: 0.58 0.10 135;
         --sidebar-primary-foreground: 0.98 0.01 60;
         --sidebar-accent: 0.30 0.02 30;
         --sidebar-accent-foreground: 0.95 0.01 60;
         --sidebar-border: 0.30 0.02 30;
-        --sidebar-ring: 0.60 0.18 15;
+        --sidebar-ring: 0.58 0.10 135;
     }
 
     * {

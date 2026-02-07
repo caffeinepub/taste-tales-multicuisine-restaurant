@@ -11,7 +11,7 @@ export default function MenuPage() {
     {
       name: 'North Indian',
       icon: '🍛',
-      description: 'Authentic flavors from the heart of India',
+      description: 'Rich, aromatic dishes inspired by timeless recipes',
       items: [
         'Butter Chicken',
         'Paneer Tikka Masala',
@@ -24,7 +24,7 @@ export default function MenuPage() {
     {
       name: 'Chinese',
       icon: '🥢',
-      description: 'Popular Indo-Chinese favorites',
+      description: 'Classic textures and bold flavours crafted with balance',
       items: [
         'Hakka Noodles',
         'Manchurian',
@@ -37,7 +37,7 @@ export default function MenuPage() {
     {
       name: 'Mexican',
       icon: '🌮',
-      description: 'Bold and spicy Mexican delights',
+      description: 'Vibrant plates with warm spices and fresh ingredients',
       items: [
         'Tacos',
         'Burritos',
@@ -50,7 +50,7 @@ export default function MenuPage() {
     {
       name: 'Thai',
       icon: '🍜',
-      description: 'Exotic Thai cuisine with authentic spices',
+      description: 'Fragrant bowls layered with sweet, spicy, and sour notes',
       items: [
         'Pad Thai',
         'Green Curry',
@@ -63,7 +63,7 @@ export default function MenuPage() {
     {
       name: 'Italian',
       icon: '🍝',
-      description: 'Classic Italian pasta and pizza',
+      description: 'Comforting pastas, sauces, and timeless favourites',
       items: [
         'Pasta Varieties',
         'Wood-Fired Pizza',
@@ -76,7 +76,7 @@ export default function MenuPage() {
     {
       name: 'Fast Food',
       icon: '🍔',
-      description: 'Quick bites and comfort food',
+      description: 'Quick bites made with care and quality',
       items: [
         'Burgers',
         'Sandwiches',
@@ -89,7 +89,7 @@ export default function MenuPage() {
     {
       name: 'Desserts',
       icon: '🍰',
-      description: 'Sweet endings to your meal',
+      description: 'Indulgent treats to end your story on a sweet note',
       items: [
         'Ice Cream',
         'Brownies',
@@ -121,8 +121,8 @@ export default function MenuPage() {
   return (
     <>
       <Seo 
-        title="Menu – Taste & Tales Multicuisine Restaurant"
-        description="Explore our diverse menu featuring North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes. Download our full menu PDF."
+        title="Menu – Taste & Tales Restaurant near GIFT City Gandhinagar"
+        description="Explore our thoughtfully crafted menu featuring North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes. Download our full menu PDF."
       />
 
       {/* Hero */}
@@ -130,12 +130,12 @@ export default function MenuPage() {
         <div className="max-w-3xl mx-auto text-center">
           <Badge variant="secondary" className="mb-4">Our Menu</Badge>
           <h1 className="font-serif text-4xl font-bold md:text-5xl mb-6">
-            Explore Our <span className="text-primary">Delicious Menu</span>
+            Explore Our <span className="text-primary">Crafted Menu</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-6">
-            From traditional favorites to international delights, discover a world of flavors
+            From traditional favourites to international delights, discover a world of flavours thoughtfully prepared
           </p>
-          <Button size="lg" onClick={handleDownloadMenu}>
+          <Button size="lg" onClick={handleDownloadMenu} className="transition-all hover:shadow-warm-lg">
             <Download className="mr-2 h-5 w-5" />
             Download Menu (PDF)
           </Button>
@@ -146,7 +146,7 @@ export default function MenuPage() {
       <Section className="hidden md:block">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {menuCategories.map((category, index) => (
-            <Card key={index} className="border-2 hover:shadow-warm transition-shadow">
+            <Card key={index} className="border-2 transition-all hover:shadow-warm-lg">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-4xl">{category.icon}</span>
@@ -209,15 +209,15 @@ export default function MenuPage() {
             Ready to Order?
           </h2>
           <p className="text-muted-foreground mb-6">
-            Get your favorite dishes delivered or visit us for a memorable dining experience
+            Get your favourite dishes delivered or visit us for a memorable dining experience
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
+            <Button size="lg" asChild className="transition-all hover:shadow-warm-lg">
               <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer">
                 Order on Zomato
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="transition-all hover:shadow-warm">
               <a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer">
                 Order on Swiggy
               </a>

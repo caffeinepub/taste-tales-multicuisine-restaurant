@@ -3,6 +3,7 @@ import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Menu, Phone } from 'lucide-react';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,14 +32,8 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-16 items-center justify-between md:h-20">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img 
-            src="/assets/generated/taste-tales-logo.dim_512x512.png" 
-            alt="Taste & Tales" 
-            className="h-10 w-10 md:h-12 md:w-12"
-            width="48"
-            height="48"
-          />
+        <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
+          <BrandLogo size="md" />
           <div className="flex flex-col">
             <span className="font-serif text-lg font-bold leading-tight text-primary md:text-xl">
               Taste & Tales
@@ -66,13 +61,13 @@ export default function SiteHeader() {
 
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 lg:flex">
-          <Button variant="outline" size="sm" onClick={handleOrderOnline}>
+          <Button variant="outline" size="sm" onClick={handleOrderOnline} className="transition-all hover:shadow-warm">
             Order Online
           </Button>
-          <Button size="sm" onClick={handleBookTable}>
+          <Button size="sm" onClick={handleBookTable} className="transition-all hover:shadow-warm">
             Book a Table
           </Button>
-          <Button variant="ghost" size="icon" asChild>
+          <Button variant="ghost" size="icon" asChild className="transition-colors">
             <a href="tel:+917567678009" aria-label="Call us">
               <Phone className="h-5 w-5" />
             </a>
@@ -95,13 +90,7 @@ export default function SiteHeader() {
             <SheetContent side="right" className="w-[280px] sm:w-[350px]">
               <div className="flex flex-col gap-6 py-6">
                 <div className="flex items-center gap-2">
-                  <img 
-                    src="/assets/generated/taste-tales-logo.dim_512x512.png" 
-                    alt="Taste & Tales" 
-                    className="h-10 w-10"
-                    width="40"
-                    height="40"
-                  />
+                  <BrandLogo size="sm" />
                   <span className="font-serif text-xl font-bold text-primary">
                     Taste & Tales
                   </span>

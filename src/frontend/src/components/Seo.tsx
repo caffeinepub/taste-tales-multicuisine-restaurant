@@ -8,7 +8,7 @@ interface SeoProps {
 
 export default function Seo({ title, description, ogImage }: SeoProps) {
   useEffect(() => {
-    // Update document title
+    // Update title
     document.title = title;
 
     // Update or create meta description
@@ -20,7 +20,7 @@ export default function Seo({ title, description, ogImage }: SeoProps) {
     }
     metaDescription.setAttribute('content', description);
 
-    // Update Open Graph title
+    // Update or create OG title
     let ogTitle = document.querySelector('meta[property="og:title"]');
     if (!ogTitle) {
       ogTitle = document.createElement('meta');
@@ -29,7 +29,7 @@ export default function Seo({ title, description, ogImage }: SeoProps) {
     }
     ogTitle.setAttribute('content', title);
 
-    // Update Open Graph description
+    // Update or create OG description
     let ogDescription = document.querySelector('meta[property="og:description"]');
     if (!ogDescription) {
       ogDescription = document.createElement('meta');
@@ -38,7 +38,7 @@ export default function Seo({ title, description, ogImage }: SeoProps) {
     }
     ogDescription.setAttribute('content', description);
 
-    // Update Open Graph image if provided
+    // Update or create OG image if provided
     if (ogImage) {
       let ogImageTag = document.querySelector('meta[property="og:image"]');
       if (!ogImageTag) {

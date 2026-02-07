@@ -1,304 +1,101 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Taste & Tales – Mobile-first restaurant marketing site (React + Tailwind)",
+  "title": "Fix logo asset paths and add resilient logo fallbacks",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Implement the full multi-page (client-routed) marketing site with sticky header navigation and prominent CTAs.",
+      "summary": "Ensure the logo static asset exists and all logo references use the canonical path centralized in brandAssets.",
       "acceptanceCriteria": [
-        "All listed pages are accessible via on-site navigation on mobile and desktop.",
-        "Navigation remains usable on small screens (e.g., collapsible menu) and does not obscure content.",
-        "Site content is in English."
+        "The logo image loads successfully (no broken-image icon) in the SiteHeader, SiteFooter, HomePage hero, and LogoMotif components.",
+        "BRAND_ASSETS.logo in frontend/src/lib/brandAssets.ts points to a file that exists under the frontend’s publicly served static assets (e.g., /assets/generated/...).",
+        "Hard-refreshing the deployed site still shows the logo (not dependent on cache)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/public/assets/generated/taste-tales-logo.dim_512x512.png",
           "operation": "create",
-          "description": "Create the app shell with client-side routing for Home, About Us, Menu, Offers & Deals, Gallery, Contact & Location; wire a shared sticky header + footer around routed content."
+          "description": "Add the canonical generated logo asset so BRAND_ASSETS.logo can reference an existing publicly served file (source: generated/taste-tales-logo.dim_512x512.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png",
+          "operation": "create",
+          "description": "Add the canonical generated favicon asset so BRAND_ASSETS.favicon and index.html can reference an existing publicly served file (source: generated/taste-tales-favicon.dim_64x64.png)."
+        },
+        {
+          "path": "frontend/src/lib/brandAssets.ts",
+          "operation": "modify",
+          "description": "Update BRAND_ASSETS.logo to the existing canonical path /assets/generated/taste-tales-logo.dim_512x512.png (currently points to a non-existent taste-tales-logo-uploaded file) and confirm favicon/hero paths match existing assets."
         },
         {
           "path": "frontend/src/components/SiteHeader.tsx",
-          "operation": "create",
-          "description": "Implement a sticky header with logo, primary navigation links, and prominent CTAs (Order Online, Book a Table); use shadcn-ui components (e.g., Button, Sheet/Drawer) to support a collapsible mobile menu. Verify the component's usage instructions before implementing."
+          "operation": "modify",
+          "description": "Ensure all logo <img> references use the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames) in both desktop and mobile header logo areas."
         },
         {
           "path": "frontend/src/components/SiteFooter.tsx",
-          "operation": "create",
-          "description": "Create the shared footer component and ensure it is rendered on all pages from the app shell."
+          "operation": "modify",
+          "description": "Ensure the footer logo <img> references use the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames)."
         },
         {
           "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "create",
-          "description": "Create the Home page route component and wire into the app routing."
+          "operation": "modify",
+          "description": "Ensure the HomePage hero logo <img> references use the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames)."
         },
         {
-          "path": "frontend/src/pages/AboutPage.tsx",
-          "operation": "create",
-          "description": "Create the About Us page route component and wire into the app routing."
-        },
-        {
-          "path": "frontend/src/pages/MenuPage.tsx",
-          "operation": "create",
-          "description": "Create the Menu page route component and wire into the app routing."
-        },
-        {
-          "path": "frontend/src/pages/OffersPage.tsx",
-          "operation": "create",
-          "description": "Create the Offers & Deals page route component and wire into the app routing."
-        },
-        {
-          "path": "frontend/src/pages/GalleryPage.tsx",
-          "operation": "create",
-          "description": "Create the Gallery page route component and wire into the app routing."
-        },
-        {
-          "path": "frontend/src/pages/ContactPage.tsx",
-          "operation": "create",
-          "description": "Create the Contact & Location page route component and wire into the app routing."
+          "path": "frontend/src/components/LogoMotif.tsx",
+          "operation": "modify",
+          "description": "Ensure the LogoMotif decorative logo uses the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames)."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Build the Home page hero with required tagline, CTAs, and highlights strip/cards optimized for mobile-first viewing.",
+      "summary": "Add resilient fallbacks for logo images so failed loads show a clean brand mark without layout breakage.",
       "acceptanceCriteria": [
-        "Home page displays the exact tagline text.",
-        "Both CTA buttons are visible above the fold on common mobile sizes.",
-        "All four highlights appear and remain readable on mobile without horizontal scrolling."
+        "If the logo image fails to load, the header/footer/hero do not show a broken-image icon and instead show a clean fallback while preserving spacing/alignment.",
+        "When the logo loads normally, no fallback is visible and the UI matches the intended design."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Implement the hero section with tagline “A World of Flavours Under One Roof”, CTA buttons (Order Online, Book a Table), and a responsive highlights strip/cards containing: “⭐ 4.2 Dining Rating”, “👨‍👩‍👧 Family Friendly”, “🕚 Open 11 AM – 11 PM”, “💳 Digital Payments Accepted”; use shadcn-ui components (e.g., Button, Card/Badge) for consistent premium styling. Verify the component's usage instructions before implementing."
+          "path": "frontend/src/components/BrandLogo.tsx",
+          "operation": "create",
+          "description": "Create a shared BrandLogo component that renders the logo using BRAND_ASSETS.logo and provides an onError-driven fallback (e.g., text mark or inline SVG) while preserving the same sizing/box dimensions as the image."
         },
         {
-          "path": "frontend/public/assets/generated/taste-tales-hero.dim_1920x1080.png",
-          "operation": "create",
-          "description": "Add the generated hero banner asset at frontend/public/assets/generated/taste-tales-hero.dim_1920x1080.png and reference it from the Home hero for a premium, imagery-led above-the-fold experience."
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Replace direct logo <img> usage with the shared BrandLogo component in both desktop and mobile header to prevent broken-image icons and preserve layout."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Replace direct logo <img> usage with the shared BrandLogo component in the footer to provide a consistent fallback and avoid layout shifts."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Replace the hero logo <img> with the shared BrandLogo component so the hero shows a clean fallback if the logo fails to load, without breaking spacing/alignment."
+        },
+        {
+          "path": "frontend/src/components/LogoMotif.tsx",
+          "operation": "modify",
+          "description": "Update LogoMotif to use the shared BrandLogo component (or equivalent fallback logic) with the existing decorative opacity styling, ensuring no broken-image icon appears if loading fails."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Create the About Us page with concise brand story and positioning aligned to multicuisine, hygiene, and family-friendly premium-yet-affordable tone.",
+      "summary": "Align SEO/social meta image references in index.html to the canonical, existing logo asset path while keeping favicon valid.",
       "acceptanceCriteria": [
-        "About page includes copy that mentions global cuisines, quality ingredients, and hygiene.",
-        "About page reflects family-friendly and premium-yet-affordable positioning."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/AboutPage.tsx",
-          "operation": "modify",
-          "description": "Add structured, concise About copy covering passion for global cuisines, quality ingredients, and hygiene; explicitly reflect family-friendly and premium-yet-affordable positioning; include the multicuisine list (North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes)."
-        },
-        {
-          "path": "frontend/src/components/Section.tsx",
-          "operation": "create",
-          "description": "Create a small presentational section wrapper (consistent spacing/typography) to keep About content visually premium and readable across mobile and desktop; compose with shadcn-ui typography-friendly classes/components as needed. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Create the Menu page with 8 distinct cuisine categories and a static PDF download button.",
-      "acceptanceCriteria": [
-        "All eight categories are displayed as distinct sections/cards.",
-        "Clicking “Download Menu (PDF)” downloads a PDF from a static asset URL (no backend required).",
-        "Menu layout is readable and usable on mobile screens."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/MenuPage.tsx",
-          "operation": "modify",
-          "description": "Implement Menu layout with distinct sections/cards for: North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts, Shakes; add a prominent “Download Menu (PDF)” button linking to the static PDF; use shadcn-ui components (e.g., Button, Card, Accordion) to keep mobile UX compact and scannable. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/public/assets/menu.pdf",
-          "operation": "create",
-          "description": "Add a static menu PDF at frontend/public/assets/menu.pdf to be downloaded by the “Download Menu (PDF)” button (frontend-only asset, no backend)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Create the Offers & Deals page listing the three required offers with clear visual hierarchy and responsive layout.",
-      "acceptanceCriteria": [
-        "All three offers are present with the exact offer titles.",
-        "Offers page is responsive and readable on mobile."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/OffersPage.tsx",
-          "operation": "modify",
-          "description": "Render offers with clear hierarchy and the exact titles: “Flat 15% Pre-book offer”, “Instant 10% off on bill payments”, “Bank & RuPay offers”; use shadcn-ui components (e.g., Card, Badge) to emphasize key offers while keeping mobile layout readable. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Create a mobile-first Gallery page with responsive grid and lightbox-style viewing across food, ambience, and family seating imagery.",
-      "acceptanceCriteria": [
-        "Gallery shows multiple images across the three themes (food, ambience, family seating).",
-        "Images adapt to screen size without layout breaking or excessive CLS (cumulative layout shift)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/GalleryPage.tsx",
-          "operation": "modify",
-          "description": "Implement a responsive image grid grouped by themes (food, ambience, family seating) and a lightbox-style viewing experience (modal/dialog) suitable for mobile; use shadcn-ui components (e.g., Dialog) for the lightbox UI. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-north-indian.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-north-indian.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-chinese.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-chinese.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-mexican.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-mexican.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-thai.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-thai.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-italian.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-italian.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-fast-food.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-fast-food.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-desserts.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-desserts.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-shakes.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-shakes.dim_1200x800.png and wire into Gallery page content."
-        },
-        {
-          "path": "frontend/public/assets/generated/gallery-ambience.dim_1200x800.png",
-          "operation": "create",
-          "description": "Add generated gallery image asset at frontend/public/assets/generated/gallery-ambience.dim_1200x800.png and wire into Gallery page content."
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Create the Contact & Location page with address, responsive Google Map iframe, Call Now (tel) button, and WhatsApp click-to-chat button.",
-      "acceptanceCriteria": [
-        "Contact page shows the phone number as “+91 75676 78009”.",
-        "Call Now button uses a tel: link to +917567678009 and works on mobile devices.",
-        "WhatsApp button links to wa.me/917567678009 (optionally with a prefilled message) and opens WhatsApp when available.",
-        "Google Map is embedded via an iframe and is responsive (no horizontal overflow)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/ContactPage.tsx",
-          "operation": "modify",
-          "description": "Add address content for Raysan, Near GIFT City, Gandhinagar; embed Google Map via responsive iframe container; render phone number “+91 75676 78009” with a prominent “Call Now” tel link to +917567678009; add WhatsApp click-to-chat button linking to wa.me/917567678009 (optionally with a prefilled message); use shadcn-ui Button for CTA styling. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Add a site-wide footer with opening hours, accessible social icons, and Zomato/Swiggy order buttons (placeholder URLs allowed).",
-      "acceptanceCriteria": [
-        "Footer appears on all pages.",
-        "Footer includes opening hours and labels/buttons for Zomato and Swiggy.",
-        "Social icons are present and accessible (keyboard focusable, with labels)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SiteFooter.tsx",
-          "operation": "modify",
-          "description": "Implement footer content including opening hours (11 AM – 11 PM), accessible social icon links (placeholder URLs acceptable, include aria-labels and keyboard focus styles), and “Order via Zomato / Swiggy” buttons with configurable placeholder URLs; compose with shadcn-ui Button and any icon approach already supported by the template. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Ensure the footer renders on every page by placing SiteFooter in the shared layout around routed content."
-        }
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "summary": "Apply a consistent premium, warm-color visual theme and professional typography across the site with emphasis on high-quality imagery.",
-      "acceptanceCriteria": [
-        "Color palette reflects dark green, deep red, beige, and soft gold accents (no dominant blue/purple theme).",
-        "Typography choices are consistent across headings/body and look professional.",
-        "Key sections (especially Home and Gallery) emphasize large, high-quality imagery without degrading readability."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "create",
-          "description": "Define site-wide theme tokens and base typography using Tailwind layers/CSS variables to achieve warm palette (dark green, deep red, beige, soft gold accents) and consistent professional type scale; keep styles mobile-first."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend Tailwind theme configuration (colors, typography defaults if needed) to support the warm brand palette and consistent radii/shadows for a modern premium look."
-        },
-        {
-          "path": "frontend/public/assets/generated/taste-tales-logo.dim_512x512.png",
-          "operation": "create",
-          "description": "Add generated logo asset at frontend/public/assets/generated/taste-tales-logo.dim_512x512.png and reference it in the header/footer branding areas."
-        }
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "summary": "Implement SEO and performance basics: unique titles/meta descriptions per page, Open Graph metadata, and image optimization practices; include on-page SEO phrase.",
-      "acceptanceCriteria": [
-        "Each page has an appropriate, unique <title> and meta description including relevant restaurant/location keywords.",
-        "The site includes Open Graph tags for social sharing.",
-        "Images are served in appropriately sized responsive formats to avoid unnecessarily large transfers.",
-        "Visible page content includes “Restaurant near GIFT City Gandhinagar” in a natural, non-spammy way (e.g., on Home and/or Contact)."
+        "frontend/index.html og:image and twitter:image reference a valid, existing asset path that returns the image successfully.",
+        "Favicon reference remains valid and loads correctly in the browser tab."
       ],
       "file_operations": [
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Add baseline SEO metadata in the HTML head: default meta description, Open Graph tags (title/description/image), and link tags for favicon; keep document language as English."
-        },
-        {
-          "path": "frontend/src/components/Seo.tsx",
-          "operation": "create",
-          "description": "Create a small SEO helper component to set per-route document.title and update/insert meta description and Open Graph tags on navigation (client-side), ensuring each page has unique title/description."
-        },
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Use the SEO helper to set Home-specific title/description and include the phrase “Restaurant near GIFT City Gandhinagar” naturally in visible content (e.g., hero subtext or intro section); ensure hero image uses appropriate attributes (width/height, loading/decoding) to reduce CLS."
-        },
-        {
-          "path": "frontend/src/pages/ContactPage.tsx",
-          "operation": "modify",
-          "description": "Use the SEO helper to set Contact-specific title/description with location keywords; ensure map iframe is lazy-loaded where possible and does not cause horizontal overflow."
-        },
-        {
-          "path": "frontend/src/pages/GalleryPage.tsx",
-          "operation": "modify",
-          "description": "Ensure gallery images are optimized for performance by setting dimensions, using responsive layout patterns, and enabling lazy loading for below-the-fold images."
-        },
-        {
-          "path": "frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png",
-          "operation": "create",
-          "description": "Add generated favicon asset at frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png and wire it in frontend/index.html favicon link tags."
+          "description": "Update og:image and twitter:image to reference the canonical existing logo asset path /assets/generated/taste-tales-logo.dim_512x512.png, and confirm the favicon link continues to reference a valid existing asset (/assets/generated/taste-tales-favicon.dim_64x64.png)."
         }
       ]
     }
