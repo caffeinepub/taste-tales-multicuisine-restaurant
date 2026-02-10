@@ -1,101 +1,141 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix logo asset paths and add resilient logo fallbacks",
+  "title": "Fix Gallery static image rendering and resolve frontend build configuration for deployment",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Ensure the logo static asset exists and all logo references use the canonical path centralized in brandAssets.",
+      "summary": "Ensure Gallery thumbnails and lightbox images reference deployed static assets that exist and are served correctly in production.",
       "acceptanceCriteria": [
-        "The logo image loads successfully (no broken-image icon) in the SiteHeader, SiteFooter, HomePage hero, and LogoMotif components.",
-        "BRAND_ASSETS.logo in frontend/src/lib/brandAssets.ts points to a file that exists under the frontend’s publicly served static assets (e.g., /assets/generated/...).",
-        "Hard-refreshing the deployed site still shows the logo (not dependent on cache)."
+        "Visiting /gallery shows a 2/3-column responsive grid where each card displays a visible image (not a blank/empty tile).",
+        "Clicking/tapping any thumbnail opens the lightbox with the larger image visible.",
+        "No gallery image requests return 404/failed network requests in the browser devtools when running the production build."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/taste-tales-logo.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the canonical generated logo asset so BRAND_ASSETS.logo can reference an existing publicly served file (source: generated/taste-tales-logo.dim_512x512.png)."
-        },
-        {
-          "path": "frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png",
-          "operation": "create",
-          "description": "Add the canonical generated favicon asset so BRAND_ASSETS.favicon and index.html can reference an existing publicly served file (source: generated/taste-tales-favicon.dim_64x64.png)."
-        },
-        {
           "path": "frontend/src/lib/brandAssets.ts",
           "operation": "modify",
-          "description": "Update BRAND_ASSETS.logo to the existing canonical path /assets/generated/taste-tales-logo.dim_512x512.png (currently points to a non-existent taste-tales-logo-uploaded file) and confirm favicon/hero paths match existing assets."
+          "description": "Centralize Gallery ambience image metadata (src/alt) in BRAND_ASSETS (or additional exported constants) so GalleryPage only references known-good static assets under frontend/public/assets/generated. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/SiteHeader.tsx",
+          "path": "frontend/src/pages/GalleryPage.tsx",
           "operation": "modify",
-          "description": "Ensure all logo <img> references use the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames) in both desktop and mobile header logo areas."
+          "description": "Replace hardcoded /assets/gallery/... Screenshot... references with the centralized gallery asset list from frontend/src/lib/brandAssets.ts, ensuring all src values point to deployed static files (e.g., /assets/generated/gallery-ambience.dim_1200x800.png and related generated files). Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
-          "operation": "modify",
-          "description": "Ensure the footer logo <img> references use the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames)."
+          "path": "frontend/public/assets/generated/gallery-ambience.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-ambience.dim_1200x800.png)."
         },
         {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Ensure the HomePage hero logo <img> references use the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames)."
+          "path": "frontend/public/assets/generated/gallery-ambience-ambience.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-ambience-ambience.dim_1200x800.png)."
         },
         {
-          "path": "frontend/src/components/LogoMotif.tsx",
-          "operation": "modify",
-          "description": "Ensure the LogoMotif decorative logo uses the centralized BRAND_ASSETS.logo (no hardcoded or stale filenames)."
+          "path": "frontend/public/assets/generated/gallery-ambience-ambience-v2.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-ambience-ambience-v2.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-ambience-ambience-v3.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-ambience-ambience-v3.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-chinese.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-chinese.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-desserts.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-desserts.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-fast-food.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-fast-food.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-italian.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-italian.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-mexican.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-mexican.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-north-indian.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-north-indian.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-shakes.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-shakes.dim_1200x800.png)."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-thai.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add/copy the static image asset so it is available in production at a stable URL (source asset: generated/gallery-thai.dim_1200x800.png)."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add resilient fallbacks for logo images so failed loads show a clean brand mark without layout breakage.",
+      "summary": "Harden gallery image loading against filename/path pitfalls and provide a graceful UI fallback when an image fails to load.",
       "acceptanceCriteria": [
-        "If the logo image fails to load, the header/footer/hero do not show a broken-image icon and instead show a clean fallback while preserving spacing/alignment.",
-        "When the logo loads normally, no fallback is visible and the UI matches the intended design."
+        "Gallery image URLs used in code do not rely on unencoded spaces/special characters that can break on some static hosting paths.",
+        "If any gallery image fails to load, the UI displays a visible fallback state for that tile (without breaking the grid layout)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/BrandLogo.tsx",
+          "path": "frontend/src/components/GalleryImage.tsx",
           "operation": "create",
-          "description": "Create a shared BrandLogo component that renders the logo using BRAND_ASSETS.logo and provides an onError-driven fallback (e.g., text mark or inline SVG) while preserving the same sizing/box dimensions as the image."
+          "description": "Create a small reusable image component for the Gallery that handles load errors (onError) and renders a visible fallback placeholder while preserving the tile aspect ratio and layout stability. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/SiteHeader.tsx",
+          "path": "frontend/src/pages/GalleryPage.tsx",
           "operation": "modify",
-          "description": "Replace direct logo <img> usage with the shared BrandLogo component in both desktop and mobile header to prevent broken-image icons and preserve layout."
+          "description": "Use the new GalleryImage component for both thumbnails and the lightbox image rendering to ensure consistent error handling; remove/avoid any references to assets with spaces/special characters in their filenames by relying on the generated asset filenames. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
+          "path": "frontend/src/lib/brandAssets.ts",
           "operation": "modify",
-          "description": "Replace direct logo <img> usage with the shared BrandLogo component in the footer to provide a consistent fallback and avoid layout shifts."
-        },
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Replace the hero logo <img> with the shared BrandLogo component so the hero shows a clean fallback if the logo fails to load, without breaking spacing/alignment."
-        },
-        {
-          "path": "frontend/src/components/LogoMotif.tsx",
-          "operation": "modify",
-          "description": "Update LogoMotif to use the shared BrandLogo component (or equivalent fallback logic) with the existing decorative opacity styling, ensuring no broken-image icon appears if loading fails."
+          "description": "Ensure the gallery asset list exclusively uses safe, deployment-friendly filenames (no spaces/special characters) and is the single source of truth for Gallery image src values. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Align SEO/social meta image references in index.html to the canonical, existing logo asset path while keeping favicon valid.",
+      "summary": "Fix the frontend build/deployment configuration so production builds succeed and the deployed site loads with visible Gallery images.",
       "acceptanceCriteria": [
-        "frontend/index.html og:image and twitter:image reference a valid, existing asset path that returns the image successfully.",
-        "Favicon reference remains valid and loads correctly in the browser tab."
+        "A clean build completes successfully in the target deployment environment (no configuration error).",
+        "The deployed site loads successfully and the Gallery page images are visible in the deployed environment."
       ],
       "file_operations": [
         {
+          "path": "frontend/package.json",
+          "operation": "create",
+          "description": "Add the missing frontend package manifest with build/dev/preview scripts and required dependencies so the deployment environment can reliably install and build the frontend."
+        },
+        {
+          "path": "frontend/vite.config.ts",
+          "operation": "create",
+          "description": "Add a Vite configuration aligned with the app’s routing and static asset serving needs (including a production-safe base path strategy) to prevent deployment-time configuration failures."
+        },
+        {
+          "path": "frontend/tsconfig.json",
+          "operation": "create",
+          "description": "Add a TypeScript configuration compatible with the current source layout and alias usage (e.g., '@/...') so the production build does not fail due to missing/incorrect TS config."
+        },
+        {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update og:image and twitter:image to reference the canonical existing logo asset path /assets/generated/taste-tales-logo.dim_512x512.png, and confirm the favicon link continues to reference a valid existing asset (/assets/generated/taste-tales-favicon.dim_64x64.png)."
+          "description": "Verify and adjust static asset references (favicon/OG images) to ensure they resolve correctly in production builds and deployments (keeping references under /assets/generated/)."
         }
       ]
     }

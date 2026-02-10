@@ -2,14 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-fix-the-site-logo-not-appearing-by-ensuring-the-referenced-logo-asset-exists-in-the-frontend-static-assets-and-that-all-logo-references-point-to-the-correct-existing-filename-path-centralized-in-frontend-src-lib-brandassets-ts",
-      "featureTitle": "Fix the site logo not appearing by ensuring the referenced logo asset exists in the frontend static assets and that all logo references point to the correct, existing filename/path (centralized in frontend/src/lib/brandAssets.ts).",
+      "featureId": "feature-fix-the-gallery-page-so-the-ambience-images-reliably-render-as-thumbnails-and-in-the-lightbox-by-ensuring-all-referenced-image-paths-point-to-static-files-that-exist-in-the-deployed-frontend-assets-and-are-served-correctly-in-production",
+      "featureTitle": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
       "files": [
-        "frontend/src/components/LogoMotif.tsx",
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
         "frontend/src/lib/brandAssets.ts",
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/pages/GalleryPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -24,14 +21,12 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-resilient-ui-fallbacks-for-the-logo-img-elements-so-that-if-the-logo-asset-fails-to-load-users-still-see-a-visible-brand-mark-e-g-a-small-text-fallback-or-simple-inline-svg-without-layout-breakage",
-      "featureTitle": "Add resilient UI fallbacks for the logo <img> elements so that if the logo asset fails to load, users still see a visible brand mark (e.g., a small text fallback or simple inline SVG) without layout breakage.",
+      "featureId": "feature-make-gallery-image-loading-robust-against-filename-path-issues-e-g-spaces-or-special-characters-by-updating-asset-filenames-and-or-references-so-they-work-consistently-across-environments-and-add-a-graceful-ui-fallback-when-an-image-fails-to-load",
+      "featureTitle": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
       "files": [
-        "frontend/src/components/BrandLogo.tsx",
-        "frontend/src/components/LogoMotif.tsx",
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/components/GalleryImage.tsx",
+        "frontend/src/lib/brandAssets.ts",
+        "frontend/src/pages/GalleryPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -42,24 +37,6 @@
       ],
       "testIds": [
         "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-seo-and-social-meta-image-references-in-frontend-index-html-use-the-same-correct-logo-asset-path-as-the-rest-of-the-app-via-the-canonical-generated-logo-filename-so-the-site-s-og-twitter-images-are-not-broken",
-      "featureTitle": "Ensure SEO and social meta image references in frontend/index.html use the same correct logo asset path as the rest of the app (via the canonical generated logo filename) so the site’s OG/Twitter images are not broken.",
-      "files": [
-        "frontend/index.html"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
       ],
       "confidence": "high"
     }

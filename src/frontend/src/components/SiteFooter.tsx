@@ -9,7 +9,7 @@ export default function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-muted/30">
+    <footer className="border-t border-border/60 bg-muted/30">
       <div className="container py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -27,7 +27,7 @@ export default function SiteFooter() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-9 w-9 transition-colors hover:text-primary"
+                className="h-9 w-9 transition-colors hover:text-primary hover:bg-primary/10"
                 asChild
               >
                 <a 
@@ -42,7 +42,7 @@ export default function SiteFooter() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-9 w-9 transition-colors hover:text-primary"
+                className="h-9 w-9 transition-colors hover:text-primary hover:bg-primary/10"
                 asChild
               >
                 <a 
@@ -57,7 +57,7 @@ export default function SiteFooter() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-9 w-9 transition-colors hover:text-primary"
+                className="h-9 w-9 transition-colors hover:text-primary hover:bg-primary/10"
                 asChild
               >
                 <a 
@@ -121,37 +121,23 @@ export default function SiteFooter() {
           {/* Order Online */}
           <div className="space-y-4">
             <h3 className="font-serif text-lg font-semibold">Order Online</h3>
-            <div className="flex flex-col gap-3">
-              <Button 
-                variant="outline" 
-                className="w-full justify-start transition-all hover:shadow-warm"
-                asChild
-              >
-                <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer">
-                  Order on Zomato
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="w-full justify-start transition-all hover:shadow-warm"
-                asChild
-              >
-                <a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer">
-                  Order on Swiggy
-                </a>
-              </Button>
-            </div>
+            <p className="text-sm text-muted-foreground">
+              Enjoy our delicious food from the comfort of your home.
+            </p>
+            <Button 
+              className="w-full transition-all hover:shadow-warm" 
+              onClick={() => window.open('https://www.zomato.com', '_blank')}
+            >
+              Order on Zomato
+            </Button>
           </div>
         </div>
 
         <Separator className="my-8" />
 
-        <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-muted-foreground md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-muted-foreground md:flex-row md:text-left">
           <p>
-            © {currentYear} Taste & Tales. All rights reserved.
-          </p>
-          <p className="flex items-center gap-1">
-            Built with <Heart className="h-3 w-3 fill-primary text-primary" /> using{' '}
+            © {currentYear}. Built with <Heart className="inline h-3.5 w-3.5 text-primary fill-primary" /> using{' '}
             <a 
               href="https://caffeine.ai" 
               target="_blank" 
@@ -160,6 +146,9 @@ export default function SiteFooter() {
             >
               caffeine.ai
             </a>
+          </p>
+          <p className="text-xs">
+            Restaurant near GIFT City Gandhinagar
           </p>
         </div>
       </div>

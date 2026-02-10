@@ -4,38 +4,39 @@
   "summary": "New project",
   "architectural_notes": [],
   "known_issues": [
-    "Logo is not appearing on the website (possible missing/broken asset or incorrect reference)."
+    "Images in the gallery are not visible (user reported).",
+    "Build/deployment failing due to a configuration error (\"Please notify the Caffeine team\")."
   ],
   "isFixRequest": true,
-  "imageRequirements": "## Edit Images\n- Normalize uploaded logo into optimized square PNG (Screenshot 2026-02-07 154246.png > taste-tales-logo.dim_512x512.png)\n- Derive a high-contrast favicon from the uploaded logo (Screenshot 2026-02-07 154246.png > taste-tales-favicon.dim_64x64.png)",
   "existing_features": [
     {
-      "id": "feature-fix-the-site-logo-not-appearing-by-ensuring-the-referenced-logo-asset-exists-in-the-frontend-static-assets-and-that-all-logo-references-point-to-the-correct-existing-filename-path-centralized-in-frontend-src-lib-brandassets-ts",
-      "title": "Fix the site logo not appearing by ensuring the referenced logo asset exists in the frontend static assets and that all logo references point to the correct, existing filename/path (centralized in frontend/src/lib/brandAssets.ts).",
+      "id": "feature-fix-the-gallery-page-so-the-ambience-images-reliably-render-as-thumbnails-and-in-the-lightbox-by-ensuring-all-referenced-image-paths-point-to-static-files-that-exist-in-the-deployed-frontend-assets-and-are-served-correctly-in-production",
+      "title": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-resilient-ui-fallbacks-for-the-logo-img-elements-so-that-if-the-logo-asset-fails-to-load-users-still-see-a-visible-brand-mark-e-g-a-small-text-fallback-or-simple-inline-svg-without-layout-breakage",
-      "title": "Add resilient UI fallbacks for the logo <img> elements so that if the logo asset fails to load, users still see a visible brand mark (e.g., a small text fallback or simple inline SVG) without layout breakage.",
+      "id": "feature-make-gallery-image-loading-robust-against-filename-path-issues-e-g-spaces-or-special-characters-by-updating-asset-filenames-and-or-references-so-they-work-consistently-across-environments-and-add-a-graceful-ui-fallback-when-an-image-fails-to-load",
+      "title": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
-    },
+    }
+  ],
+  "new_feature_requests": [
     {
-      "id": "feature-ensure-seo-and-social-meta-image-references-in-frontend-index-html-use-the-same-correct-logo-asset-path-as-the-rest-of-the-app-via-the-canonical-generated-logo-filename-so-the-site-s-og-twitter-images-are-not-broken",
-      "title": "Ensure SEO and social meta image references in frontend/index.html use the same correct logo asset path as the rest of the app (via the canonical generated logo filename) so the site’s OG/Twitter images are not broken.",
+      "id": "AR-3",
+      "summary": "Investigate and fix the build/deployment configuration error so the app can build and deploy successfully without requiring manual intervention from the Caffeine team.",
       "reqIds": [
         "REQ-3"
       ],
-      "version": 1
+      "status": "pending"
     }
   ],
-  "new_feature_requests": [],
-  "projectName": "Fix missing logo rendering across the site",
+  "projectName": "Fix gallery images not rendering and unblock build/deployment configuration error",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

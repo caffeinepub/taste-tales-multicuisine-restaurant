@@ -1,67 +1,66 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T11:17:58.612Z",
+  "generatedAt": "2026-02-10T17:28:18.222Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
     "total": 3,
-    "implemented": 3,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Fix the site logo not appearing by ensuring the referenced logo asset exists in the frontend static assets and that all logo references point to the correct, existing filename/path (centralized in frontend/src/lib/brandAssets.ts).",
+        "summary": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/taste-tales-logo.dim_512x512.png",
-          "frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png",
           "frontend/src/lib/brandAssets.ts",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/LogoMotif.tsx"
+          "frontend/src/pages/GalleryPage.tsx",
+          "frontend/public/assets/generated/gallery-ambience.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-ambience-ambience.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-ambience-ambience-v2.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-ambience-ambience-v3.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-chinese.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-desserts.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-fast-food.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-italian.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-mexican.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-north-indian.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-shakes.dim_1200x800.png",
+          "frontend/public/assets/generated/gallery-thai.dim_1200x800.png"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/taste-tales-logo.dim_512x512.png",
-          "frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png",
           "frontend/src/lib/brandAssets.ts",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/LogoMotif.tsx"
+          "frontend/src/pages/GalleryPage.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Add resilient UI fallbacks for the logo <img> elements so that if the logo asset fails to load, users still see a visible brand mark (e.g., a small text fallback or simple inline SVG) without layout breakage.",
+        "summary": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/BrandLogo.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/LogoMotif.tsx"
+          "frontend/src/components/GalleryImage.tsx",
+          "frontend/src/pages/GalleryPage.tsx",
+          "frontend/src/lib/brandAssets.ts"
         ],
         "matchedFiles": [
-          "frontend/src/components/BrandLogo.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/LogoMotif.tsx"
+          "frontend/src/components/GalleryImage.tsx",
+          "frontend/src/pages/GalleryPage.tsx",
+          "frontend/src/lib/brandAssets.ts"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Ensure SEO and social meta image references in frontend/index.html use the same correct logo asset path as the rest of the app (via the canonical generated logo filename) so the site’s OG/Twitter images are not broken.",
-        "status": "implemented",
+        "summary": "Investigate and fix the build/deployment configuration error so the app can build and deploy successfully without requiring manual intervention from the Caffeine team.",
+        "status": "missing",
         "plannedFiles": [
+          "frontend/package.json",
+          "frontend/vite.config.ts",
+          "frontend/tsconfig.json",
           "frontend/index.html"
         ],
-        "matchedFiles": [
-          "frontend/index.html"
-        ]
+        "matchedFiles": []
       }
     ]
   },
@@ -70,15 +69,9 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/public/assets/generated/taste-tales-favicon.dim_64x64.png",
-    "frontend/public/assets/generated/taste-tales-logo.dim_512x512.png",
-    "frontend/src/components/BrandLogo.tsx",
-    "frontend/src/components/LogoMotif.tsx",
-    "frontend/src/components/SiteFooter.tsx",
-    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/components/GalleryImage.tsx",
     "frontend/src/lib/brandAssets.ts",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/GalleryPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

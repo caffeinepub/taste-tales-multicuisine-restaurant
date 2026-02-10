@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Fix missing logo rendering across the site by correcting logo asset paths, centralizing references, and adding graceful fallbacks.
+**Goal:** Fix Gallery ambience images not rendering in production and resolve the build/deployment configuration error so the app builds and deploys cleanly.
 
 **Planned changes:**
-- Ensure the canonical logo asset exists in the publicly served frontend static assets and update `frontend/src/lib/brandAssets.ts` so `BRAND_ASSETS.logo` points to the correct, existing path/filename.
-- Update all logo usages (SiteHeader, SiteFooter, HomePage hero, LogoMotif) to reference the centralized `BRAND_ASSETS.logo` path.
-- Add resilient logo rendering fallbacks for `<img>` (e.g., text or simple inline SVG) to avoid broken-image icons and layout breakage when the asset fails to load.
-- Fix `frontend/index.html` SEO/social meta tags (`og:image`, `twitter:image`) to reference the same valid logo asset path; keep favicon reference valid.
+- Update Gallery image asset handling so all referenced image paths point to static files that exist in deployed frontend assets and are served correctly in production (thumbnails + lightbox).
+- Make Gallery image loading resilient to filename/path issues (e.g., spaces/special characters) by standardizing asset filenames and/or references, and add an in-UI fallback state when an image fails to load.
+- Investigate and fix the build/deployment configuration issue so a clean build and deployment succeeds without manual intervention.
 
-**User-visible outcome:** The logo reliably appears across header, footer, hero, and motif components (including after hard refresh), and if it ever fails to load the UI shows a clean fallback instead of a broken image; social/SEO images are no longer broken.
+**User-visible outcome:** Visiting `/gallery` shows a responsive grid with visible thumbnails; clicking a thumbnail opens a lightbox with the full image; production builds/deployments succeed and gallery image requests do not 404.

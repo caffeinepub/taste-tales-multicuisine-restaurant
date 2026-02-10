@@ -78,8 +78,8 @@ export default {
             },
             boxShadow: {
                 xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
-                warm: '0 4px 20px rgba(107, 114, 76, 0.12)',
-                'warm-lg': '0 10px 40px rgba(107, 114, 76, 0.18)'
+                warm: '0 4px 20px rgba(72, 140, 140, 0.15)',
+                'warm-lg': '0 10px 40px rgba(72, 140, 140, 0.22)'
             },
             keyframes: {
                 'accordion-down': {

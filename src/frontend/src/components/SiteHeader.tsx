@@ -29,7 +29,7 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-16 items-center justify-between md:h-20">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
@@ -67,7 +67,7 @@ export default function SiteHeader() {
           <Button size="sm" onClick={handleBookTable} className="transition-all hover:shadow-warm">
             Book a Table
           </Button>
-          <Button variant="ghost" size="icon" asChild className="transition-colors">
+          <Button variant="ghost" size="icon" asChild className="transition-colors hover:text-primary">
             <a href="tel:+917567678009" aria-label="Call us">
               <Phone className="h-5 w-5" />
             </a>
@@ -76,7 +76,7 @@ export default function SiteHeader() {
 
         {/* Mobile Menu */}
         <div className="flex items-center gap-2 lg:hidden">
-          <Button variant="ghost" size="icon" asChild className="md:hidden">
+          <Button variant="ghost" size="icon" asChild className="md:hidden hover:text-primary">
             <a href="tel:+917567678009" aria-label="Call us">
               <Phone className="h-5 w-5" />
             </a>

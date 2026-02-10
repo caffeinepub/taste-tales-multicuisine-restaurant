@@ -4,165 +4,55 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
-import { Download } from 'lucide-react';
+import { menuCategories } from '@/data/menuData';
 
 export default function MenuPage() {
-  const menuCategories = [
-    {
-      name: 'North Indian',
-      icon: '🍛',
-      description: 'Rich, aromatic dishes inspired by timeless recipes',
-      items: [
-        'Butter Chicken',
-        'Paneer Tikka Masala',
-        'Dal Makhani',
-        'Tandoori Roti',
-        'Biryani',
-        'Naan Varieties',
-      ],
-    },
-    {
-      name: 'Chinese',
-      icon: '🥢',
-      description: 'Classic textures and bold flavours crafted with balance',
-      items: [
-        'Hakka Noodles',
-        'Manchurian',
-        'Fried Rice',
-        'Spring Rolls',
-        'Chilli Chicken',
-        'Szechuan Dishes',
-      ],
-    },
-    {
-      name: 'Mexican',
-      icon: '🌮',
-      description: 'Vibrant plates with warm spices and fresh ingredients',
-      items: [
-        'Tacos',
-        'Burritos',
-        'Quesadillas',
-        'Nachos',
-        'Enchiladas',
-        'Mexican Rice',
-      ],
-    },
-    {
-      name: 'Thai',
-      icon: '🍜',
-      description: 'Fragrant bowls layered with sweet, spicy, and sour notes',
-      items: [
-        'Pad Thai',
-        'Green Curry',
-        'Red Curry',
-        'Tom Yum Soup',
-        'Thai Fried Rice',
-        'Spring Rolls',
-      ],
-    },
-    {
-      name: 'Italian',
-      icon: '🍝',
-      description: 'Comforting pastas, sauces, and timeless favourites',
-      items: [
-        'Pasta Varieties',
-        'Wood-Fired Pizza',
-        'Risotto',
-        'Lasagna',
-        'Garlic Bread',
-        'Bruschetta',
-      ],
-    },
-    {
-      name: 'Fast Food',
-      icon: '🍔',
-      description: 'Quick bites made with care and quality',
-      items: [
-        'Burgers',
-        'Sandwiches',
-        'French Fries',
-        'Wraps',
-        'Nuggets',
-        'Hot Dogs',
-      ],
-    },
-    {
-      name: 'Desserts',
-      icon: '🍰',
-      description: 'Indulgent treats to end your story on a sweet note',
-      items: [
-        'Ice Cream',
-        'Brownies',
-        'Cakes',
-        'Pastries',
-        'Gulab Jamun',
-        'Tiramisu',
-      ],
-    },
-    {
-      name: 'Shakes',
-      icon: '🥤',
-      description: 'Refreshing beverages and thick shakes',
-      items: [
-        'Chocolate Shake',
-        'Strawberry Shake',
-        'Mango Shake',
-        'Oreo Shake',
-        'Fresh Juices',
-        'Smoothies',
-      ],
-    },
-  ];
-
-  const handleDownloadMenu = () => {
-    window.open('/assets/menu.pdf', '_blank');
-  };
-
   return (
     <>
       <Seo 
         title="Menu – Taste & Tales Restaurant near GIFT City Gandhinagar"
-        description="Explore our thoughtfully crafted menu featuring North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes. Download our full menu PDF."
+        description="Explore our extensive menu featuring Indian specialties, international cuisine, tandoori delights, and more at Taste & Tales Restaurant near GIFT City Gandhinagar."
       />
-
-      {/* Hero */}
-      <Section className="bg-muted/30">
-        <div className="max-w-3xl mx-auto text-center">
-          <Badge variant="secondary" className="mb-4">Our Menu</Badge>
-          <h1 className="font-serif text-4xl font-bold md:text-5xl mb-6">
-            Explore Our <span className="text-primary">Crafted Menu</span>
-          </h1>
-          <p className="text-lg text-muted-foreground mb-6">
-            From traditional favourites to international delights, discover a world of flavours thoughtfully prepared
-          </p>
-          <Button size="lg" onClick={handleDownloadMenu} className="transition-all hover:shadow-warm-lg">
-            <Download className="mr-2 h-5 w-5" />
-            Download Menu (PDF)
-          </Button>
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Our Menu
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8">
+              Discover a world of flavors with our carefully curated menu featuring authentic Indian cuisine, international favorites, and signature specialties.
+            </p>
+          </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Menu Categories - Desktop Cards */}
+      {/* Menu Categories - Desktop Grid */}
       <Section className="hidden md:block">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {menuCategories.map((category, index) => (
-            <Card key={index} className="border-2 transition-all hover:shadow-warm-lg">
+            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-4xl">{category.icon}</span>
-                  <CardTitle className="font-serif text-2xl">{category.name}</CardTitle>
+                  <span className="text-3xl">{category.icon}</span>
+                  <CardTitle className="text-xl font-serif uppercase">
+                    {category.name}
+                  </CardTitle>
                 </div>
                 <p className="text-sm text-muted-foreground">{category.description}</p>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <div className="space-y-3">
                   {category.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-center gap-2 text-sm">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      {item}
-                    </li>
+                    <div key={itemIndex} className="flex justify-between items-start gap-2 pb-2 border-b border-border/50 last:border-0">
+                      <span className="text-sm text-foreground flex-1">{item.name}</span>
+                      <Badge variant="secondary" className="shrink-0">
+                        ₹{item.price}
+                      </Badge>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -176,51 +66,51 @@ export default function MenuPage() {
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="border-2 rounded-lg px-4"
+              className="border rounded-lg px-4 bg-card"
             >
-              <AccordionTrigger className="hover:no-underline">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">{category.icon}</span>
-                  <div className="text-left">
-                    <div className="font-serif text-lg font-semibold">{category.name}</div>
-                    <div className="text-xs text-muted-foreground">{category.description}</div>
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3 text-left">
+                  <span className="text-2xl">{category.icon}</span>
+                  <div>
+                    <h3 className="font-serif text-lg font-semibold uppercase">
+                      {category.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mt-1">{category.description}</p>
                   </div>
                 </div>
               </AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2 pt-2">
+              <AccordionContent className="pb-4">
+                <div className="space-y-3 pt-2">
                   {category.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-center gap-2 text-sm">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      {item}
-                    </li>
+                    <div key={itemIndex} className="flex justify-between items-start gap-2 pb-2 border-b border-border/50 last:border-0">
+                      <span className="text-sm text-foreground flex-1">{item.name}</span>
+                      <Badge variant="secondary" className="shrink-0">
+                        ₹{item.price}
+                      </Badge>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </Section>
 
-      {/* CTA */}
-      <Section className="bg-muted/30">
+      {/* CTA Section */}
+      <Section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl mb-4">
-            Ready to Order?
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Ready to Experience Our Flavors?
           </h2>
-          <p className="text-muted-foreground mb-6">
-            Get your favourite dishes delivered or visit us for a memorable dining experience
+          <p className="text-lg text-muted-foreground mb-8">
+            Visit us today or call to make a reservation. We're located near GIFT City, Gandhinagar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="transition-all hover:shadow-warm-lg">
-              <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer">
-                Order on Zomato
-              </a>
+            <Button size="lg" asChild>
+              <a href="tel:+919825012345">Call to Order</a>
             </Button>
-            <Button size="lg" variant="outline" asChild className="transition-all hover:shadow-warm">
-              <a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer">
-                Order on Swiggy
-              </a>
+            <Button size="lg" variant="outline" asChild>
+              <a href="/contact">Visit Us</a>
             </Button>
           </div>
         </div>

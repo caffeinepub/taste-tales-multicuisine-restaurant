@@ -244,7 +244,7 @@ export default function HomePage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="relative h-64 overflow-hidden rounded-lg">
             <img 
-              src="/assets/generated/gallery-ambience.dim_1200x800.png"
+              src={BRAND_ASSETS.ambienceGallery}
               alt="Restaurant ambience"
               className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
             />

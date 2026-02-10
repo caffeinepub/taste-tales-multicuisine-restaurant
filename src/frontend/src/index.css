@@ -7,83 +7,83 @@
 @layer base {
     :root {
         --radius: 0.5rem;
-        /* Premium olive-green palette - light mode */
+        /* Warm amber + wood + teal palette - light mode */
         --background: 0.98 0.01 60;
         --foreground: 0.25 0.02 30;
         --card: 1 0 0;
         --card-foreground: 0.25 0.02 30;
         --popover: 1 0 0;
         --popover-foreground: 0.25 0.02 30;
-        /* Olive green primary */
-        --primary: 0.48 0.08 135;
+        /* Teal/aqua primary */
+        --primary: 0.58 0.12 195;
         --primary-foreground: 0.98 0.01 60;
-        /* Warm beige secondary */
-        --secondary: 0.88 0.04 65;
-        --secondary-foreground: 0.25 0.02 30;
+        /* Warm wood secondary */
+        --secondary: 0.65 0.08 45;
+        --secondary-foreground: 0.98 0.01 60;
         /* Soft cream muted */
         --muted: 0.94 0.02 65;
         --muted-foreground: 0.50 0.02 30;
-        /* Muted gold accent */
-        --accent: 0.72 0.10 75;
+        /* Warm amber accent */
+        --accent: 0.78 0.12 65;
         --accent-foreground: 0.25 0.02 30;
         --destructive: 0.55 0.22 25;
         --destructive-foreground: 0.98 0.01 60;
         --border: 0.88 0.02 65;
         --input: 0.88 0.02 65;
-        --ring: 0.48 0.08 135;
-        /* Chart colors with olive-green theme */
-        --chart-1: 0.48 0.08 135;
-        --chart-2: 0.72 0.10 75;
-        --chart-3: 0.88 0.04 65;
-        --chart-4: 0.55 0.08 35;
-        --chart-5: 0.65 0.10 50;
+        --ring: 0.58 0.12 195;
+        /* Chart colors with teal + amber theme */
+        --chart-1: 0.58 0.12 195;
+        --chart-2: 0.78 0.12 65;
+        --chart-3: 0.65 0.08 45;
+        --chart-4: 0.48 0.10 180;
+        --chart-5: 0.70 0.10 55;
         --sidebar: 0.98 0.01 60;
         --sidebar-foreground: 0.25 0.02 30;
-        --sidebar-primary: 0.48 0.08 135;
+        --sidebar-primary: 0.58 0.12 195;
         --sidebar-primary-foreground: 0.98 0.01 60;
         --sidebar-accent: 0.94 0.02 65;
         --sidebar-accent-foreground: 0.25 0.02 30;
         --sidebar-border: 0.88 0.02 65;
-        --sidebar-ring: 0.48 0.08 135;
+        --sidebar-ring: 0.58 0.12 195;
     }
 
     .dark {
-        /* Dark mode with warm olive tones */
-        --background: 0.18 0.02 30;
+        /* Dark mode with warm amber + wood + teal tones */
+        --background: 0.20 0.02 35;
         --foreground: 0.95 0.01 60;
-        --card: 0.22 0.02 30;
+        --card: 0.25 0.02 35;
         --card-foreground: 0.95 0.01 60;
-        --popover: 0.22 0.02 30;
+        --popover: 0.25 0.02 35;
         --popover-foreground: 0.95 0.01 60;
-        /* Lighter olive for dark mode */
-        --primary: 0.58 0.10 135;
+        /* Lighter teal for dark mode */
+        --primary: 0.65 0.14 195;
         --primary-foreground: 0.98 0.01 60;
-        /* Darker beige */
-        --secondary: 0.35 0.03 65;
+        /* Warm wood tone */
+        --secondary: 0.45 0.06 45;
         --secondary-foreground: 0.95 0.01 60;
-        --muted: 0.30 0.02 30;
+        --muted: 0.32 0.02 35;
         --muted-foreground: 0.70 0.02 60;
-        /* Gold accent */
-        --accent: 0.68 0.12 75;
-        --accent-foreground: 0.18 0.02 30;
+        /* Warm amber accent */
+        --accent: 0.72 0.14 65;
+        --accent-foreground: 0.20 0.02 35;
         --destructive: 0.60 0.20 25;
         --destructive-foreground: 0.95 0.01 60;
-        --border: 0.30 0.02 30;
-        --input: 0.30 0.02 30;
-        --ring: 0.58 0.10 135;
-        --chart-1: 0.58 0.10 135;
-        --chart-2: 0.68 0.12 75;
-        --chart-3: 0.35 0.03 65;
-        --chart-4: 0.55 0.08 35;
-        --chart-5: 0.65 0.10 50;
-        --sidebar: 0.22 0.02 30;
+        --border: 0.32 0.02 35;
+        --input: 0.32 0.02 35;
+        --ring: 0.65 0.14 195;
+        --chart-1: 0.65 0.14 195;
+        --chart-2: 0.72 0.14 65;
+        --chart-3: 0.45 0.06 45;
+        --chart-4: 0.55 0.12 180;
+        --chart-5: 0.68 0.10 55;
+        --sidebar: 0.25 0.02 35;
         --sidebar-foreground: 0.95 0.01 60;
-        --sidebar-primary: 0.58 0.10 135;
+        --sidebar-primary: 0.65 0.14 195;
         --sidebar-primary-foreground: 0.98 0.01 60;
-        --sidebar-accent: 0.30 0.02 30;
+        --sidebar-accent: 0.32 0.02 35;
         --sidebar-accent-foreground: 0.95 0.01 60;
-        --sidebar-border: 0.30 0.02 30;
-        --sidebar-ring: 0.58 0.10 135;
+        --sidebar-border: 0.32 0.02 35;
+        --sidebar-ring: 0.65 0.14 195;
     }
 
     * {
