@@ -118,26 +118,27 @@ export default function MenuManagementPage() {
   if (showProfileSetup) {
     return (
       <Dialog open={showProfileSetup} onOpenChange={() => {}}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md mx-4">
           <DialogHeader>
-            <DialogTitle>Welcome! Set up your profile</DialogTitle>
-            <DialogDescription>Please enter your name to continue.</DialogDescription>
+            <DialogTitle className="text-lg sm:text-xl">Welcome! Set up your profile</DialogTitle>
+            <DialogDescription className="text-sm">Please enter your name to continue.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="profile-name">Your Name</Label>
+              <Label htmlFor="profile-name" className="text-sm">Your Name</Label>
               <Input
                 id="profile-name"
                 value={profileName}
                 onChange={(e) => setProfileName(e.target.value)}
                 placeholder="Enter your name"
                 disabled={saveProfileMutation.isPending}
+                className="text-sm"
               />
             </div>
             <Button
               onClick={handleProfileSetup}
               disabled={!profileName.trim() || saveProfileMutation.isPending}
-              className="w-full"
+              className="w-full text-sm"
             >
               {saveProfileMutation.isPending ? (
                 <>
@@ -157,14 +158,14 @@ export default function MenuManagementPage() {
   // Login required
   if (!isAuthenticated) {
     return (
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-12 sm:py-16">
         <Card className="max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle>Menu Management</CardTitle>
-            <CardDescription>Please log in to manage the menu</CardDescription>
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="text-lg sm:text-xl">Menu Management</CardTitle>
+            <CardDescription className="text-sm">Please log in to manage the menu</CardDescription>
           </CardHeader>
-          <CardContent>
-            <Button onClick={handleLogin} disabled={loginStatus === 'logging-in'} className="w-full">
+          <CardContent className="p-4 sm:p-6 pt-0">
+            <Button onClick={handleLogin} disabled={loginStatus === 'logging-in'} className="w-full text-sm sm:text-base">
               {loginStatus === 'logging-in' ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -183,8 +184,10 @@ export default function MenuManagementPage() {
   // Loading state
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-16 flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <div className="container mx-auto px-4 py-12 sm:py-16">
+        <div className="flex items-center justify-center min-h-[50vh]">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
       </div>
     );
   }
@@ -192,148 +195,182 @@ export default function MenuManagementPage() {
   // Access denied
   if (!isAdmin) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <Alert variant="destructive" className="max-w-md mx-auto">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>
-            You do not have permission to access this page. Only administrators can manage the menu.
-          </AlertDescription>
-        </Alert>
-        <div className="text-center mt-4">
-          <Button onClick={handleLogout} variant="outline">
-            Logout
-          </Button>
-        </div>
+      <div className="container mx-auto px-4 py-12 sm:py-16">
+        <Card className="max-w-md mx-auto border-destructive">
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="flex items-center gap-2 text-destructive text-lg sm:text-xl">
+              <AlertCircle className="h-5 w-5" />
+              Access Denied
+            </CardTitle>
+            <CardDescription className="text-sm">You do not have permission to access this page.</CardDescription>
+          </CardHeader>
+          <CardContent className="p-4 sm:p-6 pt-0">
+            <Button onClick={handleLogout} variant="outline" className="w-full text-sm sm:text-base">
+              Logout
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-3xl font-serif font-bold text-foreground">Menu Management</h1>
-          <p className="text-muted-foreground mt-1">Edit menu categories, items, and prices</p>
+    <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+          <div>
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Menu Management</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">Edit categories and menu items</p>
+          </div>
+          <Button onClick={handleLogout} variant="outline" size="sm" className="self-start sm:self-auto">
+            Logout
+          </Button>
         </div>
-        <Button onClick={handleLogout} variant="outline">
-          Logout
-        </Button>
+
+        {saveSuccess && (
+          <Alert className="border-primary bg-primary/10 mb-4">
+            <CheckCircle2 className="h-4 w-4 text-primary" />
+            <AlertDescription className="text-sm">Menu saved successfully!</AlertDescription>
+          </Alert>
+        )}
+
+        {updateMenuMutation.isError && (
+          <Alert variant="destructive" className="mb-4">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription className="text-sm">Failed to save menu. Please try again.</AlertDescription>
+          </Alert>
+        )}
+
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Button
+            onClick={handleSave}
+            disabled={!hasChanges || updateMenuMutation.isPending}
+            className="w-full sm:w-auto text-sm sm:text-base"
+          >
+            {updateMenuMutation.isPending ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="mr-2 h-4 w-4" />
+                Save Changes
+              </>
+            )}
+          </Button>
+          <Button
+            onClick={handleReset}
+            disabled={!hasChanges}
+            variant="outline"
+            className="w-full sm:w-auto text-sm sm:text-base"
+          >
+            <RotateCcw className="mr-2 h-4 w-4" />
+            Reset
+          </Button>
+        </div>
       </div>
 
-      {saveSuccess && (
-        <Alert className="mb-6 bg-green-50 border-green-200">
-          <CheckCircle2 className="h-4 w-4 text-green-600" />
-          <AlertDescription className="text-green-800">Menu saved successfully!</AlertDescription>
-        </Alert>
-      )}
-
-      <div className="flex gap-4 mb-6">
-        <Button onClick={handleSave} disabled={!hasChanges || updateMenuMutation.isPending}>
-          {updateMenuMutation.isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Saving...
-            </>
-          ) : (
-            <>
-              <Save className="mr-2 h-4 w-4" />
-              Save Changes
-            </>
-          )}
-        </Button>
-        <Button onClick={handleReset} variant="outline" disabled={!hasChanges}>
-          <RotateCcw className="mr-2 h-4 w-4" />
-          Reset
-        </Button>
-      </div>
-
-      <Tabs defaultValue={editedCategories[0]?.id} className="space-y-4">
-        <TabsList className="flex flex-wrap h-auto gap-2">
+      <Tabs defaultValue={editedCategories[0]?.id} className="w-full">
+        <TabsList className="w-full flex-wrap h-auto gap-2 bg-muted/50 p-2">
           {editedCategories.map((category) => (
-            <TabsTrigger key={category.id} value={category.id} className="text-sm">
+            <TabsTrigger 
+              key={category.id} 
+              value={category.id}
+              className="text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+            >
               {category.name}
             </TabsTrigger>
           ))}
         </TabsList>
 
         {editedCategories.map((category) => (
-          <TabsContent key={category.id} value={category.id}>
+          <TabsContent key={category.id} value={category.id} className="mt-4 sm:mt-6">
             <Card>
-              <CardHeader>
-                <CardTitle>Edit {category.name}</CardTitle>
-                <CardDescription>Update category details and menu items</CardDescription>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="text-lg sm:text-xl">Edit {category.name}</CardTitle>
+                <CardDescription className="text-sm">Update category details and menu items</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="p-4 sm:p-6 pt-0 space-y-6">
                 {/* Category Details */}
-                <div className="space-y-4 pb-6 border-b">
-                  <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-base sm:text-lg">Category Details</h3>
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor={`cat-name-${category.id}`}>Category Name</Label>
+                      <Label htmlFor={`cat-name-${category.id}`} className="text-sm">Category Name</Label>
                       <Input
                         id={`cat-name-${category.id}`}
                         value={category.name}
                         onChange={(e) => handleCategoryChange(category.id, 'name', e.target.value)}
+                        className="text-sm"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor={`cat-order-${category.id}`}>Display Order</Label>
+                      <Label htmlFor={`cat-icon-${category.id}`} className="text-sm">Icon Key</Label>
                       <Input
-                        id={`cat-order-${category.id}`}
-                        type="number"
-                        value={category.order}
-                        onChange={(e) => handleCategoryChange(category.id, 'order', parseInt(e.target.value))}
+                        id={`cat-icon-${category.id}`}
+                        value={category.iconKey}
+                        onChange={(e) => handleCategoryChange(category.id, 'iconKey', e.target.value)}
+                        className="text-sm"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor={`cat-desc-${category.id}`}>Category Description</Label>
+                    <Label htmlFor={`cat-desc-${category.id}`} className="text-sm">Description</Label>
                     <Textarea
                       id={`cat-desc-${category.id}`}
                       value={category.description}
                       onChange={(e) => handleCategoryChange(category.id, 'description', e.target.value)}
                       rows={2}
+                      className="text-sm"
                     />
                   </div>
                 </div>
 
                 {/* Menu Items */}
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-lg">Menu Items</h3>
-                  {category.items.map((item, index) => (
-                    <Card key={index} className="bg-muted/30">
-                      <CardContent className="pt-6 space-y-4">
-                        <div className="grid gap-4 md:grid-cols-2">
-                          <div className="space-y-2">
-                            <Label htmlFor={`item-name-${category.id}-${index}`}>Item Name</Label>
-                            <Input
-                              id={`item-name-${category.id}-${index}`}
-                              value={item.name}
-                              onChange={(e) => handleItemChange(category.id, index, 'name', e.target.value)}
-                            />
+                  <h3 className="font-semibold text-base sm:text-lg">Menu Items ({category.items.length})</h3>
+                  <div className="space-y-4">
+                    {category.items.map((item, index) => (
+                      <Card key={index} className="border-2">
+                        <CardContent className="p-3 sm:p-4">
+                          <div className="grid gap-3 sm:gap-4">
+                            <div className="grid gap-3 sm:grid-cols-2">
+                              <div className="space-y-2">
+                                <Label htmlFor={`item-name-${category.id}-${index}`} className="text-xs sm:text-sm">Item Name</Label>
+                                <Input
+                                  id={`item-name-${category.id}-${index}`}
+                                  value={item.name}
+                                  onChange={(e) => handleItemChange(category.id, index, 'name', e.target.value)}
+                                  className="text-sm"
+                                />
+                              </div>
+                              <div className="space-y-2">
+                                <Label htmlFor={`item-price-${category.id}-${index}`} className="text-xs sm:text-sm">Price (₹)</Label>
+                                <Input
+                                  id={`item-price-${category.id}-${index}`}
+                                  type="number"
+                                  value={item.price}
+                                  onChange={(e) => handleItemChange(category.id, index, 'price', parseFloat(e.target.value) || 0)}
+                                  className="text-sm"
+                                />
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor={`item-desc-${category.id}-${index}`} className="text-xs sm:text-sm">Description</Label>
+                              <Textarea
+                                id={`item-desc-${category.id}-${index}`}
+                                value={item.description}
+                                onChange={(e) => handleItemChange(category.id, index, 'description', e.target.value)}
+                                rows={2}
+                                className="text-sm"
+                              />
+                            </div>
                           </div>
-                          <div className="space-y-2">
-                            <Label htmlFor={`item-price-${category.id}-${index}`}>Price (₹)</Label>
-                            <Input
-                              id={`item-price-${category.id}-${index}`}
-                              type="number"
-                              value={item.price}
-                              onChange={(e) => handleItemChange(category.id, index, 'price', parseFloat(e.target.value))}
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor={`item-desc-${category.id}-${index}`}>Description (optional)</Label>
-                          <Textarea
-                            id={`item-desc-${category.id}-${index}`}
-                            value={item.description || ''}
-                            onChange={(e) => handleItemChange(category.id, index, 'description', e.target.value)}
-                            rows={2}
-                            placeholder="Add a description for this item"
-                          />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>

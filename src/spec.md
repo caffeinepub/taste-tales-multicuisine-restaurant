@@ -1,16 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Standardize the restaurant menu data and improve the `/menu` experience with consistent ordering, descriptions, and category media, plus a staff-only management page to edit names/prices and persist changes via the Motoko backend.
+**Goal:** Make the entire frontend fully responsive and usable across mobile, tablet (iPad), and desktop viewports without overflow or horizontal scrolling.
 
 **Planned changes:**
-- Replace `frontend/src/data/menuData.ts` with a cleaned/standardized dataset (consistent naming/capitalization/spelling/formatting), while keeping all existing categories/items represented and resolving duplicates deterministically.
-- Introduce an explicit category order (and optional sub-grouping) and update `frontend/src/pages/MenuPage.tsx` to render categories in that order on both desktop (grid) and mobile (accordion).
-- Improve/standardize English category and item descriptions where missing or low-quality, keeping text concise and consistent in tone/length.
-- Add a standardized category icon + optional cover image system and update `/menu` to display icons/images cleanly with meaningful `alt` text and graceful fallbacks when images are missing.
-- Update menu item rows/cards to show a standardized layout: name + optional description + price (₹ formatting unchanged), ensuring alignment when descriptions are absent.
-- Add a new authenticated “Menu Management” page using Internet Identity to edit category name/description/order and item name/price (optionally description), with changes persisted in the backend.
-- Extend `backend/main.mo` (single actor) with methods to fetch the current menu, update/replace the menu, and enforce editor authorization (e.g., admin allowlist), storing menu state in stable memory.
-- Add and reference generated static assets for menu category cover images/icons under `frontend/public/assets/generated` (no backend image serving).
+- Update page layouts (Home, About, Menu, Offers, Contact, Menu Management) to reflow cleanly at common breakpoints (~360px, ~768px, ~1280px), ensuring no clipped content or horizontal scrolling.
+- Adjust the header layout (brand name, search bar, nav actions) to avoid overlap/overflow and provide appropriate spacing/wrapping behavior across mobile/tablet/desktop, including a usable mobile hamburger menu.
+- Make key Home page sections responsive (hero, cuisine card grid, multi-column sections) so typography and grids transition from single-column (mobile) to multi-column (tablet/desktop) while keeping image aspect ratios intact.
+- Make Menu Management responsive by improving TabsList behavior on narrow screens and ensuring forms/actions stack and remain usable without sideways scrolling.
+- Refine footer responsiveness so sections collapse into appropriate columns by breakpoint and contact/social rows wrap neatly without collisions.
 
-**User-visible outcome:** Visitors see a cleaner, consistently ordered menu with better descriptions and category icons/cover images; authorized staff can log in to update menu names/prices (and related fields) and have those changes persist across refreshes and upgrades.
+**User-visible outcome:** The site works cleanly on phones, iPads, and desktops: all pages fit within the viewport, navigation and forms remain usable, and grids/sections adapt smoothly without content overflowing or being clipped.

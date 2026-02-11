@@ -206,3 +206,75 @@ export function getSecretFromHash(paramName: string): string | null {
 export function getSecretParameter(paramName: string): string | null {
     return getSecretFromHash(paramName);
 }
+
+/**
+ * Interface for search focus parameters used in menu deep-linking
+ */
+export interface SearchFocusParams {
+    categoryId?: string;
+    itemName?: string;
+}
+
+/**
+ * Reads search focus parameters from the URL for menu deep-linking
+ * Used to highlight and scroll to specific categories or items from search results
+ *
+ * @returns Object with categoryId and/or itemName if present, null otherwise
+ */
+export function readSearchFocusParams(): SearchFocusParams | null {
+    const categoryId = getUrlParameter('focusCategory');
+    const itemName = getUrlParameter('focusItem');
+
+    if (!categoryId && !itemName) {
+        return null;
+    }
+
+    return {
+        categoryId: categoryId || undefined,
+        itemName: itemName || undefined,
+    };
+}
+
+/**
+ * Clears search focus parameters from the URL
+ * Called after the scroll-to and highlight animation completes
+ */
+export function clearSearchFocusParams(): void {
+    if (!window.history.replaceState) {
+        return;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete('focusCategory');
+    url.searchParams.delete('focusItem');
+
+    // Also clear from hash if present
+    const hash = window.location.hash;
+    if (hash && hash.includes('?')) {
+        const [route, query] = hash.split('?');
+        const params = new URLSearchParams(query);
+        params.delete('focusCategory');
+        params.delete('focusItem');
+        const newQuery = params.toString();
+        url.hash = newQuery ? `${route}?${newQuery}` : route;
+    }
+
+    window.history.replaceState(null, '', url.toString());
+}
+
+/**
+ * Builds a menu URL with focus parameters for deep-linking
+ * Used by search results to navigate to specific menu items or categories
+ *
+ * @param categoryId - The category ID to focus on
+ * @param itemName - Optional item name to focus on within the category
+ * @returns URL string with focus parameters
+ */
+export function buildMenuFocusUrl(categoryId: string, itemName?: string): string {
+    const params = new URLSearchParams();
+    params.set('focusCategory', categoryId);
+    if (itemName) {
+        params.set('focusItem', itemName);
+    }
+    return `/menu?${params.toString()}`;
+}

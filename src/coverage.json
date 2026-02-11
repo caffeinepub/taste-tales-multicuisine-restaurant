@@ -1,172 +1,107 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T14:31:17.721Z",
+  "generatedAt": "2026-02-11T18:19:58.063Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 8,
-    "implemented": 7,
+    "total": 5,
+    "implemented": 5,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Replace the current menu dataset with a newer cleaned/standardized version by normalizing category names, item names, spelling, capitalization, and formatting consistency in `frontend/src/data/menuData.ts` while keeping all existing categories/items represented.",
+        "summary": "Ensure the entire frontend layout is responsive and usable across common breakpoints (mobile, tablet/iPad, laptop/desktop), with no horizontal scrolling or clipped content on any page (Home, About, Menu, Offers, Contact, and Menu Management).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/menuData.ts"
+          "frontend/src/App.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/Section.tsx",
+          "frontend/src/pages/AboutPage.tsx",
+          "frontend/src/pages/MenuPage.tsx",
+          "frontend/src/pages/OffersPage.tsx",
+          "frontend/src/pages/ContactPage.tsx",
+          "frontend/src/pages/MenuManagementPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/data/menuData.ts"
+          "frontend/src/App.tsx",
+          "frontend/src/index.css",
+          "frontend/src/components/Section.tsx",
+          "frontend/src/pages/AboutPage.tsx",
+          "frontend/src/pages/MenuPage.tsx",
+          "frontend/src/pages/OffersPage.tsx",
+          "frontend/src/pages/ContactPage.tsx",
+          "frontend/src/pages/MenuManagementPage.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Reorganize menu categories by introducing an explicit category order (and optionally sub-grouping) and updating the `/menu` UI (`frontend/src/pages/MenuPage.tsx`) to render categories in that new order consistently on both desktop grid and mobile accordion.",
+        "summary": "Adjust the header navigation and header contents to be responsive at mobile/tablet/desktop sizes, including appropriate spacing, wrapping behavior, and avoidance of overflow for the brand name, search bar, and nav actions.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/menuData.ts",
-          "frontend/src/pages/MenuPage.tsx"
+          "frontend/src/components/SiteHeader.tsx",
+          "frontend/src/components/GlobalSearch/GlobalSearch.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/data/menuData.ts",
-          "frontend/src/pages/MenuPage.tsx"
+          "frontend/src/components/SiteHeader.tsx",
+          "frontend/src/components/GlobalSearch/GlobalSearch.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Add improved category and item descriptions where missing or low-quality, ensuring all user-facing text is in English and descriptions are concise and standardized (similar length/tone across the menu).",
+        "summary": "Make key page grids/sections responsive, especially the Home page hero, cuisine card grid, and any multi-column sections, so that typography scales and layout transitions cleanly from single-column (mobile) to multi-column (tablet/desktop).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/menuData.ts"
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/data/menuData.ts"
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/index.css"
         ]
       },
       {
         "id": "REQ-4",
-        "summary": "Add a standardized icon and photo system for the menu: each category should support a consistent icon and an optional cover image, and the `/menu` UI should display them cleanly without clutter.",
+        "summary": "Make the Menu Management page responsive, including the tab list, forms, and action buttons, so it remains usable on mobile and tablet (no tabs or form inputs extending off-screen).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/data/menuData.ts",
-          "frontend/src/components/menu/MenuCategoryIcon.tsx",
-          "frontend/src/pages/MenuPage.tsx"
+          "frontend/src/pages/MenuManagementPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/data/menuData.ts",
-          "frontend/src/components/menu/MenuCategoryIcon.tsx",
-          "frontend/src/pages/MenuPage.tsx"
+          "frontend/src/pages/MenuManagementPage.tsx"
         ]
       },
       {
         "id": "REQ-5",
-        "summary": "Implement the ability to change menu item names and prices (and optionally descriptions and category ordering) through an authenticated “Menu Management” page using Internet Identity, persisting changes in the Motoko backend so they survive refresh/redeploy.",
+        "summary": "Verify and refine footer responsiveness so its grid collapses appropriately on smaller devices and maintains readable spacing and alignment for contact and social sections.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/lib/menuAdapters.ts",
-          "frontend/src/pages/MenuManagementPage.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/pages/MenuPage.tsx"
+          "frontend/src/components/SiteFooter.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/lib/menuAdapters.ts",
-          "frontend/src/pages/MenuManagementPage.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/pages/MenuPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Extend the Motoko single-actor backend (`backend/main.mo`) with methods to: (1) fetch the current menu, (2) update/replace the menu, and (3) manage authorization for who can edit the menu (e.g., admin principal allowlist).",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Update the menu display cards/accordion rows on `frontend/src/pages/MenuPage.tsx` to show item descriptions (when present) in a standardized layout (name + optional description + price), without reducing readability.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/MenuPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/MenuPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Create and use generated static assets for menu category cover images/icons by adding the provided images into `frontend/public/assets/generated` and referencing them from the menu UI (do not serve images via the backend).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/public/assets/generated/menu-cover-soups.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-starters.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-tandoori.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-sizzlers.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-indian-mains.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-oriental.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-rice.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-breads.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-desserts.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-beverages.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-icons-sheet.dim_2048x2048.png",
-          "frontend/src/data/menuData.ts"
-        ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/menu-cover-soups.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-starters.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-tandoori.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-sizzlers.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-indian-mains.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-oriental.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-rice.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-breads.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-desserts.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-cover-beverages.dim_1200x600.png",
-          "frontend/public/assets/generated/menu-icons-sheet.dim_2048x2048.png",
-          "frontend/src/data/menuData.ts"
+          "frontend/src/components/SiteFooter.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/authorization/MixinAuthorization.mo",
-    "backend/authorization/access-control.mo",
-    "backend/main.mo",
     "build-request.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/menu-cover-beverages.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-breads.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-desserts.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-indian-mains.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-oriental.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-rice.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-sizzlers.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-soups.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-starters.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-cover-tandoori.dim_1200x600.png",
-    "frontend/public/assets/generated/menu-icons-sheet.dim_2048x2048.png",
     "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
+    "frontend/src/components/GlobalSearch/GlobalSearch.tsx",
+    "frontend/src/components/Section.tsx",
+    "frontend/src/components/SiteFooter.tsx",
     "frontend/src/components/SiteHeader.tsx",
-    "frontend/src/components/menu/MenuCategoryIcon.tsx",
-    "frontend/src/data/menuData.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useQueries.ts",
-    "frontend/src/lib/menuAdapters.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
     "frontend/src/pages/MenuManagementPage.tsx",
     "frontend/src/pages/MenuPage.tsx",
+    "frontend/src/pages/OffersPage.tsx",
     "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",

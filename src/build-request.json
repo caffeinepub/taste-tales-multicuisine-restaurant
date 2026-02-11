@@ -1,180 +1,111 @@
 {
   "kind": "build_request",
-  "title": "Standardize and enhance restaurant menu with media, reordering, and editable names/prices",
+  "title": "Make the frontend fully responsive across mobile, tablet (iPad), and desktop",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Replace the current menu dataset with a newer cleaned/standardized version by normalizing category names, item names, spelling, capitalization, and formatting consistency in `frontend/src/data/menuData.ts` while keeping all existing categories/items represented.",
+      "text": "Ensure the entire frontend layout is responsive and usable across common breakpoints (mobile, tablet/iPad, laptop/desktop), with no horizontal scrolling or clipped content on any page (Home, About, Menu, Offers, Contact, and Menu Management).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-1"
+          "msg-3"
         ],
         "quotes": [
-          "Replace the existing menu with a newer cleaned/standardized version"
+          "make is feasible to all devices like mobile,ipad,laptop"
         ]
       },
       "acceptanceCriteria": [
-        "`frontend/src/data/menuData.ts` compiles with no TypeScript errors.",
-        "Category names and item names are consistently formatted (e.g., Title Case or a single chosen convention applied everywhere), with obvious typos corrected (e.g., inconsistent spellings like 'CUISIN').",
-        "Duplicate/contradictory entries in the dataset are resolved in a deterministic way (no identical items with conflicting prices within the same category).",
-        "All menu entries continue to render on `/menu` without runtime errors."
+        "At viewport widths ~360px (mobile), ~768px (tablet), and ~1280px (desktop), every route renders without horizontal scrolling.",
+        "No text, buttons, cards, images, or dialogs overflow their containers; content reflows appropriately.",
+        "Tap targets on mobile (buttons/links) are not cramped and remain accessible without accidental taps."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Reorganize menu categories by introducing an explicit category order (and optionally sub-grouping) and updating the `/menu` UI (`frontend/src/pages/MenuPage.tsx`) to render categories in that new order consistently on both desktop grid and mobile accordion.",
+      "text": "Adjust the header navigation and header contents to be responsive at mobile/tablet/desktop sizes, including appropriate spacing, wrapping behavior, and avoidance of overflow for the brand name, search bar, and nav actions.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-1"
+          "msg-3"
         ],
         "quotes": [
-          "Reorganize categories"
+          "make is feasible to all devices like mobile,ipad,laptop"
         ]
       },
       "acceptanceCriteria": [
-        "Categories render in the specified order on both desktop and mobile layouts.",
-        "Reordering does not change the content of categories/items (only presentation order/grouping).",
-        "The menu page remains responsive and readable at common breakpoints (mobile and desktop)."
+        "On mobile, the hamburger menu and mobile nav render without overflow; opening the menu shows all links and the search input fully within the viewport.",
+        "On tablet sizes, the header does not feel cramped: spacing is balanced and elements do not overlap; the search and nav are displayed using appropriate breakpoints.",
+        "On desktop, the existing layout (logo + search + nav + social) remains aligned, with consistent vertical centering and no layout shift when navigating between pages."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Add improved category and item descriptions where missing or low-quality, ensuring all user-facing text is in English and descriptions are concise and standardized (similar length/tone across the menu).",
+      "text": "Make key page grids/sections responsive, especially the Home page hero, cuisine card grid, and any multi-column sections, so that typography scales and layout transitions cleanly from single-column (mobile) to multi-column (tablet/desktop).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-1"
+          "msg-3"
         ],
         "quotes": [
-          "Add photos, icons, or improved descriptions"
+          "make is feasible to all devices like mobile,ipad,laptop"
         ]
       },
       "acceptanceCriteria": [
-        "Each category has a clear English description.",
-        "Menu items that previously had missing/placeholder descriptions are updated where appropriate, without introducing extremely long text blocks that break layout.",
-        "No non-English strings are introduced into the menu UI."
+        "Home page hero content (logo, heading, subtitle, CTA buttons) fits on mobile screens without clipping and with readable line-lengths.",
+        "Cuisine cards display as 1 column on small screens, 2 columns on small/medium screens where appropriate, and 3–4 columns on larger screens (no awkward partial columns or overflow).",
+        "Images keep correct aspect ratios and do not stretch; they remain within their cards/containers at all breakpoints."
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Add a standardized icon and photo system for the menu: each category should support a consistent icon and an optional cover image, and the `/menu` UI should display them cleanly without clutter.",
+      "text": "Make the Menu Management page responsive, including the tab list, forms, and action buttons, so it remains usable on mobile and tablet (no tabs or form inputs extending off-screen).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-1"
+          "msg-3"
         ],
         "quotes": [
-          "Add photos, icons, or improved descriptions"
+          "make is feasible to all devices like mobile,ipad,laptop"
         ]
       },
       "acceptanceCriteria": [
-        "Each category renders a consistent icon style (not a mix of random emoji styles), and the UI spacing/alignment is consistent across categories.",
-        "Category cover images (from `frontend/public/assets/generated`) render without layout shift and include meaningful `alt` text.",
-        "If an image is missing for a category, the UI falls back gracefully (still looks good and remains aligned)."
+        "TabsList remains usable on narrow screens (wraps cleanly or becomes horizontally scrollable without breaking layout).",
+        "Form grids (category fields and item fields) stack into a single column on mobile and become multi-column on larger viewports.",
+        "Primary actions (Save Changes / Reset / Logout) remain visible and usable on mobile without forcing sideways scrolling."
       ]
     },
     {
       "id": "REQ-5",
-      "text": "Implement the ability to change menu item names and prices (and optionally descriptions and category ordering) through an authenticated “Menu Management” page using Internet Identity, persisting changes in the Motoko backend so they survive refresh/redeploy.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-user-1"
-        ],
-        "quotes": [
-          "Change names or prices"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A new staff-only UI exists to edit: category name/description/order and item name/price (and optionally description).",
-        "Edits persist after page refresh (data is stored in the Motoko canister, not only in frontend state).",
-        "The public `/menu` page reads from the persisted menu when available; if no persisted menu exists yet, it falls back to the default dataset from `frontend/src/data/menuData.ts`.",
-        "Unauthorized users cannot access save/update functionality (page is blocked or read-only when not authenticated/authorized)."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Extend the Motoko single-actor backend (`backend/main.mo`) with methods to: (1) fetch the current menu, (2) update/replace the menu, and (3) manage authorization for who can edit the menu (e.g., admin principal allowlist).",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-user-1"
-        ],
-        "quotes": [
-          "Change names or prices"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes query/update methods for menu read/write that compile successfully.",
-        "Menu state is stored in stable memory so it is retained across upgrades.",
-        "Write operations are restricted to authorized principals; unauthorized calls are rejected with a clear error result.",
-        "Frontend can successfully call the backend to load and save menu changes when authenticated."
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Update the menu display cards/accordion rows on `frontend/src/pages/MenuPage.tsx` to show item descriptions (when present) in a standardized layout (name + optional description + price), without reducing readability.",
+      "text": "Verify and refine footer responsiveness so its grid collapses appropriately on smaller devices and maintains readable spacing and alignment for contact and social sections.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-1"
+          "msg-3"
         ],
         "quotes": [
-          "Add photos, icons, or improved descriptions"
+          "make is feasible to all devices like mobile,ipad,laptop"
         ]
       },
       "acceptanceCriteria": [
-        "If `description` exists for an item, it is displayed under the item name with muted styling and appropriate wrapping.",
-        "If `description` is missing, the layout remains aligned (no awkward gaps).",
-        "Prices remain consistently formatted as INR with the ₹ symbol as currently shown."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Create and use generated static assets for menu category cover images/icons by adding the provided images into `frontend/public/assets/generated` and referencing them from the menu UI (do not serve images via the backend).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-user-1"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All required generated images are present under `frontend/public/assets/generated` and are referenced via static paths.",
-        "No backend endpoints are added for serving images.",
-        "Build succeeds and images appear in the menu UI where intended."
+        "Footer sections render as a single-column stack on mobile, two columns on medium screens, and up to four columns on large screens, without overlap.",
+        "Contact rows (address/phone/hours) wrap neatly without icon/text collision.",
+        "Footer links and buttons remain readable and do not overflow their containers."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor in `backend/main.mo`; do not introduce additional backend services.",
-    "Do not edit files under `frontend/src/components/ui` (compose them instead).",
-    "Do not edit any files in `frontend/src/hooks/` that are marked immutable by the platform context.",
-    "Use English for any user-facing text.",
-    "Do not route or proxy static images through the backend; use frontend static assets."
+    "Do not modify files under frontend/src/components/ui (Shadcn UI components are read-only).",
+    "Do not edit immutable hook files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
+    "Backend changes are not required for responsiveness; keep the Motoko canister logic unchanged unless a blocking UI issue is found. (If state/schema changes are needed, add a migration only under the conditional migration policy.)"
   ],
   "nonGoals": [
-    "Online ordering, cart, checkout, or payments.",
-    "Integrations with third-party menu/restaurant platforms.",
-    "Real-time updates (websockets) or chat features.",
-    "Mobile app build (React Native/Flutter)."
+    "Adding new pages or new business features unrelated to responsive layout.",
+    "Changing authentication behavior (Internet Identity) or backend access control.",
+    "Implementing real-time features or external integrations."
   ],
   "imageRequirements": {
-    "required": [
-      "Menu category cover image: soups (menu-cover-soups.dim_1200x600.png)",
-      "Menu category cover image: appetizers/starters (menu-cover-starters.dim_1200x600.png)",
-      "Menu category cover image: tandoori/grill (menu-cover-tandoori.dim_1200x600.png)",
-      "Menu category cover image: sizzlers (menu-cover-sizzlers.dim_1200x600.png)",
-      "Menu category cover image: Indian mains/curries (menu-cover-indian-mains.dim_1200x600.png)",
-      "Menu category cover image: Oriental/Asian mains (menu-cover-oriental.dim_1200x600.png)",
-      "Menu category cover image: rice & biryani (menu-cover-rice.dim_1200x600.png)",
-      "Menu category cover image: breads (menu-cover-breads.dim_1200x600.png)",
-      "Menu category cover image: desserts (menu-cover-desserts.dim_1200x600.png)",
-      "Menu category cover image: beverages/juices/shakes (menu-cover-beverages.dim_1200x600.png)",
-      "Monochrome line icon set, food-themed, consistent stroke style (menu-icons-sheet.dim_2048x2048.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

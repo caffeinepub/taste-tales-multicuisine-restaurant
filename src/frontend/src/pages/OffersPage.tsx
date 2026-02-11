@@ -5,32 +5,27 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Percent, CreditCard, Landmark, Gift } from 'lucide-react';
 import { useNavigate } from '@tanstack/react-router';
+import { OFFERS } from '@/data/offersData';
 
 export default function OffersPage() {
   const navigate = useNavigate();
 
-  const offers = [
+  const offersWithIcons = [
     {
+      ...OFFERS[0],
       icon: Gift,
-      title: 'Flat 15% Pre-book offer',
-      description: 'Book your table in advance and enjoy a flat 15% discount on your total bill. Perfect for planning special occasions and family gatherings with thoughtful savings.',
-      badge: 'Popular',
       color: 'text-primary',
       bgColor: 'bg-primary/10',
     },
     {
+      ...OFFERS[1],
       icon: Percent,
-      title: 'Instant 10% off on bill payments',
-      description: 'Get an instant 10% discount when you pay your bill. Valid on all payment methods including cash, card, and digital wallets for your convenience.',
-      badge: 'Limited Time',
       color: 'text-chart-1',
       bgColor: 'bg-chart-1/10',
     },
     {
+      ...OFFERS[2],
       icon: Landmark,
-      title: 'Bank & RuPay offers',
-      description: 'Exclusive discounts and cashback offers available on select bank cards and RuPay transactions. Check with our staff for current promotions and special deals.',
-      badge: 'Exclusive',
       color: 'text-accent',
       bgColor: 'bg-accent/10',
     },
@@ -45,12 +40,12 @@ export default function OffersPage() {
 
       {/* Hero */}
       <Section className="bg-muted/30">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center px-4">
           <Badge variant="secondary" className="mb-4">Special Offers</Badge>
-          <h1 className="font-serif text-4xl font-bold md:text-5xl mb-6">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Exclusive <span className="text-primary">Offers & Deals</span>
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base sm:text-lg text-muted-foreground">
             Save more on your favourite meals with our thoughtful promotions and special discounts
           </p>
         </div>
@@ -58,24 +53,22 @@ export default function OffersPage() {
 
       {/* Offers */}
       <Section>
-        <div className="max-w-4xl mx-auto space-y-6">
-          {offers.map((offer, index) => (
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+          {offersWithIcons.map((offer, index) => (
             <Card key={index} className="border-2 transition-all hover:shadow-warm-lg">
-              <CardHeader>
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-start gap-4">
-                    <div className={`shrink-0 w-14 h-14 rounded-xl ${offer.bgColor} flex items-center justify-center`}>
-                      <offer.icon className={`h-7 w-7 ${offer.color}`} />
+              <CardHeader className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row items-start gap-4">
+                  <div className={`shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${offer.bgColor} flex items-center justify-center`}>
+                    <offer.icon className={`h-6 w-6 sm:h-7 sm:w-7 ${offer.color}`} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                      <CardTitle className="font-serif text-xl sm:text-2xl break-words">{offer.title}</CardTitle>
+                      <Badge variant="secondary" className="self-start sm:self-auto">{offer.badge}</Badge>
                     </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <CardTitle className="font-serif text-2xl">{offer.title}</CardTitle>
-                        <Badge variant="secondary">{offer.badge}</Badge>
-                      </div>
-                      <CardDescription className="text-base">
-                        {offer.description}
-                      </CardDescription>
-                    </div>
+                    <CardDescription className="text-sm sm:text-base">
+                      {offer.description}
+                    </CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -87,11 +80,11 @@ export default function OffersPage() {
       {/* Terms */}
       <Section className="bg-muted/30">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-serif text-2xl font-bold mb-6 text-center">
+          <h2 className="font-serif text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">
             Terms & Conditions
           </h2>
           <Card className="border-2">
-            <CardContent className="p-6">
+            <CardContent className="p-4 sm:p-6">
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex gap-2">
                   <span className="shrink-0">•</span>
@@ -121,14 +114,14 @@ export default function OffersPage() {
 
       {/* CTA */}
       <Section>
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl mb-4">
+        <div className="max-w-3xl mx-auto text-center px-4">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             Ready to Dine?
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-sm sm:text-base text-muted-foreground mb-6">
             Book your table now and enjoy these exclusive offers
           </p>
-          <Button size="lg" onClick={() => navigate({ to: '/contact' })} className="transition-all hover:shadow-warm-lg">
+          <Button size="lg" onClick={() => navigate({ to: '/contact' })} className="transition-all hover:shadow-warm-lg w-full sm:w-auto">
             Book a Table
           </Button>
         </div>
