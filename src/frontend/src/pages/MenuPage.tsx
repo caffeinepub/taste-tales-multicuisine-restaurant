@@ -1,55 +1,76 @@
-import Section from '@/components/Section';
-import Seo from '@/components/Seo';
-import { Button } from '@/components/ui/button';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Badge } from '@/components/ui/badge';
-import { menuCategories } from '@/data/menuData';
+import Seo from '@/components/Seo';
+import Section from '@/components/Section';
+import { useGetMenu } from '@/hooks/useQueries';
+import { mergeMenuData } from '@/lib/menuAdapters';
+import { MenuCategoryIcon } from '@/components/menu/MenuCategoryIcon';
+import { Loader2 } from 'lucide-react';
 
 export default function MenuPage() {
+  const { data: backendMenu, isLoading } = useGetMenu();
+
+  // Merge backend data with default data (fallback to default if backend is empty)
+  const categories = mergeMenuData(backendMenu || null);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   return (
     <>
-      <Seo 
-        title="Menu – Taste & Tales Restaurant near GIFT City Gandhinagar"
-        description="Explore our extensive menu featuring Indian specialties, international cuisine, tandoori delights, and more at Taste & Tales Restaurant near GIFT City Gandhinagar."
+      <Seo
+        title="Our Menu"
+        description="Explore our diverse menu featuring authentic Indian cuisine, Chinese specialties, Italian favorites, and more. Fresh ingredients, traditional recipes, and modern flavors."
       />
-      
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Our Menu
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8">
-              Discover a world of flavors with our carefully curated menu featuring authentic Indian cuisine, international favorites, and signature specialties.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Menu Categories - Desktop Grid */}
-      <Section className="hidden md:block">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {menuCategories.map((category, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-3xl">{category.icon}</span>
-                  <CardTitle className="text-xl font-serif uppercase">
-                    {category.name}
-                  </CardTitle>
+      <Section className="py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">Our Menu</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Discover our carefully curated selection of dishes, crafted with the finest ingredients and authentic flavors
+          </p>
+        </div>
+
+        {/* Desktop Grid Layout */}
+        <div className="hidden md:grid gap-8">
+          {categories.map((category) => (
+            <Card key={category.id} className="overflow-hidden backdrop-blur-sm bg-card/95 shadow-warm-md">
+              {category.coverImage && (
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={category.coverImage}
+                    alt={`${category.name} category`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
                 </div>
-                <p className="text-sm text-muted-foreground">{category.description}</p>
+              )}
+              <CardHeader className={category.coverImage ? '-mt-16 relative z-10' : ''}>
+                <div className="flex items-center gap-4">
+                  <MenuCategoryIcon iconKey={category.iconKey} className="flex-shrink-0" />
+                  <div className="flex-1">
+                    <CardTitle className="text-2xl font-serif">{category.name}</CardTitle>
+                    <p className="text-sm text-muted-foreground mt-1">{category.description}</p>
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {category.items.map((item, itemIndex) => (
-                    <div key={itemIndex} className="flex justify-between items-start gap-2 pb-2 border-b border-border/50 last:border-0">
-                      <span className="text-sm text-foreground flex-1">{item.name}</span>
-                      <Badge variant="secondary" className="shrink-0">
-                        ₹{item.price}
-                      </Badge>
+                  {category.items.map((item, index) => (
+                    <div key={index} className="flex justify-between items-start gap-4 py-2 border-b border-border/50 last:border-0">
+                      <div className="flex-1">
+                        <h3 className="font-medium text-foreground">{item.name}</h3>
+                        {item.description && (
+                          <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                        )}
+                      </div>
+                      <span className="font-semibold text-primary whitespace-nowrap">₹{item.price}</span>
                     </div>
                   ))}
                 </div>
@@ -57,62 +78,48 @@ export default function MenuPage() {
             </Card>
           ))}
         </div>
-      </Section>
 
-      {/* Menu Categories - Mobile Accordion */}
-      <Section className="md:hidden">
-        <Accordion type="single" collapsible className="w-full space-y-4">
-          {menuCategories.map((category, index) => (
-            <AccordionItem 
-              key={index} 
-              value={`item-${index}`}
-              className="border rounded-lg px-4 bg-card"
-            >
-              <AccordionTrigger className="hover:no-underline py-4">
-                <div className="flex items-center gap-3 text-left">
-                  <span className="text-2xl">{category.icon}</span>
-                  <div>
-                    <h3 className="font-serif text-lg font-semibold uppercase">
-                      {category.name}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-1">{category.description}</p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pb-4">
-                <div className="space-y-3 pt-2">
-                  {category.items.map((item, itemIndex) => (
-                    <div key={itemIndex} className="flex justify-between items-start gap-2 pb-2 border-b border-border/50 last:border-0">
-                      <span className="text-sm text-foreground flex-1">{item.name}</span>
-                      <Badge variant="secondary" className="shrink-0">
-                        ₹{item.price}
-                      </Badge>
+        {/* Mobile Accordion Layout */}
+        <div className="md:hidden">
+          <Accordion type="single" collapsible className="space-y-4">
+            {categories.map((category) => (
+              <AccordionItem key={category.id} value={category.id} className="border rounded-lg overflow-hidden backdrop-blur-sm bg-card/95 shadow-warm-md">
+                <AccordionTrigger className="px-4 py-4 hover:no-underline">
+                  <div className="flex items-center gap-3 text-left">
+                    <MenuCategoryIcon iconKey={category.iconKey} className="flex-shrink-0" />
+                    <div>
+                      <h2 className="font-serif font-semibold text-lg">{category.name}</h2>
+                      <p className="text-xs text-muted-foreground mt-0.5">{category.description}</p>
                     </div>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </Section>
-
-      {/* CTA Section */}
-      <Section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Ready to Experience Our Flavors?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Visit us today or call to make a reservation. We're located near GIFT City, Gandhinagar.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
-              <a href="tel:+919825012345">Call to Order</a>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="/contact">Visit Us</a>
-            </Button>
-          </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4">
+                  {category.coverImage && (
+                    <div className="relative h-32 overflow-hidden rounded-lg mb-4 -mx-4">
+                      <img
+                        src={category.coverImage}
+                        alt={`${category.name} category`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="space-y-3">
+                    {category.items.map((item, index) => (
+                      <div key={index} className="flex justify-between items-start gap-3 py-2 border-b border-border/50 last:border-0">
+                        <div className="flex-1">
+                          <h3 className="font-medium text-sm text-foreground">{item.name}</h3>
+                          {item.description && (
+                            <p className="text-xs text-muted-foreground mt-1">{item.description}</p>
+                          )}
+                        </div>
+                        <span className="font-semibold text-primary text-sm whitespace-nowrap">₹{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </Section>
     </>

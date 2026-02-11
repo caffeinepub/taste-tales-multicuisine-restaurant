@@ -1,19 +1,31 @@
-import { createRouter, createRoute, createRootRoute, RouterProvider, Outlet } from '@tanstack/react-router';
-import SiteHeader from './components/SiteHeader';
-import SiteFooter from './components/SiteFooter';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import MenuPage from './pages/MenuPage';
-import OffersPage from './pages/OffersPage';
-import GalleryPage from './pages/GalleryPage';
-import ContactPage from './pages/ContactPage';
+import React from 'react';
+import { RouterProvider, createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
+import WatermarkBackground from '@/components/WatermarkBackground';
+import HomePage from '@/pages/HomePage';
+import AboutPage from '@/pages/AboutPage';
+import MenuPage from '@/pages/MenuPage';
+import OffersPage from '@/pages/OffersPage';
+import ContactPage from '@/pages/ContactPage';
+import MenuManagementPage from '@/pages/MenuManagementPage';
 
-// Layout component with header and footer
-function Layout() {
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+function RootLayout() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative min-h-screen flex flex-col">
+      <WatermarkBackground />
       <SiteHeader />
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         <Outlet />
       </main>
       <SiteFooter />
@@ -21,12 +33,10 @@ function Layout() {
   );
 }
 
-// Root route with layout
 const rootRoute = createRootRoute({
-  component: Layout,
+  component: RootLayout,
 });
 
-// Define all page routes
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
@@ -51,32 +61,29 @@ const offersRoute = createRoute({
   component: OffersPage,
 });
 
-const galleryRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/gallery',
-  component: GalleryPage,
-});
-
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/contact',
   component: ContactPage,
 });
 
-// Create route tree
+const menuManagementRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/menu-management',
+  component: MenuManagementPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
   menuRoute,
   offersRoute,
-  galleryRoute,
   contactRoute,
+  menuManagementRoute,
 ]);
 
-// Create router
 const router = createRouter({ routeTree });
 
-// Type declaration for router
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
@@ -84,5 +91,9 @@ declare module '@tanstack/react-router' {
 }
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }

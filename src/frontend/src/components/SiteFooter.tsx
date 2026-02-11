@@ -2,14 +2,12 @@ import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SiFacebook, SiInstagram, SiX } from 'react-icons/si';
-import { MapPin, Phone, Clock, Heart } from 'lucide-react';
+import { MapPin, Phone, Clock } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 
 export default function SiteFooter() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-border/60 bg-muted/30">
+    <footer className="relative z-10 border-t border-border/60 bg-background/95 backdrop-blur-md">
       <div className="container py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -88,9 +86,6 @@ export default function SiteFooter() {
               <Link to="/offers" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Offers & Deals
               </Link>
-              <Link to="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Gallery
-              </Link>
               <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                 Contact Us
               </Link>
@@ -137,15 +132,7 @@ export default function SiteFooter() {
 
         <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-muted-foreground md:flex-row md:text-left">
           <p>
-            © {currentYear}. Built with <Heart className="inline h-3.5 w-3.5 text-primary fill-primary" /> using{' '}
-            <a 
-              href="https://caffeine.ai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="font-medium hover:text-primary transition-colors"
-            >
-              caffeine.ai
-            </a>
+            Copyright © 2026  Taste & Tales - All Rights Reserved
           </p>
           <p className="text-xs">
             Restaurant near GIFT City Gandhinagar

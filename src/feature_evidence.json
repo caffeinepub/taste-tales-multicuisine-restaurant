@@ -2,18 +2,18 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-fix-the-gallery-page-so-the-ambience-images-reliably-render-as-thumbnails-and-in-the-lightbox-by-ensuring-all-referenced-image-paths-point-to-static-files-that-exist-in-the-deployed-frontend-assets-and-are-served-correctly-in-production",
-      "featureTitle": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
+      "featureId": "feature-replace-the-current-menu-dataset-with-a-newer-cleaned-standardized-version-by-normalizing-category-names-item-names-spelling-capitalization-and-formatting-consistency-in-frontend-src-data-menudata-ts-while-keeping-all-existing-categories-items-represented",
+      "featureTitle": "Replace the current menu dataset with a newer cleaned/standardized version by normalizing category names, item names, spelling, capitalization, and formatting consistency in `frontend/src/data/menuData.ts` while keeping all existing categories/items represented.",
       "files": [
-        "frontend/src/lib/brandAssets.ts",
-        "frontend/src/pages/GalleryPage.tsx"
+        "frontend/src/data/menuData.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-1"
@@ -21,22 +21,124 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-make-gallery-image-loading-robust-against-filename-path-issues-e-g-spaces-or-special-characters-by-updating-asset-filenames-and-or-references-so-they-work-consistently-across-environments-and-add-a-graceful-ui-fallback-when-an-image-fails-to-load",
-      "featureTitle": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
+      "featureId": "feature-reorganize-menu-categories-by-introducing-an-explicit-category-order-and-optionally-sub-grouping-and-updating-the-menu-ui-frontend-src-pages-menupage-tsx-to-render-categories-in-that-new-order-consistently-on-both-desktop-grid-and-mobile-accordion",
+      "featureTitle": "Reorganize menu categories by introducing an explicit category order (and optionally sub-grouping) and updating the `/menu` UI (`frontend/src/pages/MenuPage.tsx`) to render categories in that new order consistently on both desktop grid and mobile accordion.",
       "files": [
-        "frontend/src/components/GalleryImage.tsx",
-        "frontend/src/lib/brandAssets.ts",
-        "frontend/src/pages/GalleryPage.tsx"
+        "frontend/src/data/menuData.ts",
+        "frontend/src/pages/MenuPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-improved-category-and-item-descriptions-where-missing-or-low-quality-ensuring-all-user-facing-text-is-in-english-and-descriptions-are-concise-and-standardized-similar-length-tone-across-the-menu",
+      "featureTitle": "Add improved category and item descriptions where missing or low-quality, ensuring all user-facing text is in English and descriptions are concise and standardized (similar length/tone across the menu).",
+      "files": [
+        "frontend/src/data/menuData.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-standardized-icon-and-photo-system-for-the-menu-each-category-should-support-a-consistent-icon-and-an-optional-cover-image-and-the-menu-ui-should-display-them-cleanly-without-clutter",
+      "featureTitle": "Add a standardized icon and photo system for the menu: each category should support a consistent icon and an optional cover image, and the `/menu` UI should display them cleanly without clutter.",
+      "files": [
+        "frontend/src/components/menu/MenuCategoryIcon.tsx",
+        "frontend/src/data/menuData.ts",
+        "frontend/src/pages/MenuPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-ability-to-change-menu-item-names-and-prices-and-optionally-descriptions-and-category-ordering-through-an-authenticated-menu-management-page-using-internet-identity-persisting-changes-in-the-motoko-backend-so-they-survive-refresh-redeploy",
+      "featureTitle": "Implement the ability to change menu item names and prices (and optionally descriptions and category ordering) through an authenticated “Menu Management” page using Internet Identity, persisting changes in the Motoko backend so they survive refresh/redeploy.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/lib/menuAdapters.ts",
+        "frontend/src/pages/MenuManagementPage.tsx",
+        "frontend/src/pages/MenuPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-menu-display-cards-accordion-rows-on-frontend-src-pages-menupage-tsx-to-show-item-descriptions-when-present-in-a-standardized-layout-name-optional-description-price-without-reducing-readability",
+      "featureTitle": "Update the menu display cards/accordion rows on `frontend/src/pages/MenuPage.tsx` to show item descriptions (when present) in a standardized layout (name + optional description + price), without reducing readability.",
+      "files": [
+        "frontend/src/pages/MenuPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-and-use-generated-static-assets-for-menu-category-cover-images-icons-by-adding-the-provided-images-into-frontend-public-assets-generated-and-referencing-them-from-the-menu-ui-do-not-serve-images-via-the-backend",
+      "featureTitle": "Create and use generated static assets for menu category cover images/icons by adding the provided images into `frontend/public/assets/generated` and referencing them from the menu UI (do not serve images via the backend).",
+      "files": [
+        "frontend/src/data/menuData.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
       ],
       "confidence": "high"
     }

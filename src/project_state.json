@@ -1,42 +1,107 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
-  "known_issues": [
-    "Images in the gallery are not visible (user reported).",
-    "Build/deployment failing due to a configuration error (\"Please notify the Caffeine team\")."
+  "summary": "Restaurant app/menu section: rebuild and maintain a full structured menu extracted from images, with ongoing improvements to standardization, media, organization, and item details.",
+  "architectural_notes": [
+    "Menu data is stored as a structured list in a `menuData.ts` file (categories, items, descriptions, prices) rebuilt from uploaded menu images."
   ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Menu category cover image: soups (menu-cover-soups.dim_1200x600.png)\n- Menu category cover image: appetizers/starters (menu-cover-starters.dim_1200x600.png)\n- Menu category cover image: tandoori/grill (menu-cover-tandoori.dim_1200x600.png)\n- Menu category cover image: sizzlers (menu-cover-sizzlers.dim_1200x600.png)\n- Menu category cover image: Indian mains/curries (menu-cover-indian-mains.dim_1200x600.png)\n- Menu category cover image: Oriental/Asian mains (menu-cover-oriental.dim_1200x600.png)\n- Menu category cover image: rice & biryani (menu-cover-rice.dim_1200x600.png)\n- Menu category cover image: breads (menu-cover-breads.dim_1200x600.png)\n- Menu category cover image: desserts (menu-cover-desserts.dim_1200x600.png)\n- Menu category cover image: beverages/juices/shakes (menu-cover-beverages.dim_1200x600.png)\n- Monochrome line icon set, food-themed, consistent stroke style (menu-icons-sheet.dim_2048x2048.png)",
   "existing_features": [
     {
-      "id": "feature-fix-the-gallery-page-so-the-ambience-images-reliably-render-as-thumbnails-and-in-the-lightbox-by-ensuring-all-referenced-image-paths-point-to-static-files-that-exist-in-the-deployed-frontend-assets-and-are-served-correctly-in-production",
-      "title": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
+      "id": "feature-replace-the-current-menu-dataset-with-a-newer-cleaned-standardized-version-by-normalizing-category-names-item-names-spelling-capitalization-and-formatting-consistency-in-frontend-src-data-menudata-ts-while-keeping-all-existing-categories-items-represented",
+      "title": "Replace the current menu dataset with a newer cleaned/standardized version by normalizing category names, item names, spelling, capitalization, and formatting consistency in `frontend/src/data/menuData.ts` while keeping all existing categories/items represented.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-make-gallery-image-loading-robust-against-filename-path-issues-e-g-spaces-or-special-characters-by-updating-asset-filenames-and-or-references-so-they-work-consistently-across-environments-and-add-a-graceful-ui-fallback-when-an-image-fails-to-load",
-      "title": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
+      "id": "feature-reorganize-menu-categories-by-introducing-an-explicit-category-order-and-optionally-sub-grouping-and-updating-the-menu-ui-frontend-src-pages-menupage-tsx-to-render-categories-in-that-new-order-consistently-on-both-desktop-grid-and-mobile-accordion",
+      "title": "Reorganize menu categories by introducing an explicit category order (and optionally sub-grouping) and updating the `/menu` UI (`frontend/src/pages/MenuPage.tsx`) to render categories in that new order consistently on both desktop grid and mobile accordion.",
       "reqIds": [
         "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-improved-category-and-item-descriptions-where-missing-or-low-quality-ensuring-all-user-facing-text-is-in-english-and-descriptions-are-concise-and-standardized-similar-length-tone-across-the-menu",
+      "title": "Add improved category and item descriptions where missing or low-quality, ensuring all user-facing text is in English and descriptions are concise and standardized (similar length/tone across the menu).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-standardized-icon-and-photo-system-for-the-menu-each-category-should-support-a-consistent-icon-and-an-optional-cover-image-and-the-menu-ui-should-display-them-cleanly-without-clutter",
+      "title": "Add a standardized icon and photo system for the menu: each category should support a consistent icon and an optional cover image, and the `/menu` UI should display them cleanly without clutter.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-ability-to-change-menu-item-names-and-prices-and-optionally-descriptions-and-category-ordering-through-an-authenticated-menu-management-page-using-internet-identity-persisting-changes-in-the-motoko-backend-so-they-survive-refresh-redeploy",
+      "title": "Implement the ability to change menu item names and prices (and optionally descriptions and category ordering) through an authenticated “Menu Management” page using Internet Identity, persisting changes in the Motoko backend so they survive refresh/redeploy.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-menu-display-cards-accordion-rows-on-frontend-src-pages-menupage-tsx-to-show-item-descriptions-when-present-in-a-standardized-layout-name-optional-description-price-without-reducing-readability",
+      "title": "Update the menu display cards/accordion rows on `frontend/src/pages/MenuPage.tsx` to show item descriptions (when present) in a standardized layout (name + optional description + price), without reducing readability.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-and-use-generated-static-assets-for-menu-category-cover-images-icons-by-adding-the-provided-images-into-frontend-public-assets-generated-and-referencing-them-from-the-menu-ui-do-not-serve-images-via-the-backend",
+      "title": "Create and use generated static assets for menu category cover images/icons by adding the provided images into `frontend/public/assets/generated` and referencing them from the menu UI (do not serve images via the backend).",
+      "reqIds": [
+        "REQ-8"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [
     {
+      "id": "AR-1",
+      "summary": "Replace existing menu with a newer cleaned/standardized version (normalize naming, formatting, data consistency).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add photos/icons or improved descriptions for menu items/categories.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
       "id": "AR-3",
-      "summary": "Investigate and fix the build/deployment configuration error so the app can build and deploy successfully without requiring manual intervention from the Caffeine team.",
+      "summary": "Reorganize menu categories and ordering.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Allow updating/changing menu item names and prices.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Extend the Motoko single-actor backend (`backend/main.mo`) with methods to: (1) fetch the current menu, (2) update/replace the menu, and (3) manage authorization for who can edit the menu (e.g., admin principal allowlist).",
       "reqIds": [
-        "REQ-3"
+        "REQ-6"
       ],
       "status": "pending"
     }
   ],
-  "projectName": "Fix gallery images not rendering and unblock build/deployment configuration error",
+  "gameProjectType": "none",
+  "projectName": "Standardize and enhance restaurant menu with media, reordering, and editable names/prices",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

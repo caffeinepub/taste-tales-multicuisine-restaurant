@@ -1,77 +1,173 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T17:28:18.222Z",
+  "generatedAt": "2026-02-11T14:31:17.721Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 2,
+    "total": 8,
+    "implemented": 7,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
+        "summary": "Replace the current menu dataset with a newer cleaned/standardized version by normalizing category names, item names, spelling, capitalization, and formatting consistency in `frontend/src/data/menuData.ts` while keeping all existing categories/items represented.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/lib/brandAssets.ts",
-          "frontend/src/pages/GalleryPage.tsx",
-          "frontend/public/assets/generated/gallery-ambience.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-ambience-ambience.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-ambience-ambience-v2.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-ambience-ambience-v3.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-chinese.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-desserts.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-fast-food.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-italian.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-mexican.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-north-indian.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-shakes.dim_1200x800.png",
-          "frontend/public/assets/generated/gallery-thai.dim_1200x800.png"
+          "frontend/src/data/menuData.ts"
         ],
         "matchedFiles": [
-          "frontend/src/lib/brandAssets.ts",
-          "frontend/src/pages/GalleryPage.tsx"
+          "frontend/src/data/menuData.ts"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
+        "summary": "Reorganize menu categories by introducing an explicit category order (and optionally sub-grouping) and updating the `/menu` UI (`frontend/src/pages/MenuPage.tsx`) to render categories in that new order consistently on both desktop grid and mobile accordion.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/GalleryImage.tsx",
-          "frontend/src/pages/GalleryPage.tsx",
-          "frontend/src/lib/brandAssets.ts"
+          "frontend/src/data/menuData.ts",
+          "frontend/src/pages/MenuPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/GalleryImage.tsx",
-          "frontend/src/pages/GalleryPage.tsx",
-          "frontend/src/lib/brandAssets.ts"
+          "frontend/src/data/menuData.ts",
+          "frontend/src/pages/MenuPage.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Investigate and fix the build/deployment configuration error so the app can build and deploy successfully without requiring manual intervention from the Caffeine team.",
-        "status": "missing",
+        "summary": "Add improved category and item descriptions where missing or low-quality, ensuring all user-facing text is in English and descriptions are concise and standardized (similar length/tone across the menu).",
+        "status": "implemented",
         "plannedFiles": [
-          "frontend/package.json",
-          "frontend/vite.config.ts",
-          "frontend/tsconfig.json",
-          "frontend/index.html"
+          "frontend/src/data/menuData.ts"
         ],
+        "matchedFiles": [
+          "frontend/src/data/menuData.ts"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add a standardized icon and photo system for the menu: each category should support a consistent icon and an optional cover image, and the `/menu` UI should display them cleanly without clutter.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/data/menuData.ts",
+          "frontend/src/components/menu/MenuCategoryIcon.tsx",
+          "frontend/src/pages/MenuPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/menuData.ts",
+          "frontend/src/components/menu/MenuCategoryIcon.tsx",
+          "frontend/src/pages/MenuPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement the ability to change menu item names and prices (and optionally descriptions and category ordering) through an authenticated “Menu Management” page using Internet Identity, persisting changes in the Motoko backend so they survive refresh/redeploy.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/lib/menuAdapters.ts",
+          "frontend/src/pages/MenuManagementPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/SiteHeader.tsx",
+          "frontend/src/pages/MenuPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/lib/menuAdapters.ts",
+          "frontend/src/pages/MenuManagementPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/SiteHeader.tsx",
+          "frontend/src/pages/MenuPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Extend the Motoko single-actor backend (`backend/main.mo`) with methods to: (1) fetch the current menu, (2) update/replace the menu, and (3) manage authorization for who can edit the menu (e.g., admin principal allowlist).",
+        "status": "unknown",
+        "plannedFiles": [],
         "matchedFiles": []
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Update the menu display cards/accordion rows on `frontend/src/pages/MenuPage.tsx` to show item descriptions (when present) in a standardized layout (name + optional description + price), without reducing readability.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/MenuPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/MenuPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Create and use generated static assets for menu category cover images/icons by adding the provided images into `frontend/public/assets/generated` and referencing them from the menu UI (do not serve images via the backend).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/menu-cover-soups.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-starters.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-tandoori.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-sizzlers.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-indian-mains.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-oriental.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-rice.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-breads.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-desserts.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-beverages.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-icons-sheet.dim_2048x2048.png",
+          "frontend/src/data/menuData.ts"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/menu-cover-soups.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-starters.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-tandoori.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-sizzlers.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-indian-mains.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-oriental.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-rice.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-breads.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-desserts.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-cover-beverages.dim_1200x600.png",
+          "frontend/public/assets/generated/menu-icons-sheet.dim_2048x2048.png",
+          "frontend/src/data/menuData.ts"
+        ]
       }
     ]
   },
   "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/GalleryImage.tsx",
-    "frontend/src/lib/brandAssets.ts",
-    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/public/assets/generated/menu-cover-beverages.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-breads.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-desserts.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-indian-mains.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-oriental.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-rice.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-sizzlers.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-soups.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-starters.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-cover-tandoori.dim_1200x600.png",
+    "frontend/public/assets/generated/menu-icons-sheet.dim_2048x2048.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/components/menu/MenuCategoryIcon.tsx",
+    "frontend/src/data/menuData.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/lib/menuAdapters.ts",
+    "frontend/src/pages/MenuManagementPage.tsx",
+    "frontend/src/pages/MenuPage.tsx",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

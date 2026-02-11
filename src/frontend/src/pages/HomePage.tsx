@@ -73,7 +73,7 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <Section className="relative overflow-hidden bg-gradient-to-b from-muted/50 to-background">
+      <Section className="relative overflow-hidden bg-gradient-to-b from-muted/30 to-background/50">
         <div className="absolute inset-0 opacity-10">
           <img 
             src={BRAND_ASSETS.hero}
@@ -101,68 +101,75 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/50 backdrop-blur">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
               <Star className="h-5 w-5 text-primary" />
               <span className="font-semibold">4.2 Rating</span>
             </div>
-            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/50 backdrop-blur">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
               <Users className="h-5 w-5 text-primary" />
               <span className="font-semibold">Family Friendly</span>
             </div>
-            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/50 backdrop-blur">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
               <Clock className="h-5 w-5 text-primary" />
               <span className="font-semibold">11 AM – 11 PM</span>
             </div>
-            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/50 backdrop-blur">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
               <Music className="h-5 w-5 text-primary" />
-              <span className="font-semibold">DJ Nights</span>
+              <span className="font-semibold">Live Music</span>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* About the Brand */}
-      <Section>
-        <div className="mx-auto max-w-4xl text-center">
-          <LogoMotif className="mx-auto mb-6" size="lg" />
-          <h2 className="font-serif text-3xl font-bold md:text-4xl mb-6">
-            Our Story
+      {/* Brand Story */}
+      <Section className="bg-background/80">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-6 flex justify-center">
+            <LogoMotif size="lg" />
+          </div>
+          <h2 className="font-serif text-3xl font-bold mb-6 md:text-4xl">
+            Where Every Dish Tells a Story
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-            At Taste & Tales, every dish tells a story. We bring together the finest flavours from around the world, crafted with care and served with warmth. Whether you're celebrating a special moment or simply enjoying time with loved ones, we're here to make every meal memorable.
+            At Taste & Tales, we believe dining is more than a meal—it's a journey through cultures, 
+            traditions, and flavours. From the rich spices of North India to the delicate balance of Thai cuisine, 
+            every plate is crafted with care, quality ingredients, and a passion for excellence.
           </p>
-          <Button variant="outline" onClick={() => navigate({ to: '/about' })} className="transition-all hover:shadow-warm">
-            Learn More About Us
-          </Button>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Whether you're celebrating with family, catching up with friends, or simply treating yourself, 
+            we invite you to experience a world of taste in a warm, welcoming atmosphere.
+          </p>
         </div>
       </Section>
 
       {/* Cuisine Showcase */}
-      <Section className="bg-muted/30">
+      <Section className="bg-muted/20">
         <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl mb-4">
-            A World of Cuisines
+          <Badge variant="outline" className="mb-4 text-sm">
+            Our Specialties
+          </Badge>
+          <h2 className="font-serif text-3xl font-bold mb-4 md:text-4xl">
+            A World of Cuisines Under One Roof
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From the spice-rich traditions of India to the vibrant streets of Mexico, explore a carefully curated menu that celebrates global flavours.
+            Explore our diverse menu featuring authentic flavours from around the globe
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {cuisines.map((cuisine) => (
-            <Card key={cuisine.name} className="group overflow-hidden transition-all hover:shadow-warm-lg">
-              <div className="relative h-48 overflow-hidden">
+            <Card key={cuisine.name} className="group overflow-hidden transition-all hover:shadow-warm bg-card/80 backdrop-blur border-border/60">
+              <div className="aspect-[4/3] overflow-hidden">
                 <img 
                   src={cuisine.image}
                   alt={cuisine.name}
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="text-4xl">{cuisine.icon}</span>
-                </div>
               </div>
               <CardHeader>
-                <CardTitle className="font-serif text-xl">{cuisine.name}</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <span className="text-2xl">{cuisine.icon}</span>
+                  {cuisine.name}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">{cuisine.description}</p>
@@ -171,167 +178,94 @@ export default function HomePage() {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <Button size="lg" onClick={() => navigate({ to: '/menu' })} className="transition-all hover:shadow-warm-lg">
+          <Button size="lg" onClick={() => navigate({ to: '/menu' })} className="transition-all hover:shadow-warm">
             View Full Menu
           </Button>
         </div>
       </Section>
 
       {/* Dining Experience */}
-      <Section>
+      <Section className="bg-background/80">
         <div className="text-center mb-12">
-          <LogoMotif className="mx-auto mb-6" size="md" />
-          <h2 className="font-serif text-3xl font-bold md:text-4xl mb-4">
-            The Taste & Tales Experience
+          <Badge variant="outline" className="mb-4 text-sm">
+            The Experience
+          </Badge>
+          <h2 className="font-serif text-3xl font-bold mb-4 md:text-4xl">
+            More Than Just a Meal
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            More than just a meal—it's an experience crafted for families, friends, and food lovers.
-          </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
-          <Card className="text-center transition-all hover:shadow-warm">
+          <Card className="text-center bg-card/80 backdrop-blur border-border/60">
             <CardHeader>
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="font-serif text-xl">Family Friendly</CardTitle>
+              <CardTitle>Family Friendly</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                A warm, welcoming space designed for families to gather, celebrate, and create lasting memories together.
+                Spacious seating and a welcoming atmosphere perfect for families and groups
               </p>
             </CardContent>
           </Card>
-          <Card className="text-center transition-all hover:shadow-warm">
+          <Card className="text-center bg-card/80 backdrop-blur border-border/60">
             <CardHeader>
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <Music className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="font-serif text-xl">DJ Nights</CardTitle>
+              <CardTitle>Live Entertainment</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                Enjoy live music and DJ performances on select evenings, adding rhythm and energy to your dining experience.
+                Enjoy live music and a vibrant ambience that enhances your dining experience
               </p>
             </CardContent>
           </Card>
-          <Card className="text-center transition-all hover:shadow-warm">
+          <Card className="text-center bg-card/80 backdrop-blur border-border/60">
             <CardHeader>
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                 <Star className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="font-serif text-xl">Premium Quality</CardTitle>
+              <CardTitle>Premium Quality</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                Every ingredient is carefully selected, every dish thoughtfully prepared, ensuring excellence in every bite.
+                Fresh ingredients, expert preparation, and attention to every detail
               </p>
             </CardContent>
           </Card>
         </div>
       </Section>
 
-      {/* Gallery Preview */}
-      <Section className="bg-muted/30">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl font-bold md:text-4xl mb-4">
-            Moments Worth Sharing
+      {/* Contact CTA */}
+      <Section className="bg-gradient-to-b from-muted/20 to-background/50">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-serif text-3xl font-bold mb-6 md:text-4xl">
+            Visit Us Today
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A glimpse into the flavours, ambience, and experiences that make Taste & Tales special.
-          </p>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="relative h-64 overflow-hidden rounded-lg">
-            <img 
-              src={BRAND_ASSETS.ambienceGallery}
-              alt="Restaurant ambience"
-              className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-            />
+          <div className="space-y-4 mb-8">
+            <div className="flex items-center justify-center gap-2 text-lg">
+              <MapPin className="h-5 w-5 text-primary" />
+              <span>Raysan, near GIFT City, Gandhinagar, Gujarat</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-lg">
+              <Phone className="h-5 w-5 text-primary" />
+              <a href="tel:+917567678009" className="hover:text-primary transition-colors">
+                +91 75676 78009
+              </a>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-lg">
+              <Clock className="h-5 w-5 text-primary" />
+              <span>Open Daily: 11:00 AM – 11:00 PM</span>
+            </div>
           </div>
-          <div className="relative h-64 overflow-hidden rounded-lg">
-            <img 
-              src="/assets/generated/gallery-north-indian.dim_1200x800.png"
-              alt="North Indian cuisine"
-              className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-          <div className="relative h-64 overflow-hidden rounded-lg">
-            <img 
-              src="/assets/generated/gallery-desserts.dim_1200x800.png"
-              alt="Desserts"
-              className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-        </div>
-        <div className="mt-8 text-center">
-          <Button variant="outline" onClick={() => navigate({ to: '/gallery' })} className="transition-all hover:shadow-warm">
-            View Full Gallery
-          </Button>
-        </div>
-      </Section>
-
-      {/* Contact & Location */}
-      <Section>
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <LogoMotif className="mx-auto mb-6" size="md" />
-            <h2 className="font-serif text-3xl font-bold md:text-4xl mb-4">
-              Visit Us
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Restaurant near GIFT City Gandhinagar
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2">
-            <Card className="transition-all hover:shadow-warm">
-              <CardHeader>
-                <CardTitle className="font-serif text-xl">Location & Hours</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex gap-3">
-                  <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <p className="font-medium">Raysan, near GIFT City</p>
-                    <p className="text-sm text-muted-foreground">Gandhinagar, Gujarat</p>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Clock className="h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <p className="font-medium">Open Daily</p>
-                    <p className="text-sm text-muted-foreground">11:00 AM – 11:00 PM</p>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Phone className="h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <a href="tel:+917567678009" className="font-medium hover:text-primary transition-colors">
-                      +91 75676 78009
-                    </a>
-                    <p className="text-sm text-muted-foreground">Call for reservations</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="transition-all hover:shadow-warm">
-              <CardHeader>
-                <CardTitle className="font-serif text-xl">Get in Touch</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground">
-                  Whether you're planning a celebration, have questions about our menu, or simply want to say hello, we'd love to hear from you.
-                </p>
-                <div className="flex flex-col gap-3">
-                  <Button onClick={handleBookTable} className="w-full transition-all hover:shadow-warm">
-                    Book a Table
-                  </Button>
-                  <Button variant="outline" onClick={() => navigate({ to: '/contact' })} className="w-full transition-all hover:shadow-warm">
-                    Contact Us
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" onClick={handleBookTable} className="transition-all hover:shadow-warm-lg">
+              Book a Table
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => navigate({ to: '/contact' })} className="transition-all hover:shadow-warm">
+              Get Directions
+            </Button>
           </div>
         </div>
       </Section>

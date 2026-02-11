@@ -1,84 +1,180 @@
 {
   "kind": "build_request",
-  "title": "Fix gallery images not rendering and unblock build/deployment configuration error",
-  "priority": "high",
+  "title": "Standardize and enhance restaurant menu with media, reordering, and editable names/prices",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Fix the Gallery page so the ambience images reliably render as thumbnails and in the lightbox by ensuring all referenced image paths point to static files that exist in the deployed frontend assets (and are served correctly in production).",
+      "text": "Replace the current menu dataset with a newer cleaned/standardized version by normalizing category names, item names, spelling, capitalization, and formatting consistency in `frontend/src/data/menuData.ts` while keeping all existing categories/items represented.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-user-1"
         ],
         "quotes": [
-          "images not visible"
+          "Replace the existing menu with a newer cleaned/standardized version"
         ]
       },
       "acceptanceCriteria": [
-        "Visiting /gallery shows a 2/3-column responsive grid where each card displays a visible image (not a blank/empty tile).",
-        "Clicking/tapping any thumbnail opens the lightbox with the larger image visible.",
-        "No gallery image requests return 404/failed network requests in the browser devtools when running the production build."
+        "`frontend/src/data/menuData.ts` compiles with no TypeScript errors.",
+        "Category names and item names are consistently formatted (e.g., Title Case or a single chosen convention applied everywhere), with obvious typos corrected (e.g., inconsistent spellings like 'CUISIN').",
+        "Duplicate/contradictory entries in the dataset are resolved in a deterministic way (no identical items with conflicting prices within the same category).",
+        "All menu entries continue to render on `/menu` without runtime errors."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Make gallery image loading robust against filename/path issues (e.g., spaces or special characters) by updating asset filenames and/or references so they work consistently across environments, and add a graceful UI fallback when an image fails to load.",
+      "text": "Reorganize menu categories by introducing an explicit category order (and optionally sub-grouping) and updating the `/menu` UI (`frontend/src/pages/MenuPage.tsx`) to render categories in that new order consistently on both desktop grid and mobile accordion.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-user-1"
         ],
         "quotes": [
-          "images not visible"
+          "Reorganize categories"
         ]
       },
       "acceptanceCriteria": [
-        "Gallery image URLs used in code do not rely on unencoded spaces/special characters that can break on some static hosting paths.",
-        "If any gallery image fails to load, the UI displays a visible fallback state for that tile (without breaking the grid layout)."
+        "Categories render in the specified order on both desktop and mobile layouts.",
+        "Reordering does not change the content of categories/items (only presentation order/grouping).",
+        "The menu page remains responsive and readable at common breakpoints (mobile and desktop)."
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Investigate and fix the build/deployment configuration error so the app can build and deploy successfully without requiring manual intervention from the Caffeine team.",
-      "target": "unknown",
+      "text": "Add improved category and item descriptions where missing or low-quality, ensuring all user-facing text is in English and descriptions are concise and standardized (similar length/tone across the menu).",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6",
-          "msg-8"
+          "msg-user-1"
         ],
         "quotes": [
-          "⚠️ A configuration error has occurred. Please notify the Caffeine team.",
-          "yes please"
+          "Add photos, icons, or improved descriptions"
         ]
       },
       "acceptanceCriteria": [
-        "A clean build completes successfully in the target deployment environment (no configuration error).",
-        "The deployed site loads successfully and the Gallery page images are visible in the deployed environment."
+        "Each category has a clear English description.",
+        "Menu items that previously had missing/placeholder descriptions are updated where appropriate, without introducing extremely long text blocks that break layout.",
+        "No non-English strings are introduced into the menu UI."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a standardized icon and photo system for the menu: each category should support a consistent icon and an optional cover image, and the `/menu` UI should display them cleanly without clutter.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Add photos, icons, or improved descriptions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each category renders a consistent icon style (not a mix of random emoji styles), and the UI spacing/alignment is consistent across categories.",
+        "Category cover images (from `frontend/public/assets/generated`) render without layout shift and include meaningful `alt` text.",
+        "If an image is missing for a category, the UI falls back gracefully (still looks good and remains aligned)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement the ability to change menu item names and prices (and optionally descriptions and category ordering) through an authenticated “Menu Management” page using Internet Identity, persisting changes in the Motoko backend so they survive refresh/redeploy.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Change names or prices"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new staff-only UI exists to edit: category name/description/order and item name/price (and optionally description).",
+        "Edits persist after page refresh (data is stored in the Motoko canister, not only in frontend state).",
+        "The public `/menu` page reads from the persisted menu when available; if no persisted menu exists yet, it falls back to the default dataset from `frontend/src/data/menuData.ts`.",
+        "Unauthorized users cannot access save/update functionality (page is blocked or read-only when not authenticated/authorized)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Extend the Motoko single-actor backend (`backend/main.mo`) with methods to: (1) fetch the current menu, (2) update/replace the menu, and (3) manage authorization for who can edit the menu (e.g., admin principal allowlist).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Change names or prices"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes query/update methods for menu read/write that compile successfully.",
+        "Menu state is stored in stable memory so it is retained across upgrades.",
+        "Write operations are restricted to authorized principals; unauthorized calls are rejected with a clear error result.",
+        "Frontend can successfully call the backend to load and save menu changes when authenticated."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Update the menu display cards/accordion rows on `frontend/src/pages/MenuPage.tsx` to show item descriptions (when present) in a standardized layout (name + optional description + price), without reducing readability.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ],
+        "quotes": [
+          "Add photos, icons, or improved descriptions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "If `description` exists for an item, it is displayed under the item name with muted styling and appropriate wrapping.",
+        "If `description` is missing, the layout remains aligned (no awkward gaps).",
+        "Prices remain consistently formatted as INR with the ₹ symbol as currently shown."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create and use generated static assets for menu category cover images/icons by adding the provided images into `frontend/public/assets/generated` and referencing them from the menu UI (do not serve images via the backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All required generated images are present under `frontend/public/assets/generated` and are referenced via static paths.",
+        "No backend endpoints are added for serving images.",
+        "Build succeeds and images appear in the menu UI where intended."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (read-only).",
-    "Do not edit the immutable hook entrypoints listed in SYSTEM_CONTEXT (compose around them if needed).",
-    "Keep backend as a single Motoko actor in backend/main.mo; only add migration files if state upgrades are required."
+    "Backend must remain a single Motoko actor in `backend/main.mo`; do not introduce additional backend services.",
+    "Do not edit files under `frontend/src/components/ui` (compose them instead).",
+    "Do not edit any files in `frontend/src/hooks/` that are marked immutable by the platform context.",
+    "Use English for any user-facing text.",
+    "Do not route or proxy static images through the backend; use frontend static assets."
   ],
   "nonGoals": [
-    "Adding new gallery features beyond fixing visibility/reliability (e.g., uploads, admin editing, reordering, tagging).",
-    "Introducing third-party services or external storage/CDNs for images."
+    "Online ordering, cart, checkout, or payments.",
+    "Integrations with third-party menu/restaurant platforms.",
+    "Real-time updates (websockets) or chat features.",
+    "Mobile app build (React Native/Flutter)."
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Menu category cover image: soups (menu-cover-soups.dim_1200x600.png)",
+      "Menu category cover image: appetizers/starters (menu-cover-starters.dim_1200x600.png)",
+      "Menu category cover image: tandoori/grill (menu-cover-tandoori.dim_1200x600.png)",
+      "Menu category cover image: sizzlers (menu-cover-sizzlers.dim_1200x600.png)",
+      "Menu category cover image: Indian mains/curries (menu-cover-indian-mains.dim_1200x600.png)",
+      "Menu category cover image: Oriental/Asian mains (menu-cover-oriental.dim_1200x600.png)",
+      "Menu category cover image: rice & biryani (menu-cover-rice.dim_1200x600.png)",
+      "Menu category cover image: breads (menu-cover-breads.dim_1200x600.png)",
+      "Menu category cover image: desserts (menu-cover-desserts.dim_1200x600.png)",
+      "Menu category cover image: beverages/juices/shakes (menu-cover-beverages.dim_1200x600.png)",
+      "Monochrome line icon set, food-themed, consistent stroke style (menu-icons-sheet.dim_2048x2048.png)"
+    ],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

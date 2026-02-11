@@ -8,10 +8,98 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const MenuItem = IDL.Record({
+  'id' : IDL.Nat,
+  'categoryId' : IDL.Nat,
+  'name' : IDL.Text,
+  'description' : IDL.Text,
+  'price' : IDL.Float64,
+});
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+export const MenuCategory = IDL.Record({
+  'id' : IDL.Nat,
+  'name' : IDL.Text,
+  'itemIds' : IDL.Vec(IDL.Nat),
+});
+export const MenuData = IDL.Record({
+  'categories' : IDL.Vec(MenuCategory),
+  'items' : IDL.Vec(MenuItem),
+});
+
+export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'addCategory' : IDL.Func([IDL.Text, IDL.Vec(IDL.Nat)], [IDL.Nat], []),
+  'addMenuItem' : IDL.Func([MenuItem], [IDL.Nat], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'deleteCategory' : IDL.Func([IDL.Nat], [], []),
+  'deleteMenuItem' : IDL.Func([IDL.Nat], [], []),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getMenu' : IDL.Func([], [MenuData], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'updateCategory' : IDL.Func([IDL.Nat, IDL.Text, IDL.Vec(IDL.Nat)], [], []),
+  'updateMenu' : IDL.Func([MenuData], [], []),
+  'updateMenuItem' : IDL.Func([IDL.Nat, MenuItem], [], []),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const MenuItem = IDL.Record({
+    'id' : IDL.Nat,
+    'categoryId' : IDL.Nat,
+    'name' : IDL.Text,
+    'description' : IDL.Text,
+    'price' : IDL.Float64,
+  });
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  const MenuCategory = IDL.Record({
+    'id' : IDL.Nat,
+    'name' : IDL.Text,
+    'itemIds' : IDL.Vec(IDL.Nat),
+  });
+  const MenuData = IDL.Record({
+    'categories' : IDL.Vec(MenuCategory),
+    'items' : IDL.Vec(MenuItem),
+  });
+  
+  return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'addCategory' : IDL.Func([IDL.Text, IDL.Vec(IDL.Nat)], [IDL.Nat], []),
+    'addMenuItem' : IDL.Func([MenuItem], [IDL.Nat], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'deleteCategory' : IDL.Func([IDL.Nat], [], []),
+    'deleteMenuItem' : IDL.Func([IDL.Nat], [], []),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getMenu' : IDL.Func([], [MenuData], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'updateCategory' : IDL.Func([IDL.Nat, IDL.Text, IDL.Vec(IDL.Nat)], [], []),
+    'updateMenu' : IDL.Func([MenuData], [], []),
+    'updateMenuItem' : IDL.Func([IDL.Nat, MenuItem], [], []),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };
