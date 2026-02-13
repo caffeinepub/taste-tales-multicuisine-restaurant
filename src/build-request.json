@@ -1,75 +1,34 @@
 {
   "kind": "build_request",
-  "title": "Update menu data to match the latest pasted menu sections, items, descriptions, and prices",
+  "title": "Update 'Review us on Google' link to restaurant reviews URL",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
+      "id": "REQ-4",
+      "text": "Update the 'Review us on Google' section so the Google button/link opens the provided Google Reviews URL for Taste & Tales (replace the current placeholder `SOCIAL_LINKS.google` value used in the footer).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-7"
         ],
         "quotes": [
-          "this above text is each menu section so update the current menu with this"
+          "add this in review us on google section https://www.google.com/search?sca_esv=190a96a9d156750b&rlz=1C1YTUH_enIN1199IN1199&sxsrf=ANbL-n4ysIaDCa4jfFuKA9OBq5Xz-yZeMg:1771016063596&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qObc6Jbzq6uBIArRbHnZOQjhdBvO-cLGAHp0x7B_lQlagt349zrM2Si9ZmDeE9KJ_S6zD6tYcUcRGLg5ufxYmm9gHIcqWoNoaheMh3q1F29aVMy5sqn2q0spdGq68VhoW3gRvMIE%3D&q=Taste+%26+Tales+-+Multicuisine+Restaurant+Reviews&sa=X&ved=2ahUKEwiqxPL6rNeSAxWwUWcHHbAKJPcQ0bkNegQIOxAF&biw=1280&bih=551&dpr=1.5"
         ]
       },
       "acceptanceCriteria": [
-        "`frontend/src/data/menuData.ts` contains a `menuCategories` dataset whose categories and items match the pasted menu text (sections, item names, descriptions in parentheses, and prices) with no extra categories/items not present in the pasted text.",
-        "Section/category names match the pasted headings exactly (including spelling/typos such as those in the pasted menu).",
-        "Items that have a parenthetical description in the pasted text are represented via `MenuItem.description` with the same wording (verbatim, aside from whitespace normalization).",
-        "Items that have no price in the pasted text are represented without `price` and without `priceLabel` (so the UI can fall back to a default display)."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Baked Macaroni Plain / With Pineapple: 410 / 430.00",
-          "Plain / Butter Roti: 40 / 45.00",
-          "Plain / Butter Rumali: 99 / 110.00"
-        ]
-      },
-      "acceptanceCriteria": [
-        "For any menu entry that has multiple prices separated by \"/\" in the pasted text, the corresponding `MenuItem` uses `priceLabel` (not `price`) and preserves the formatting shown in the pasted text (including spaces around \"/\" and any decimals if present).",
-        "Existing numeric single-price items continue to use `price` (number) and render with the current rupee formatting behavior.",
-        "The Menu page carousel and global search badges display `priceLabel` verbatim when present."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "After updating menu data, verify search consistency so that (1) the `/menu` page search filter finds newly added/renamed items and categories from the updated `menuData.ts`; and (2) global site search (`frontend/src/lib/globalSearchContent.ts` and `/search`) returns results for the updated menu items with correct category names and correctly formatted price badges (including `priceLabel` where applicable).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "this above text is each menu section so update the current menu with this"
-        ]
-      },
-      "acceptanceCriteria": [
-        "On `/menu`, searching by an updated item name returns that item in its category (case-insensitive matching).",
-        "On `/menu`, searching by an updated category/section name returns items from that category (case-insensitive matching).",
-        "On `/search`, searching for an updated item returns a result with `type: 'menu'`, the correct `category` (section name), and a `badge` that matches `formatMenuPrice(item)` (showing `priceLabel` verbatim when present)."
+        "In `frontend/src/lib/socialLinks.ts`, `SOCIAL_LINKS.google` equals the exact URL provided by the user.",
+        "In the footer 'Social Connect' area (the button labeled 'Review us on Google'), clicking the button opens the provided URL in a new tab (retaining `target=\"_blank\"` and `rel=\"noopener noreferrer\"`).",
+        "No user-facing text is changed away from English."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under `frontend/src/components/ui` (read-only).",
-    "Do not modify `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, or `frontend/src/main.tsx` (immutable paths).",
-    "Keep backend as a single Motoko actor; do not introduce additional backend services."
+    "Do not edit files under `frontend/src/hooks/*` or anything else listed in `frontend.immutablePaths`.",
+    "Use the Google Reviews URL exactly as provided by the user (do not shorten or replace it)."
   ],
   "nonGoals": [
-    "Implementing a backend-driven menu admin/editor UI.",
-    "Adding ordering, cart, checkout, or payment flows.",
-    "Changing site branding, navigation structure, or adding new pages unrelated to the menu update."
+    "No backend changes.",
+    "No redesign of the footer or other social links beyond updating the Google review URL."
   ],
   "imageRequirements": {
     "required": [],

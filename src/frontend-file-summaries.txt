@@ -66,6 +66,6 @@
   "frontend/public/assets/menu-screenshots/Screenshot 2026-02-10 002523-3.png": "Menu screenshot asset (Shakes & Lemonade, Fresh Fruits Juice sections - alternate view) with correct -3 suffix matching MENU_SCREENSHOT_ASSETS references.",
   "frontend/src/hooks/useHorizontalSwipe.ts": "Custom React hook that detects horizontal swipe gestures on touch devices with configurable threshold, distinguishing horizontal swipes from vertical scrolling to enable touch-based navigation.",
   "frontend/src/components/MenuCategoryCarousel.tsx": "Carousel component that displays menu categories one at a time with Previous/Next button controls, keyboard navigation, touch swipe support, and uses the formatMenuPrice utility to correctly display all price formats including textual labels.",
-  "frontend/src/lib/socialLinks.ts": "Single source of truth constant for all social media links including the Taste & Tales Instagram account URL with query parameters.",
+  "frontend/src/lib/socialLinks.ts": "Single source of truth constant for all social media links including Instagram, Facebook, Twitter, and the Taste & Tales Google Reviews URL with full query parameters.",
   "frontend/src/lib/menuPrice.ts": "Utility function that formats menu item prices for display, handling numeric prices (with ₹ symbol), textual labels like \"M.R.P.\", and providing a fallback for items without pricing information."
 }

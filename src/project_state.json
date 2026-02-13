@@ -1,24 +1,16 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project to update/maintain a restaurant menu using provided menu sections and item pricing.",
+  "summary": "New project",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-update-frontend-src-data-menudata-ts-so-the-menu-categories-section-headings-and-their-items-name-optional-description-and-price-exactly-match-the-latest-menu-text-the-user-pasted-treat-the-pasted-text-as-the-single-source-of-truth-add-any-missing-categories-sections-add-missing-items-and-remove-replace-any-categories-items-currently-in-menudata-ts-that-are-not-present-in-the-pasted-text-category-names-must-match-the-pasted-section-headings-exactly-including-capitalization-and-spelling",
-      "title": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
+      "id": "feature-update-the-review-us-on-google-section-so-the-google-button-link-opens-the-provided-google-reviews-url-for-taste-tales-replace-the-current-placeholder-social-links-google-value-used-in-the-footer",
+      "title": "Update the 'Review us on Google' section so the Google button/link opens the provided Google Reviews URL for Taste & Tales (replace the current placeholder `SOCIAL_LINKS.google` value used in the footer).",
       "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-menu-items-with-non-single-numeric-prices-in-the-pasted-text-e-g-dual-prices-like-410-430-or-40-45-are-represented-in-frontend-src-data-menudata-ts-using-menuitem-pricelabel-so-the-displayed-price-text-matches-the-pasted-formatting-exactly",
-      "title": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
-      "reqIds": [
-        "REQ-2"
+        "REQ-4"
       ],
       "version": 1
     }
@@ -26,20 +18,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update the current menu with the provided menu sections, items, descriptions, and prices.",
+      "summary": "Add a 'Review us on Google' section that links to the provided Google Reviews URL",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "After updating menu data, verify search consistency so that (1) the `/menu` page search filter finds newly added/renamed items and categories from the updated `menuData.ts`; and (2) global site search (`frontend/src/lib/globalSearchContent.ts` and `/search`) returns results for the updated menu items with correct category names and correctly formatted price badges (including `priceLabel` where applicable).",
-      "reqIds": [
-        "REQ-3"
-      ],
       "status": "pending"
     }
   ],
-  "projectName": "Update menu data to match the latest pasted menu sections, items, descriptions, and prices",
+  "projectName": "Update 'Review us on Google' link to restaurant reviews URL",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

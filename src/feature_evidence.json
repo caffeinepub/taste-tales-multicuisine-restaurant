@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-frontend-src-data-menudata-ts-so-the-menu-categories-section-headings-and-their-items-name-optional-description-and-price-exactly-match-the-latest-menu-text-the-user-pasted-treat-the-pasted-text-as-the-single-source-of-truth-add-any-missing-categories-sections-add-missing-items-and-remove-replace-any-categories-items-currently-in-menudata-ts-that-are-not-present-in-the-pasted-text-category-names-must-match-the-pasted-section-headings-exactly-including-capitalization-and-spelling",
-      "featureTitle": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
+      "featureId": "feature-update-the-review-us-on-google-section-so-the-google-button-link-opens-the-provided-google-reviews-url-for-taste-tales-replace-the-current-placeholder-social-links-google-value-used-in-the-footer",
+      "featureTitle": "Update the 'Review us on Google' section so the Google button/link opens the provided Google Reviews URL for Taste & Tales (replace the current placeholder `SOCIAL_LINKS.google` value used in the footer).",
       "files": [
-        "frontend/src/data/menuData.ts"
+        "frontend/src/lib/socialLinks.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,26 +16,7 @@
         "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-menu-items-with-non-single-numeric-prices-in-the-pasted-text-e-g-dual-prices-like-410-430-or-40-45-are-represented-in-frontend-src-data-menudata-ts-using-menuitem-pricelabel-so-the-displayed-price-text-matches-the-pasted-formatting-exactly",
-      "featureTitle": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
-      "files": [
-        "frontend/src/data/menuData.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
+        "REQ-4"
       ],
       "confidence": "high"
     }

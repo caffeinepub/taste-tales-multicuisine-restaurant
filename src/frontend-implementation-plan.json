@@ -1,64 +1,26 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update menu dataset and ensure search/price display stays consistent",
+  "title": "Update Google review link in footer to provided Taste & Tales reviews URL",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Replace menuCategories data so sections and items exactly match the latest pasted menu text (names, descriptions, and prices), with no extra categories/items.",
+      "id": "REQ-4",
+      "summary": "Replace the Google review link value so the 'Review us on Google' button opens the provided Taste & Tales Google Reviews URL in a new tab.",
       "acceptanceCriteria": [
-        "`frontend/src/data/menuData.ts` contains a `menuCategories` dataset whose categories and items match the pasted menu text (sections, item names, descriptions in parentheses, and prices) with no extra categories/items not present in the pasted text.",
-        "Section/category names match the pasted headings exactly (including spelling/typos such as those in the pasted menu).",
-        "Items that have a parenthetical description in the pasted text are represented via `MenuItem.description` with the same wording (verbatim, aside from whitespace normalization).",
-        "Items that have no price in the pasted text are represented without `price` and without `priceLabel` (so the UI can fall back to a default display)."
+        "In `frontend/src/lib/socialLinks.ts`, `SOCIAL_LINKS.google` equals the exact URL provided by the user.",
+        "In the footer 'Social Connect' area (the button labeled 'Review us on Google'), clicking the button opens the provided URL in a new tab (retaining `target=\"_blank\"` and `rel=\"noopener noreferrer\"`).",
+        "No user-facing text is changed away from English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/data/menuData.ts",
+          "path": "frontend/src/lib/socialLinks.ts",
           "operation": "modify",
-          "description": "Update the exported `menuCategories` dataset to exactly match the latest user-pasted menu text: add/remove/rename sections to match headings verbatim; add/remove/rename items; map parenthetical text to `description` (verbatim aside from whitespace normalization); ensure items with no price omit both `price` and `priceLabel`."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Represent multi-price menu entries using priceLabel so displayed price text matches the pasted formatting exactly.",
-      "acceptanceCriteria": [
-        "For any menu entry that has multiple prices separated by \"/\" in the pasted text, the corresponding `MenuItem` uses `priceLabel` (not `price`) and preserves the formatting shown in the pasted text (including spaces around \"/\" and any decimals if present).",
-        "Existing numeric single-price items continue to use `price` (number) and render with the current rupee formatting behavior.",
-        "The Menu page carousel and global search badges display `priceLabel` verbatim when present."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/data/menuData.ts",
-          "operation": "modify",
-          "description": "For any items that have non-single numeric prices (e.g., values formatted like \"410 / 430\" or \"40 / 45\" in the pasted text), store the price string in `priceLabel` exactly as shown in the pasted text (including spaces and decimals) and do not set `price` for those items."
+          "description": "Update `SOCIAL_LINKS.google` to exactly: https://www.google.com/search?sca_esv=190a96a9d156750b&rlz=1C1YTUH_enIN1199IN1199&sxsrf=ANbL-n4ysIaDCa4jfFuKA9OBq5Xz-yZeMg:1771016063596&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qObc6Jbzq6uBIArRbHnZOQjhdBvO-cLGAHp0x7B_lQlagt349zrM2Si9ZmDeE9KJ_S6zD6tYcUcRGLg5ufxYmm9gHIcqWoNoaheMh3q1F29aVMy5sqn2q0spdGq68VhoW3gRvMIE%3D&q=Taste+%26+Tales+-+Multicuisine+Restaurant+Reviews&sa=X&ved=2ahUKEwiqxPL6rNeSAxWwUWcHHbAKJPcQ0bkNegQIOxAF&biw=1280&bih=551&dpr=1.5 (do not shorten, reformat, or replace)."
         },
         {
-          "path": "frontend/src/lib/menuPrice.ts",
+          "path": "frontend/src/components/SiteFooter.tsx",
           "operation": "modify",
-          "description": "Confirm `formatMenuPrice(item)` continues to return `priceLabel` verbatim when present, and that items with only `price` still render with the existing rupee formatting; adjust only if needed to preserve exact pasted `priceLabel` formatting."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Ensure /menu and global /search reflect the updated menu dataset and display correct category names and price badges (including priceLabel).",
-      "acceptanceCriteria": [
-        "On `/menu`, searching by an updated item name returns that item in its category (case-insensitive matching).",
-        "On `/menu`, searching by an updated category/section name returns items from that category (case-insensitive matching).",
-        "On `/search`, searching for an updated item returns a result with `type: 'menu'`, the correct `category` (section name), and a `badge` that matches `formatMenuPrice(item)` (showing `priceLabel` verbatim when present)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/MenuPage.tsx",
-          "operation": "modify",
-          "description": "Keep the /menu filtering logic aligned with the updated `menuCategories` dataset and ensure matching remains case-insensitive; if necessary, normalize whitespace in the query and the compared fields so renamed/added items/categories from `menuData.ts` are consistently discoverable."
-        },
-        {
-          "path": "frontend/src/lib/globalSearchContent.ts",
-          "operation": "modify",
-          "description": "Ensure global search indexing uses the updated `menuCategories` data and returns `type: 'menu'` results with the correct `category` (section name) and `badge` from `formatMenuPrice(item)`; if necessary, enhance `normalizeText` to be consistent with /menu search (including whitespace normalization)."
+          "description": "Confirm the 'Review us on Google' anchor continues to use `href={SOCIAL_LINKS.google}` and retains `target=\"_blank\"` and `rel=\"noopener noreferrer\"`, without changing any user-facing English text."
         }
       ]
     }
