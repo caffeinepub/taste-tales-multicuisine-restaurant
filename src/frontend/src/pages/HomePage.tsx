@@ -82,40 +82,40 @@ export default function HomePage() {
             aria-hidden="true"
           />
         </div>
-        <div className="relative z-10 mx-auto max-w-4xl text-center px-4">
-          <div className="mb-6 sm:mb-8 flex justify-center">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <div className="mb-8 flex justify-center">
             <BrandLogo size="lg" showText />
           </div>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+          <h1 className="font-serif text-4xl font-bold leading-tight md:text-5xl lg:text-6xl mb-6">
             Taste & Tales
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 sm:mb-8 font-light px-4">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-light">
             A World of Flavours, Thoughtfully Crafted
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4">
-            <Button size="lg" onClick={handleBookTable} className="text-base transition-all hover:shadow-warm-lg w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <Button size="lg" onClick={handleBookTable} className="text-base transition-all hover:shadow-warm-lg">
               Book a Table
             </Button>
-            <Button size="lg" variant="outline" onClick={handleOrderOnline} className="text-base transition-all hover:shadow-warm w-full sm:w-auto">
+            <Button size="lg" variant="outline" onClick={handleOrderOnline} className="text-base transition-all hover:shadow-warm">
               Order Online
             </Button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-sm">
-            <div className="flex flex-col items-center gap-2 p-3 sm:p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
-              <Star className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <span className="font-semibold text-xs sm:text-sm">4.2 Rating</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
+              <Star className="h-5 w-5 text-primary" />
+              <span className="font-semibold">4.2 Rating</span>
             </div>
-            <div className="flex flex-col items-center gap-2 p-3 sm:p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
-              <Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <span className="font-semibold text-xs sm:text-sm">Family Friendly</span>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
+              <Users className="h-5 w-5 text-primary" />
+              <span className="font-semibold">Family Friendly</span>
             </div>
-            <div className="flex flex-col items-center gap-2 p-3 sm:p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
-              <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <span className="font-semibold text-xs sm:text-sm">11 AM – 11 PM</span>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
+              <Clock className="h-5 w-5 text-primary" />
+              <span className="font-semibold">11 AM – 11 PM</span>
             </div>
-            <div className="flex flex-col items-center gap-2 p-3 sm:p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
-              <Music className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <span className="font-semibold text-xs sm:text-sm">Live Music</span>
+            <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-background/70 backdrop-blur border border-border/50">
+              <Music className="h-5 w-5 text-primary" />
+              <span className="font-semibold">Live Music</span>
             </div>
           </div>
         </div>
@@ -123,19 +123,19 @@ export default function HomePage() {
 
       {/* Brand Story */}
       <Section className="bg-background/80">
-        <div className="mx-auto max-w-3xl text-center px-4">
+        <div className="mx-auto max-w-3xl text-center">
           <div className="mb-6 flex justify-center">
             <LogoMotif size="lg" />
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
+          <h2 className="font-serif text-3xl font-bold mb-6 md:text-4xl">
             Where Every Dish Tells a Story
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4 sm:mb-6">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
             At Taste & Tales, we believe dining is more than a meal—it's a journey through cultures, 
             traditions, and flavours. From the rich spices of North India to the delicate balance of Thai cuisine, 
             every plate is crafted with care, quality ingredients, and a passion for excellence.
           </p>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Whether you're celebrating with family, catching up with friends, or simply treating yourself, 
             we invite you to experience a world of taste in a warm, welcoming atmosphere.
           </p>
@@ -144,18 +144,18 @@ export default function HomePage() {
 
       {/* Cuisine Showcase */}
       <Section className="bg-muted/20">
-        <div className="text-center mb-8 sm:mb-12 px-4">
+        <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4 text-sm">
             Our Specialties
           </Badge>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-serif text-3xl font-bold mb-4 md:text-4xl">
             A World of Cuisines Under One Roof
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Explore our diverse menu featuring authentic flavours from around the globe
           </p>
         </div>
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {cuisines.map((cuisine) => (
             <Card key={cuisine.name} className="group overflow-hidden transition-all hover:shadow-warm bg-card/80 backdrop-blur border-border/60">
               <div className="aspect-[4/3] overflow-hidden">
@@ -165,20 +165,20 @@ export default function HomePage() {
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-              <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-                  <span className="text-xl sm:text-2xl">{cuisine.icon}</span>
-                  <span className="break-words">{cuisine.name}</span>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <span className="text-2xl">{cuisine.icon}</span>
+                  {cuisine.name}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
+              <CardContent>
                 <p className="text-sm text-muted-foreground">{cuisine.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
-        <div className="mt-8 sm:mt-12 text-center">
-          <Button size="lg" onClick={() => navigate({ to: '/menu' })} className="transition-all hover:shadow-warm w-full sm:w-auto">
+        <div className="mt-12 text-center">
+          <Button size="lg" onClick={() => navigate({ to: '/menu' })} className="transition-all hover:shadow-warm">
             View Full Menu
           </Button>
         </div>
@@ -186,50 +186,50 @@ export default function HomePage() {
 
       {/* Dining Experience */}
       <Section className="bg-background/80">
-        <div className="text-center mb-8 sm:mb-12 px-4">
+        <div className="text-center mb-12">
           <Badge variant="outline" className="mb-4 text-sm">
             The Experience
           </Badge>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-serif text-3xl font-bold mb-4 md:text-4xl">
             More Than Just a Meal
           </h2>
         </div>
-        <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           <Card className="text-center bg-card/80 backdrop-blur border-border/60">
-            <CardHeader className="p-4 sm:p-6">
-              <div className="mx-auto mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-primary/10">
-                <Users className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
+            <CardHeader>
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <Users className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="text-lg sm:text-xl">Family Friendly</CardTitle>
+              <CardTitle>Family Friendly</CardTitle>
             </CardHeader>
-            <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
-              <p className="text-sm sm:text-base text-muted-foreground">
+            <CardContent>
+              <p className="text-muted-foreground">
                 Spacious seating and a welcoming atmosphere perfect for families and groups
               </p>
             </CardContent>
           </Card>
           <Card className="text-center bg-card/80 backdrop-blur border-border/60">
-            <CardHeader className="p-4 sm:p-6">
-              <div className="mx-auto mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-primary/10">
-                <Music className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
+            <CardHeader>
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <Music className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="text-lg sm:text-xl">Live Entertainment</CardTitle>
+              <CardTitle>Live Entertainment</CardTitle>
             </CardHeader>
-            <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
-              <p className="text-sm sm:text-base text-muted-foreground">
+            <CardContent>
+              <p className="text-muted-foreground">
                 Enjoy live music and a vibrant ambience that enhances your dining experience
               </p>
             </CardContent>
           </Card>
           <Card className="text-center bg-card/80 backdrop-blur border-border/60">
-            <CardHeader className="p-4 sm:p-6">
-              <div className="mx-auto mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-primary/10">
-                <Star className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
+            <CardHeader>
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <Star className="h-8 w-8 text-primary" />
               </div>
-              <CardTitle className="text-lg sm:text-xl">Premium Quality</CardTitle>
+              <CardTitle>Premium Quality</CardTitle>
             </CardHeader>
-            <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
-              <p className="text-sm sm:text-base text-muted-foreground">
+            <CardContent>
+              <p className="text-muted-foreground">
                 Fresh ingredients, expert preparation, and attention to every detail
               </p>
             </CardContent>
@@ -239,31 +239,31 @@ export default function HomePage() {
 
       {/* Contact CTA */}
       <Section className="bg-gradient-to-b from-muted/20 to-background/50">
-        <div className="mx-auto max-w-3xl text-center px-4">
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-serif text-3xl font-bold mb-6 md:text-4xl">
             Visit Us Today
           </h2>
-          <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-            <div className="flex items-center justify-center gap-2 text-base sm:text-lg flex-wrap">
-              <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-              <span className="break-words">Raysan, near GIFT City, Gandhinagar, Gujarat</span>
+          <div className="space-y-4 mb-8">
+            <div className="flex items-center justify-center gap-2 text-lg">
+              <MapPin className="h-5 w-5 text-primary" />
+              <span>Raysan, near GIFT City, Gandhinagar, Gujarat</span>
             </div>
-            <div className="flex items-center justify-center gap-2 text-base sm:text-lg">
-              <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+            <div className="flex items-center justify-center gap-2 text-lg">
+              <Phone className="h-5 w-5 text-primary" />
               <a href="tel:+917567678009" className="hover:text-primary transition-colors">
                 +91 75676 78009
               </a>
             </div>
-            <div className="flex items-center justify-center gap-2 text-base sm:text-lg flex-wrap">
-              <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+            <div className="flex items-center justify-center gap-2 text-lg">
+              <Clock className="h-5 w-5 text-primary" />
               <span>Open Daily: 11:00 AM – 11:00 PM</span>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <Button size="lg" onClick={handleBookTable} className="transition-all hover:shadow-warm-lg w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" onClick={handleBookTable} className="transition-all hover:shadow-warm-lg">
               Book a Table
             </Button>
-            <Button size="lg" variant="outline" onClick={() => navigate({ to: '/contact' })} className="transition-all hover:shadow-warm w-full sm:w-auto">
+            <Button size="lg" variant="outline" onClick={() => navigate({ to: '/contact' })} className="transition-all hover:shadow-warm">
               Get Directions
             </Button>
           </div>

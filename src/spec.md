@@ -1,13 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Make the entire frontend fully responsive and usable across mobile, tablet (iPad), and desktop viewports without overflow or horizontal scrolling.
+**Goal:** Update the displayed M.R.P. for the existing “Mineral Water” menu item to ₹20 across the app.
 
 **Planned changes:**
-- Update page layouts (Home, About, Menu, Offers, Contact, Menu Management) to reflow cleanly at common breakpoints (~360px, ~768px, ~1280px), ensuring no clipped content or horizontal scrolling.
-- Adjust the header layout (brand name, search bar, nav actions) to avoid overlap/overflow and provide appropriate spacing/wrapping behavior across mobile/tablet/desktop, including a usable mobile hamburger menu.
-- Make key Home page sections responsive (hero, cuisine card grid, multi-column sections) so typography and grids transition from single-column (mobile) to multi-column (tablet/desktop) while keeping image aspect ratios intact.
-- Make Menu Management responsive by improving TabsList behavior on narrow screens and ensuring forms/actions stack and remain usable without sideways scrolling.
-- Refine footer responsiveness so sections collapse into appropriate columns by breakpoint and contact/social rows wrap neatly without collisions.
+- Update the `name: "Mineral Water"` entry in `frontend/src/data/menuData.ts` so its price renders as ₹20.
+- Verify the updated price badge appears as ₹20 in both the /menu page search results and the /search page global search results.
 
-**User-visible outcome:** The site works cleanly on phones, iPads, and desktops: all pages fit within the viewport, navigation and forms remain usable, and grids/sections adapt smoothly without content overflowing or being clipped.
+**User-visible outcome:** When users search for “Mineral Water” on the menu page or global search page, the item’s price badge shows ₹20.

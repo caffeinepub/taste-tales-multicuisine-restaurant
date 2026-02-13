@@ -1,177 +1,156 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from '@tanstack/react-router';
-import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Menu, Phone } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
-import GlobalSearch from '@/components/GlobalSearch/GlobalSearch';
-import { useInternetIdentity } from '@/hooks/useInternetIdentity';
-import { useIsCallerAdmin } from '@/hooks/useQueries';
-import { SiInstagram, SiGoogle } from 'react-icons/si';
-import { SOCIAL_CONNECT_LINKS } from '@/lib/socialConnectLinks';
+import HeaderSearch from '@/components/HeaderSearch';
 
 export default function SiteHeader() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const { identity } = useInternetIdentity();
-  const { data: isAdmin } = useIsCallerAdmin();
-
-  const isAuthenticated = !!identity;
-  const showMenuManagement = isAuthenticated && isAdmin;
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const routerState = useRouterState();
+  const currentPath = routerState.location.pathname;
 
   const navLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/about', label: 'About' },
-    { to: '/menu', label: 'Menu' },
-    { to: '/offers', label: 'Offers' },
-    { to: '/contact', label: 'Contact' },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/menu', label: 'Menu' },
+    { href: '/offers', label: 'Offers' },
+    { href: '/contact', label: 'Contact' },
   ];
 
-  if (showMenuManagement) {
-    navLinks.push({ to: '/menu-management', label: 'Menu Management' });
-  }
+  const handleOrderOnline = () => {
+    window.open('https://www.zomato.com', '_blank');
+  };
 
-  const isActive = (path: string) => location.pathname === path;
+  const handleBookTable = () => {
+    navigate({ to: '/contact' });
+  };
+
+  const handleSearch = (query: string) => {
+    if (query) {
+      navigate({ to: '/search', search: { q: query } });
+    } else {
+      navigate({ to: '/search' });
+    }
+    setIsOpen(false);
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-background/80 supports-[backdrop-filter]:bg-background/60 shadow-warm-sm">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex h-14 sm:h-16 items-center justify-between gap-2 sm:gap-4">
-          {/* Logo & Brand Name */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
-            <BrandLogo size="sm" />
-            <span className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-primary tracking-tight truncate">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/85">
+      <div className="container flex h-16 items-center justify-between md:h-20">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
+          <BrandLogo size="md" />
+          <div className="flex flex-col">
+            <span className="font-serif text-lg font-bold leading-tight text-primary md:text-xl">
               Taste & Tales
             </span>
-          </Link>
-
-          {/* Desktop Search */}
-          <div className="hidden lg:flex flex-1 max-w-md mx-4">
-            <GlobalSearch />
+            <span className="hidden text-xs text-muted-foreground sm:block">
+              Multicuisine Restaurant
+            </span>
           </div>
+        </Link>
 
-          {/* Desktop Navigation & Social Connect */}
-          <div className="hidden lg:flex items-center gap-2 xl:gap-4 flex-shrink-0">
-            <nav className="flex items-center space-x-1">
-              {navLinks.map((link) => (
-                <Link key={link.to} to={link.to}>
-                  <Button
-                    variant={isActive(link.to) ? 'default' : 'ghost'}
-                    size="sm"
-                    className={isActive(link.to) ? 'bg-primary text-primary-foreground' : ''}
-                  >
-                    {link.label}
-                  </Button>
-                </Link>
-              ))}
-            </nav>
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-6 lg:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                currentPath === link.href ? 'text-primary' : 'text-foreground/80'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-            {/* Desktop Social Connect */}
-            <div className="flex items-center gap-2 pl-2 xl:pl-4 border-l border-border/40">
-              <Button
-                variant="ghost"
-                size="sm"
-                asChild
-                className="transition-all hover:bg-primary/10 hover:text-primary"
-              >
-                <a
-                  href={SOCIAL_CONNECT_LINKS.instagram.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Follow us on Instagram"
-                >
-                  <SiInstagram className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                asChild
-                className="transition-all hover:bg-primary/10 hover:text-primary"
-              >
-                <a
-                  href={SOCIAL_CONNECT_LINKS.googleReview.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Review us on Google"
-                >
-                  <SiGoogle className="h-5 w-5" />
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-md hover:bg-accent flex-shrink-0"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+        {/* Desktop Search & CTAs */}
+        <div className="hidden items-center gap-3 lg:flex">
+          <HeaderSearch onSubmit={handleSearch} className="w-64" />
+          <Button variant="outline" size="sm" onClick={handleOrderOnline} className="transition-all hover:shadow-warm">
+            Order Online
+          </Button>
+          <Button size="sm" onClick={handleBookTable} className="transition-all hover:shadow-warm">
+            Book a Table
+          </Button>
+          <Button variant="ghost" size="icon" asChild className="transition-colors hover:text-primary">
+            <a href="tel:+917567678009" aria-label="Call us">
+              <Phone className="h-5 w-5" />
+            </a>
+          </Button>
         </div>
 
-        {/* Mobile Search & Navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden py-4 space-y-4 border-t border-border/40">
-            {/* Mobile Search */}
-            <div className="px-2">
-              <GlobalSearch />
-            </div>
+        {/* Mobile Menu */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <Button variant="ghost" size="icon" asChild className="md:hidden hover:text-primary">
+            <a href="tel:+917567678009" aria-label="Call us">
+              <Phone className="h-5 w-5" />
+            </a>
+          </Button>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="Open menu">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[280px] sm:w-[350px]">
+              <div className="flex flex-col gap-6 py-6">
+                <div className="flex items-center gap-2">
+                  <BrandLogo size="sm" />
+                  <span className="font-serif text-xl font-bold text-primary">
+                    Taste & Tales
+                  </span>
+                </div>
 
-            {/* Mobile Nav Links */}
-            <nav className="space-y-2">
-              {navLinks.map((link) => (
-                <Link key={link.to} to={link.to} onClick={() => setMobileMenuOpen(false)}>
-                  <Button
-                    variant={isActive(link.to) ? 'default' : 'ghost'}
-                    className={`w-full justify-start ${isActive(link.to) ? 'bg-primary text-primary-foreground' : ''}`}
-                  >
-                    {link.label}
+                {/* Mobile Search */}
+                <div className="border-b pb-4">
+                  <HeaderSearch onSubmit={handleSearch} />
+                </div>
+                
+                <nav className="flex flex-col gap-3">
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.href}>
+                      <Link
+                        to={link.href}
+                        className={`rounded-md px-3 py-2 text-base font-medium transition-colors hover:bg-accent ${
+                          currentPath === link.href ? 'bg-accent text-accent-foreground' : ''
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </nav>
+
+                <div className="flex flex-col gap-3 border-t pt-6">
+                  <Button onClick={handleOrderOnline} className="w-full">
+                    Order Online
                   </Button>
-                </Link>
-              ))}
-            </nav>
-
-            {/* Mobile Social Connect */}
-            <div className="px-2 pt-4 border-t border-border/40">
-              <h3 className="font-semibold text-sm mb-3 text-muted-foreground">Social Connect</h3>
-              <div className="flex flex-col gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="w-full justify-start transition-all hover:shadow-warm hover:border-primary"
-                >
-                  <a
-                    href={SOCIAL_CONNECT_LINKS.instagram.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
+                  <Button 
+                    variant="outline" 
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleBookTable();
+                    }}
+                    className="w-full"
                   >
-                    <SiInstagram className="mr-2 h-4 w-4" />
-                    {SOCIAL_CONNECT_LINKS.instagram.label}
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  asChild
-                  className="w-full justify-start transition-all hover:shadow-warm hover:border-primary"
-                >
-                  <a
-                    href={SOCIAL_CONNECT_LINKS.googleReview.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <SiGoogle className="mr-2 h-4 w-4" />
-                    {SOCIAL_CONNECT_LINKS.googleReview.label}
-                  </a>
-                </Button>
+                    Book a Table
+                  </Button>
+                  <Button variant="outline" asChild className="w-full">
+                    <a href="tel:+917567678009">
+                      <Phone className="mr-2 h-4 w-4" />
+                      Call Now
+                    </a>
+                  </Button>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );

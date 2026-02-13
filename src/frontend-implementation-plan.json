@@ -1,130 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Frontend responsiveness across mobile, iPad/tablet, and desktop",
+  "title": "Update Mineral Water price to ₹20",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Make all routes render responsively at common breakpoints without horizontal scrolling or clipped content.",
+      "summary": "Change the static menu data so the \"Mineral Water\" item renders with a ₹20 price badge in the menu UI and global search results.",
       "acceptanceCriteria": [
-        "At viewport widths ~360px (mobile), ~768px (tablet), and ~1280px (desktop), every route renders without horizontal scrolling.",
-        "No text, buttons, cards, images, or dialogs overflow their containers; content reflows appropriately.",
-        "Tap targets on mobile (buttons/links) are not cramped and remain accessible without accidental taps."
+        "In `frontend/src/data/menuData.ts`, the item with `name: \"Mineral Water\"` is updated so the rendered price badge for that item shows ₹20.",
+        "On the /menu page, searching for \"Mineral Water\" shows the item with a price badge displaying ₹20.",
+        "On the /search page, searching for \"Mineral Water\" returns a menu result whose badge displays ₹20."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/data/menuData.ts",
           "operation": "modify",
-          "description": "Adjust the root layout containers to be overflow-safe across routes (e.g., ensure main content uses responsive padding and prevent accidental horizontal overflow from layout wrappers)."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add/adjust global base rules that prevent horizontal overflow (e.g., ensure media elements don’t exceed container width, long words wrap, and the overall page avoids horizontal scrolling)."
-        },
-        {
-          "path": "frontend/src/components/Section.tsx",
-          "operation": "modify",
-          "description": "Refine the shared Section wrapper to enforce consistent responsive padding/max-width behavior and prevent child overflow across pages (e.g., ensure container uses safe gutters on small screens)."
-        },
-        {
-          "path": "frontend/src/pages/AboutPage.tsx",
-          "operation": "modify",
-          "description": "Tighten responsive typography/spacing and ensure prose and grids do not overflow on small screens (no clipped text or wide blocks)."
-        },
-        {
-          "path": "frontend/src/pages/MenuPage.tsx",
-          "operation": "modify",
-          "description": "Ensure both desktop grid and mobile accordion layouts have overflow-safe card content (titles/descriptions/prices wrap correctly, no horizontal scroll). Use existing shadcn-ui Card/Accordion components in an overflow-safe way; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/OffersPage.tsx",
-          "operation": "modify",
-          "description": "Make offer card header layouts resilient on narrow widths (icon/title/badge wrapping and spacing) and ensure no overflow. Use existing shadcn-ui Card/Badge/Button components responsively; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/ContactPage.tsx",
-          "operation": "modify",
-          "description": "Make the contact grid, quick action buttons, and embedded map container responsive (stack properly on mobile; prevent fixed heights from causing overflow/clipping). Use existing shadcn-ui Card/Button components responsively; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/pages/MenuManagementPage.tsx",
-          "operation": "modify",
-          "description": "Ensure the admin page layout uses responsive stacking, safe gutters, and wrapping so forms/tabs/actions never extend off-screen. Use existing shadcn-ui Tabs/Card/Form components responsively; verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Make the header navigation (brand, search, nav actions) responsive across mobile/tablet/desktop with no overlap or overflow.",
-      "acceptanceCriteria": [
-        "On mobile, the hamburger menu and mobile nav render without overflow; opening the menu shows all links and the search input fully within the viewport.",
-        "On tablet sizes, the header does not feel cramped: spacing is balanced and elements do not overlap; the search and nav are displayed using appropriate breakpoints.",
-        "On desktop, the existing layout (logo + search + nav + social) remains aligned, with consistent vertical centering and no layout shift when navigating between pages."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SiteHeader.tsx",
-          "operation": "modify",
-          "description": "Rework header flex behavior and breakpoint rules so brand/search/nav/social never overlap or overflow (e.g., ensure brand text can wrap/truncate appropriately, flex children use min-w-0, and mobile menu panel is viewport-contained). Use existing shadcn-ui Button component for consistent tap targets; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/GlobalSearch/GlobalSearch.tsx",
-          "operation": "modify",
-          "description": "Ensure the global search input and results trigger area are width-constrained and responsive within header/mobile menu contexts (no overflow, proper spacing at narrow widths). Use existing shadcn-ui input-related UI components as already integrated; verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Make key Home page sections (hero, cuisine grid, multi-column sections) transition cleanly from mobile single-column to tablet/desktop multi-column with correct typography and image behavior.",
-      "acceptanceCriteria": [
-        "Home page hero content (logo, heading, subtitle, CTA buttons) fits on mobile screens without clipping and with readable line-lengths.",
-        "Cuisine cards display as 1 column on small screens, 2 columns on small/medium screens where appropriate, and 3–4 columns on larger screens (no awkward partial columns or overflow).",
-        "Images keep correct aspect ratios and do not stretch; they remain within their cards/containers at all breakpoints."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Refine hero spacing/typography and CTA layout for small screens; ensure grids and multi-column sections use responsive gap/columns and don’t cause overflow. Ensure card images maintain aspect ratio and remain contained. Use existing shadcn-ui Card/Badge/Button components responsively; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add/adjust any global responsive typography or utility-safe defaults needed by the Home page (e.g., improved wrapping/line-breaking for headings on narrow widths) without introducing page-specific styles."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Make Menu Management responsive (tabs, forms, action buttons) so it remains fully usable on mobile and tablet.",
-      "acceptanceCriteria": [
-        "TabsList remains usable on narrow screens (wraps cleanly or becomes horizontally scrollable without breaking layout).",
-        "Form grids (category fields and item fields) stack into a single column on mobile and become multi-column on larger viewports.",
-        "Primary actions (Save Changes / Reset / Logout) remain visible and usable on mobile without forcing sideways scrolling."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/MenuManagementPage.tsx",
-          "operation": "modify",
-          "description": "Update the page layout to stack header/actions on mobile, keep primary actions accessible, and make the TabsList responsive (wrap or horizontal scroll) without breaking content. Use existing shadcn-ui Tabs/TabsList/TabsTrigger and form components; verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Ensure footer grid and contact/social sections collapse and wrap cleanly across breakpoints.",
-      "acceptanceCriteria": [
-        "Footer sections render as a single-column stack on mobile, two columns on medium screens, and up to four columns on large screens, without overlap.",
-        "Contact rows (address/phone/hours) wrap neatly without icon/text collision.",
-        "Footer links and buttons remain readable and do not overflow their containers."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/SiteFooter.tsx",
-          "operation": "modify",
-          "description": "Refine footer grid and internal flex rows so contact lines wrap cleanly (no icon/text collision) and sections maintain spacing/alignment at mobile/tablet/desktop. Use existing shadcn-ui Button/Separator components responsively; verify the component's usage instructions before implementing."
+          "description": "Locate the menu item with `name: \"Mineral Water\"` and update its pricing to reflect an M.R.P. of 20 by setting `price: 20` (and removing/adjusting any conflicting `priceLabel` if present) so that existing UI formatting (which prefixes numeric prices with the rupee symbol) displays \"₹20\" consistently on the Menu page and in global search badges."
         }
       ]
     }

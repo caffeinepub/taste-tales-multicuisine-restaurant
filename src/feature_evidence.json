@@ -2,17 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-ensure-the-entire-frontend-layout-is-responsive-and-usable-across-common-breakpoints-mobile-tablet-ipad-laptop-desktop-with-no-horizontal-scrolling-or-clipped-content-on-any-page-home-about-menu-offers-contact-and-menu-management",
-      "featureTitle": "Ensure the entire frontend layout is responsive and usable across common breakpoints (mobile, tablet/iPad, laptop/desktop), with no horizontal scrolling or clipped content on any page (Home, About, Menu, Offers, Contact, and Menu Management).",
+      "featureId": "feature-update-the-existing-menu-item-named-mineral-water-in-frontend-src-data-menudata-ts-so-its-displayed-price-reflects-an-m-r-p-of-20-i-e-the-price-badge-for-mineral-water-must-show-20-in-the-ui-and-in-global-search-results",
+      "featureTitle": "Update the existing menu item named \"Mineral Water\" in `frontend/src/data/menuData.ts` so its displayed price reflects an M.R.P. of ₹20 (i.e., the price badge for \"Mineral Water\" must show ₹20 in the UI and in global search results).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/Section.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/AboutPage.tsx",
-        "frontend/src/pages/ContactPage.tsx",
-        "frontend/src/pages/MenuManagementPage.tsx",
-        "frontend/src/pages/MenuPage.tsx",
-        "frontend/src/pages/OffersPage.tsx"
+        "frontend/src/data/menuData.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -20,88 +13,10 @@
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
         "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
+        "blob-storage@4.0.0"
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-adjust-the-header-navigation-and-header-contents-to-be-responsive-at-mobile-tablet-desktop-sizes-including-appropriate-spacing-wrapping-behavior-and-avoidance-of-overflow-for-the-brand-name-search-bar-and-nav-actions",
-      "featureTitle": "Adjust the header navigation and header contents to be responsive at mobile/tablet/desktop sizes, including appropriate spacing, wrapping behavior, and avoidance of overflow for the brand name, search bar, and nav actions.",
-      "files": [
-        "frontend/src/components/GlobalSearch/GlobalSearch.tsx",
-        "frontend/src/components/SiteHeader.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-make-key-page-grids-sections-responsive-especially-the-home-page-hero-cuisine-card-grid-and-any-multi-column-sections-so-that-typography-scales-and-layout-transitions-cleanly-from-single-column-mobile-to-multi-column-tablet-desktop",
-      "featureTitle": "Make key page grids/sections responsive, especially the Home page hero, cuisine card grid, and any multi-column sections, so that typography scales and layout transitions cleanly from single-column (mobile) to multi-column (tablet/desktop).",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/HomePage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-make-the-menu-management-page-responsive-including-the-tab-list-forms-and-action-buttons-so-it-remains-usable-on-mobile-and-tablet-no-tabs-or-form-inputs-extending-off-screen",
-      "featureTitle": "Make the Menu Management page responsive, including the tab list, forms, and action buttons, so it remains usable on mobile and tablet (no tabs or form inputs extending off-screen).",
-      "files": [
-        "frontend/src/pages/MenuManagementPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-verify-and-refine-footer-responsiveness-so-its-grid-collapses-appropriately-on-smaller-devices-and-maintains-readable-spacing-and-alignment-for-contact-and-social-sections",
-      "featureTitle": "Verify and refine footer responsiveness so its grid collapses appropriately on smaller devices and maintains readable spacing and alignment for contact and social sections.",
-      "files": [
-        "frontend/src/components/SiteFooter.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
       ],
       "confidence": "high"
     }

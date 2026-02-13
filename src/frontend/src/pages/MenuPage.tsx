@@ -1,167 +1,121 @@
-import React, { useEffect, useRef } from 'react';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import Section from '@/components/Section';
 import Seo from '@/components/Seo';
-import { useGetMenu } from '@/hooks/useQueries';
-import { mergeMenuData } from '@/lib/menuAdapters';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
 import { menuCategories } from '@/data/menuData';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Loader2 } from 'lucide-react';
-import { MenuCategoryIcon } from '@/components/menu/MenuCategoryIcon';
-import { readSearchFocusParams, clearSearchFocusParams } from '@/utils/urlParams';
+import { MENU_SCREENSHOT_ASSETS } from '@/lib/menuScreenshotAssets';
+import MenuScreenshotGallery from '@/components/MenuScreenshotGallery';
+import MenuCategoryCarousel from '@/components/MenuCategoryCarousel';
 
 export default function MenuPage() {
-  const { data: backendMenu, isLoading } = useGetMenu();
-  const categories = backendMenu ? mergeMenuData(backendMenu) : menuCategories;
-  const focusParams = readSearchFocusParams();
-  const hasScrolled = useRef(false);
+  const navigate = useNavigate();
+  const search = useSearch({ from: '/menu' });
+  const searchQuery = search.q || '';
 
-  useEffect(() => {
-    if (!focusParams || hasScrolled.current) return;
+  // Update URL when search query changes
+  const handleSearchChange = (value: string) => {
+    if (value) {
+      navigate({ to: '/menu', search: { q: value }, replace: true });
+    } else {
+      navigate({ to: '/menu', search: {}, replace: true });
+    }
+  };
 
-    const timer = setTimeout(() => {
-      if (focusParams.categoryId) {
-        const categoryElement = document.getElementById(`category-${focusParams.categoryId}`);
-        if (categoryElement) {
-          categoryElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          categoryElement.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
-          setTimeout(() => {
-            categoryElement.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
-          }, 2000);
-        }
-      }
-
-      if (focusParams.itemName) {
-        const itemElement = document.getElementById(`item-${focusParams.itemName}`);
-        if (itemElement) {
-          itemElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          itemElement.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
-          setTimeout(() => {
-            itemElement.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
-          }, 2000);
-        }
-      }
-
-      hasScrolled.current = true;
-      clearSearchFocusParams();
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [focusParams]);
-
-  if (isLoading) {
-    return (
-      <Section className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-          <p className="text-muted-foreground">Loading menu...</p>
-        </div>
-      </Section>
-    );
-  }
+  // Filter menu items based on search query with improved matching
+  const normalizedQuery = searchQuery.toLowerCase().trim();
+  const filteredCategories = menuCategories.map(category => ({
+    ...category,
+    items: category.items.filter(item => {
+      const nameMatch = item.name.toLowerCase().includes(normalizedQuery);
+      const descriptionMatch = item.description?.toLowerCase().includes(normalizedQuery);
+      const categoryMatch = category.name.toLowerCase().includes(normalizedQuery);
+      return nameMatch || descriptionMatch || categoryMatch;
+    })
+  })).filter(category => category.items.length > 0);
 
   return (
     <>
       <Seo 
-        title="Menu – Taste & Tales Multicuisine Restaurant"
-        description="Explore our diverse menu featuring North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes. Over 200 dishes crafted with care and quality ingredients."
+        title="Menu – Taste & Tales Restaurant near GIFT City Gandhinagar"
+        description="Explore our extensive menu featuring Indian specialties, international cuisine, tandoori delights, and more at Taste & Tales Restaurant near GIFT City Gandhinagar."
       />
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Our Menu
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Discover a world of flavors with our carefully curated menu featuring authentic Indian cuisine, international favorites, and signature specialties.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      {/* Hero */}
-      <Section className="bg-muted/30">
-        <div className="max-w-3xl mx-auto text-center px-4">
-          <Badge variant="secondary" className="mb-4">Our Menu</Badge>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-            Explore Our <span className="text-primary">Menu</span>
-          </h1>
-          <p className="text-base sm:text-lg text-muted-foreground">
-            A world of flavours awaits – from North Indian classics to Italian comfort, Thai delicacies to Mexican zest
+      {/* Menu Screenshots Section */}
+      <Section>
+        <div className="max-w-4xl mx-auto">
+          <MenuScreenshotGallery screenshots={MENU_SCREENSHOT_ASSETS} />
+        </div>
+      </Section>
+
+      {/* Search Bar */}
+      <Section className="pt-8 pb-4">
+        <div className="max-w-2xl mx-auto">
+          <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+            Search Menu Items
+          </h3>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search menu..."
+              value={searchQuery}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="pl-10 h-12 text-base"
+            />
+          </div>
+        </div>
+      </Section>
+
+      {/* Menu Categories Carousel */}
+      <Section className="pt-4">
+        <MenuCategoryCarousel categories={filteredCategories} />
+      </Section>
+
+      {/* CTA Section */}
+      <Section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Ready to Order?
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Experience our delicious cuisine from the comfort of your home or visit us for an unforgettable dining experience.
           </p>
-        </div>
-      </Section>
-
-      {/* Desktop Grid View */}
-      <Section className="hidden md:block">
-        <div className="space-y-12 lg:space-y-16">
-          {categories.map((category) => (
-            <div key={category.id} id={`category-${category.id}`} className="scroll-mt-24 transition-all duration-300">
-              <div className="mb-6 lg:mb-8">
-                <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                  <MenuCategoryIcon iconKey={category.iconKey} className="w-8 h-8 sm:w-10 sm:h-10" />
-                  <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold">{category.name}</h2>
-                </div>
-                <p className="text-sm sm:text-base text-muted-foreground max-w-3xl">{category.description}</p>
-              </div>
-
-              <div className="grid gap-4 sm:gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-                {category.items.map((item) => (
-                  <Card 
-                    key={item.name} 
-                    id={`item-${item.name}`}
-                    className="transition-all hover:shadow-warm scroll-mt-24 duration-300"
-                  >
-                    <CardHeader className="p-4 sm:p-6">
-                      <div className="flex justify-between items-start gap-3 sm:gap-4">
-                        <div className="min-w-0 flex-1">
-                          <CardTitle className="text-base sm:text-lg mb-1 sm:mb-2 break-words">{item.name}</CardTitle>
-                          <CardDescription className="text-xs sm:text-sm line-clamp-2">{item.description}</CardDescription>
-                        </div>
-                        <Badge variant="secondary" className="shrink-0 text-xs sm:text-sm">₹{item.price}</Badge>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Mobile Accordion View */}
-      <Section className="md:hidden">
-        <Accordion type="single" collapsible className="space-y-4">
-          {categories.map((category) => (
-            <AccordionItem 
-              key={category.id} 
-              value={category.id}
-              id={`category-${category.id}`}
-              className="border rounded-lg px-4 scroll-mt-24 transition-all duration-300"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="transition-all hover:shadow-warm"
+              onClick={() => window.open('https://www.zomato.com', '_blank')}
             >
-              <AccordionTrigger className="hover:no-underline py-4">
-                <div className="flex items-center gap-3 text-left">
-                  <MenuCategoryIcon iconKey={category.iconKey} className="w-8 h-8 shrink-0" />
-                  <div className="min-w-0">
-                    <h2 className="font-serif text-lg font-bold break-words">{category.name}</h2>
-                    <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{category.description}</p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pt-2 pb-4">
-                <div className="space-y-3">
-                  {category.items.map((item) => (
-                    <Card 
-                      key={item.name}
-                      id={`item-${item.name}`}
-                      className="scroll-mt-24 transition-all duration-300"
-                    >
-                      <CardContent className="p-4">
-                        <div className="flex justify-between items-start gap-3">
-                          <div className="min-w-0 flex-1">
-                            <h3 className="font-semibold text-sm mb-1 break-words">{item.name}</h3>
-                            <p className="text-xs text-muted-foreground line-clamp-2">{item.description}</p>
-                          </div>
-                          <Badge variant="secondary" className="shrink-0 text-xs">₹{item.price}</Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+              Order Online
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="transition-all hover:shadow-warm"
+              asChild
+            >
+              <a href="tel:+917567678009">Call to Reserve</a>
+            </Button>
+          </div>
+        </div>
       </Section>
     </>
   );
 }
+
