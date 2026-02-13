@@ -1,16 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
+  "summary": "Project to update/maintain a restaurant menu using provided menu sections and item pricing.",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-update-the-existing-menu-item-named-mineral-water-in-frontend-src-data-menudata-ts-so-its-displayed-price-reflects-an-m-r-p-of-20-i-e-the-price-badge-for-mineral-water-must-show-20-in-the-ui-and-in-global-search-results",
-      "title": "Update the existing menu item named \"Mineral Water\" in `frontend/src/data/menuData.ts` so its displayed price reflects an M.R.P. of ₹20 (i.e., the price badge for \"Mineral Water\" must show ₹20 in the UI and in global search results).",
+      "id": "feature-update-frontend-src-data-menudata-ts-so-the-menu-categories-section-headings-and-their-items-name-optional-description-and-price-exactly-match-the-latest-menu-text-the-user-pasted-treat-the-pasted-text-as-the-single-source-of-truth-add-any-missing-categories-sections-add-missing-items-and-remove-replace-any-categories-items-currently-in-menudata-ts-that-are-not-present-in-the-pasted-text-category-names-must-match-the-pasted-section-headings-exactly-including-capitalization-and-spelling",
+      "title": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-menu-items-with-non-single-numeric-prices-in-the-pasted-text-e-g-dual-prices-like-410-430-or-40-45-are-represented-in-frontend-src-data-menudata-ts-using-menuitem-pricelabel-so-the-displayed-price-text-matches-the-pasted-formatting-exactly",
+      "title": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
+      "reqIds": [
+        "REQ-2"
       ],
       "version": 1
     }
@@ -18,12 +26,20 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update Mineral Water item M.R.P. to ₹20",
+      "summary": "Update the current menu with the provided menu sections, items, descriptions, and prices.",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "After updating menu data, verify search consistency so that (1) the `/menu` page search filter finds newly added/renamed items and categories from the updated `menuData.ts`; and (2) global site search (`frontend/src/lib/globalSearchContent.ts` and `/search`) returns results for the updated menu items with correct category names and correctly formatted price badges (including `priceLabel` where applicable).",
+      "reqIds": [
+        "REQ-3"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Update Mineral Water M.R.P. to ₹20",
+  "projectName": "Update menu data to match the latest pasted menu sections, items, descriptions, and prices",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

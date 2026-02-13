@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-existing-menu-item-named-mineral-water-in-frontend-src-data-menudata-ts-so-its-displayed-price-reflects-an-m-r-p-of-20-i-e-the-price-badge-for-mineral-water-must-show-20-in-the-ui-and-in-global-search-results",
-      "featureTitle": "Update the existing menu item named \"Mineral Water\" in `frontend/src/data/menuData.ts` so its displayed price reflects an M.R.P. of ₹20 (i.e., the price badge for \"Mineral Water\" must show ₹20 in the UI and in global search results).",
+      "featureId": "feature-update-frontend-src-data-menudata-ts-so-the-menu-categories-section-headings-and-their-items-name-optional-description-and-price-exactly-match-the-latest-menu-text-the-user-pasted-treat-the-pasted-text-as-the-single-source-of-truth-add-any-missing-categories-sections-add-missing-items-and-remove-replace-any-categories-items-currently-in-menudata-ts-that-are-not-present-in-the-pasted-text-category-names-must-match-the-pasted-section-headings-exactly-including-capitalization-and-spelling",
+      "featureTitle": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
       "files": [
         "frontend/src/data/menuData.ts"
       ],
@@ -17,6 +17,25 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-menu-items-with-non-single-numeric-prices-in-the-pasted-text-e-g-dual-prices-like-410-430-or-40-45-are-represented-in-frontend-src-data-menudata-ts-using-menuitem-pricelabel-so-the-displayed-price-text-matches-the-pasted-formatting-exactly",
+      "featureTitle": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
+      "files": [
+        "frontend/src/data/menuData.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

@@ -1,34 +1,75 @@
 {
   "kind": "build_request",
-  "title": "Update Mineral Water M.R.P. to ₹20",
+  "title": "Update menu data to match the latest pasted menu sections, items, descriptions, and prices",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the existing menu item named \"Mineral Water\" in `frontend/src/data/menuData.ts` so its displayed price reflects an M.R.P. of ₹20 (i.e., the price badge for \"Mineral Water\" must show ₹20 in the UI and in global search results).",
+      "text": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-1"
         ],
         "quotes": [
-          "update Mineral Water\nM.R.P. to  ₹20"
+          "this above text is each menu section so update the current menu with this"
         ]
       },
       "acceptanceCriteria": [
-        "In `frontend/src/data/menuData.ts`, the item with `name: \"Mineral Water\"` is updated so the rendered price badge for that item shows ₹20.",
-        "On the /menu page, searching for \"Mineral Water\" shows the item with a price badge displaying ₹20.",
-        "On the /search page, searching for \"Mineral Water\" returns a menu result whose badge displays ₹20."
+        "`frontend/src/data/menuData.ts` contains a `menuCategories` dataset whose categories and items match the pasted menu text (sections, item names, descriptions in parentheses, and prices) with no extra categories/items not present in the pasted text.",
+        "Section/category names match the pasted headings exactly (including spelling/typos such as those in the pasted menu).",
+        "Items that have a parenthetical description in the pasted text are represented via `MenuItem.description` with the same wording (verbatim, aside from whitespace normalization).",
+        "Items that have no price in the pasted text are represented without `price` and without `priceLabel` (so the UI can fall back to a default display)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Baked Macaroni Plain / With Pineapple: 410 / 430.00",
+          "Plain / Butter Roti: 40 / 45.00",
+          "Plain / Butter Rumali: 99 / 110.00"
+        ]
+      },
+      "acceptanceCriteria": [
+        "For any menu entry that has multiple prices separated by \"/\" in the pasted text, the corresponding `MenuItem` uses `priceLabel` (not `price`) and preserves the formatting shown in the pasted text (including spaces around \"/\" and any decimals if present).",
+        "Existing numeric single-price items continue to use `price` (number) and render with the current rupee formatting behavior.",
+        "The Menu page carousel and global search badges display `priceLabel` verbatim when present."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "After updating menu data, verify search consistency so that (1) the `/menu` page search filter finds newly added/renamed items and categories from the updated `menuData.ts`; and (2) global site search (`frontend/src/lib/globalSearchContent.ts` and `/search`) returns results for the updated menu items with correct category names and correctly formatted price badges (including `priceLabel` where applicable).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "this above text is each menu section so update the current menu with this"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On `/menu`, searching by an updated item name returns that item in its category (case-insensitive matching).",
+        "On `/menu`, searching by an updated category/section name returns items from that category (case-insensitive matching).",
+        "On `/search`, searching for an updated item returns a result with `type: 'menu'`, the correct `category` (section name), and a `badge` that matches `formatMenuPrice(item)` (showing `priceLabel` verbatim when present)."
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing text.",
-    "Do not edit files under `frontend/src/components/ui` or other immutable frontend paths defined by the system context."
+    "Do not edit any files under `frontend/src/components/ui` (read-only).",
+    "Do not modify `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, or `frontend/src/main.tsx` (immutable paths).",
+    "Keep backend as a single Motoko actor; do not introduce additional backend services."
   ],
   "nonGoals": [
-    "No other menu items, categories, descriptions, styling, or layout changes.",
-    "No backend changes."
+    "Implementing a backend-driven menu admin/editor UI.",
+    "Adding ordering, cart, checkout, or payment flows.",
+    "Changing site branding, navigation structure, or adding new pages unrelated to the menu update."
   ],
   "imageRequirements": {
     "required": [],

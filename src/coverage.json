@@ -1,18 +1,18 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T14:43:49.381Z",
+  "generatedAt": "2026-02-13T20:43:31.725Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 3,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update the existing menu item named \"Mineral Water\" in `frontend/src/data/menuData.ts` so its displayed price reflects an M.R.P. of ₹20 (i.e., the price badge for \"Mineral Water\" must show ₹20 in the UI and in global search results).",
+        "summary": "Update `frontend/src/data/menuData.ts` so the menu categories (section headings) and their items (name, optional description, and price) exactly match the latest menu text the user pasted. Treat the pasted text as the single source of truth: add any missing categories/sections, add missing items, and remove/replace any categories/items currently in `menuData.ts` that are not present in the pasted text. Category names must match the pasted section headings exactly (including capitalization and spelling).",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/data/menuData.ts"
@@ -20,6 +20,28 @@
         "matchedFiles": [
           "frontend/src/data/menuData.ts"
         ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Ensure menu items with non-single numeric prices in the pasted text (e.g., dual prices like \"410 / 430\" or \"40 / 45\") are represented in `frontend/src/data/menuData.ts` using `MenuItem.priceLabel` so the displayed price text matches the pasted formatting exactly.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/data/menuData.ts",
+          "frontend/src/lib/menuPrice.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/menuData.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "After updating menu data, verify search consistency so that (1) the `/menu` page search filter finds newly added/renamed items and categories from the updated `menuData.ts`; and (2) global site search (`frontend/src/lib/globalSearchContent.ts` and `/search`) returns results for the updated menu items with correct category names and correctly formatted price badges (including `priceLabel` where applicable).",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/MenuPage.tsx",
+          "frontend/src/lib/globalSearchContent.ts"
+        ],
+        "matchedFiles": []
       }
     ]
   },

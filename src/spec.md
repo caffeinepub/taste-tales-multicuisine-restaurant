@@ -1,10 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the displayed M.R.P. for the existing “Mineral Water” menu item to ₹20 across the app.
+**Goal:** Update the app’s menu dataset to exactly match the latest user-pasted menu sections, items, descriptions, and prices, and ensure menu/global search reflects the updated data.
 
 **Planned changes:**
-- Update the `name: "Mineral Water"` entry in `frontend/src/data/menuData.ts` so its price renders as ₹20.
-- Verify the updated price badge appears as ₹20 in both the /menu page search results and the /search page global search results.
+- Update `frontend/src/data/menuData.ts` so categories (section headings) and items (name, optional parenthetical description, and price) match the pasted menu text exactly; add missing sections/items and remove anything not present in the pasted text.
+- Represent multi-price entries (e.g., `410 / 430.00`) using `priceLabel` (verbatim formatting), while keeping single numeric prices as `price`.
+- Verify/update menu and global search data wiring so `/menu` search and `/search` results reflect the updated items/categories and show correctly formatted price badges (including `priceLabel` where applicable).
 
-**User-visible outcome:** When users search for “Mineral Water” on the menu page or global search page, the item’s price badge shows ₹20.
+**User-visible outcome:** The Menu page and global Search show the latest menu sections/items with correct names/descriptions and prices, and searches return results for newly added/renamed menu entries with correctly formatted price badges.
