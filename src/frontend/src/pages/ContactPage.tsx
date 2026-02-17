@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Phone, Clock } from 'lucide-react';
-import { SiFacebook, SiInstagram, SiX } from 'react-icons/si';
+import { SiFacebook, SiInstagram } from 'react-icons/si';
 import { SOCIAL_LINKS } from '@/lib/socialLinks';
+import { DIRECTIONS_URL } from '@/lib/directions';
+import { ORDER_ONLINE_LINKS } from '@/lib/orderOnlineLinks';
 
 export default function ContactPage() {
   return (
@@ -95,7 +97,7 @@ export default function ContactPage() {
                     </Button>
                     <Button variant="outline" asChild className="w-full transition-all hover:shadow-warm">
                       <a 
-                        href="https://www.google.com/maps/dir/?api=1&destination=23.2,72.6" 
+                        href={DIRECTIONS_URL}
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
@@ -143,21 +145,6 @@ export default function ContactPage() {
                       <SiInstagram className="h-5 w-5" />
                     </a>
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="h-12 w-12 transition-colors hover:text-primary hover:border-primary"
-                    asChild
-                  >
-                    <a 
-                      href={SOCIAL_LINKS.twitter}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      aria-label="Visit our Twitter page"
-                    >
-                      <SiX className="h-5 w-5" />
-                    </a>
-                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -190,12 +177,12 @@ export default function ContactPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="transition-all hover:shadow-warm-lg">
-              <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer">
+              <a href={ORDER_ONLINE_LINKS.zomato} target="_blank" rel="noopener noreferrer">
                 Order on Zomato
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="transition-all hover:shadow-warm">
-              <a href="https://www.swiggy.com" target="_blank" rel="noopener noreferrer">
+              <a href={ORDER_ONLINE_LINKS.swiggy} target="_blank" rel="noopener noreferrer">
                 Order on Swiggy
               </a>
             </Button>

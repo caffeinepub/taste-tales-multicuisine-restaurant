@@ -8,6 +8,7 @@ import { menuCategories } from '@/data/menuData';
 import { MENU_SCREENSHOT_ASSETS } from '@/lib/menuScreenshotAssets';
 import MenuScreenshotGallery from '@/components/MenuScreenshotGallery';
 import MenuCategoryCarousel from '@/components/MenuCategoryCarousel';
+import { ORDER_ONLINE_LINKS } from '@/lib/orderOnlineLinks';
 
 export default function MenuPage() {
   const navigate = useNavigate();
@@ -34,6 +35,10 @@ export default function MenuPage() {
       return nameMatch || descriptionMatch || categoryMatch;
     })
   })).filter(category => category.items.length > 0);
+
+  const handleOrderOnline = () => {
+    window.open(ORDER_ONLINE_LINKS.zomato, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <>
@@ -97,20 +102,16 @@ export default function MenuPage() {
             Experience our delicious cuisine from the comfort of your home or visit us for an unforgettable dining experience.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="transition-all hover:shadow-warm"
-              onClick={() => window.open('https://www.zomato.com', '_blank')}
-            >
+            <Button size="lg" onClick={handleOrderOnline} className="transition-all hover:shadow-warm-lg">
               Order Online
             </Button>
             <Button 
               size="lg" 
-              variant="outline"
+              variant="outline" 
+              onClick={() => navigate({ to: '/contact' })}
               className="transition-all hover:shadow-warm"
-              asChild
             >
-              <a href="tel:+917567678009">Call to Reserve</a>
+              Book a Table
             </Button>
           </div>
         </div>
@@ -118,4 +119,3 @@ export default function MenuPage() {
     </>
   );
 }
-

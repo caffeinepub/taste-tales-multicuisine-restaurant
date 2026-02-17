@@ -1,46 +1,16 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-13T20:57:37.464Z",
-  "summary": "SOCIAL_LINKS.google was updated in frontend/src/lib/socialLinks.ts to a specific Google search/reviews URL, but the diff does not provide evidence that the footer button/link behavior (new tab + rel attributes) was verified/implemented, and additional unrequested project metadata/docs were modified.",
-  "missing_requirements": [
-    {
-      "id": "REQ-4",
-      "requirement": "In the footer 'Social Connect' area (the button labeled 'Review us on Google'), clicking the button opens the provided URL in a new tab (retaining target=\"_blank\" and rel=\"noopener noreferrer\").",
-      "reason": "The diff summary shows no change to the footer component, and no snippet is provided demonstrating the link uses SOCIAL_LINKS.google with the required target/rel attributes.",
-      "evidence": [
-        "frontend-file-summaries.txt (mentions frontend/src/components/SiteFooter.tsx but no diff shown)"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "requirement": "SOCIAL_LINKS.google equals the exact URL provided by the user (use exactly as provided, do not shorten/replace).",
-      "reason": "While SOCIAL_LINKS.google was changed, the BuildRequest does not include the literal user-provided URL, so exactness cannot be verified from the diff summary alone.",
-      "evidence": [
-        "frontend/src/lib/socialLinks.ts"
-      ]
-    }
-  ],
-  "hallucinated_features": [
-    {
-      "description": "Updated project tracking metadata (project_state.json) including new_feature_requests statuses.",
-      "reason": "BuildRequest did not request any project_state.json changes; it asked only to update the Google Reviews link used by the footer.",
-      "evidence": [
-        "project_state.json"
-      ]
-    },
-    {
-      "description": "Modified a documentation/summary file listing frontend file summaries (frontend-file-summaries.txt).",
-      "reason": "BuildRequest did not request generating or updating repository summary documentation; scope was limited to updating the Google review URL/link behavior.",
-      "evidence": [
-        "frontend-file-summaries.txt"
-      ]
-    }
-  ],
-  "confidence": 0.62,
+  "generatedAt": "2026-02-17T18:57:59.909Z",
+  "summary": "REQ-1 and REQ-2 appear to be implemented: the first menu screenshot is loaded eagerly with high fetch priority, a loading/error fallback is present, MENU_SCREENSHOT_ASSETS now references optimized 900x1600 assets, and index.html includes a mobile-targeted preload hint for the first screenshot. No clearly unrequested features are evidenced in the provided diff summary.",
+  "missing_requirements": [],
+  "hallucinated_features": [],
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/lib/socialLinks.ts",
+    "frontend/index.html",
+    "frontend/src/components/MenuScreenshotGallery.tsx",
+    "frontend/src/lib/menuScreenshotAssets.ts",
     "project_state.json"
   ]
 }

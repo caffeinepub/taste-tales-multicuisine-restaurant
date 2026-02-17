@@ -1,26 +1,132 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update Google review link in footer to provided Taste & Tales reviews URL",
+  "title": "Taste & Tales – Faster menu screenshot loading on mobile",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Replace the Google review link value so the 'Review us on Google' button opens the provided Taste & Tales Google Reviews URL in a new tab.",
+      "id": "REQ-1",
+      "summary": "Serve optimized menu screenshot assets and prioritize the first above-the-fold image load while keeping loading/error states stable.",
       "acceptanceCriteria": [
-        "In `frontend/src/lib/socialLinks.ts`, `SOCIAL_LINKS.google` equals the exact URL provided by the user.",
-        "In the footer 'Social Connect' area (the button labeled 'Review us on Google'), clicking the button opens the provided URL in a new tab (retaining `target=\"_blank\"` and `rel=\"noopener noreferrer\"`).",
-        "No user-facing text is changed away from English."
+        "On the /menu page, the first visible menu screenshot uses high fetch priority (e.g., eager load / fetchpriority=high) so it starts downloading immediately when the page is opened.",
+        "Menu screenshot assets used on mobile are smaller/optimized versions (reduced dimensions and/or compression) compared to the current originals, while preserving acceptable readability.",
+        "MENU_SCREENSHOT_ASSETS is updated to reference the optimized screenshot asset URLs (or uses responsive selection that serves optimized assets on mobile).",
+        "The UI continues to show a clear loading state while the image loads and degrades gracefully if an image fails to load (no broken layout)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/lib/socialLinks.ts",
-          "operation": "modify",
-          "description": "Update `SOCIAL_LINKS.google` to exactly: https://www.google.com/search?sca_esv=190a96a9d156750b&rlz=1C1YTUH_enIN1199IN1199&sxsrf=ANbL-n4ysIaDCa4jfFuKA9OBq5Xz-yZeMg:1771016063596&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qObc6Jbzq6uBIArRbHnZOQjhdBvO-cLGAHp0x7B_lQlagt349zrM2Si9ZmDeE9KJ_S6zD6tYcUcRGLg5ufxYmm9gHIcqWoNoaheMh3q1F29aVMy5sqn2q0spdGq68VhoW3gRvMIE%3D&q=Taste+%26+Tales+-+Multicuisine+Restaurant+Reviews&sa=X&ved=2ahUKEwiqxPL6rNeSAxWwUWcHHbAKJPcQ0bkNegQIOxAF&biw=1280&bih=551&dpr=1.5 (do not shorten, reformat, or replace)."
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002328-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
         },
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002319-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002531-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002414-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002346-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002338-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002450-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002457-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002523-3-optimized.dim_900x1600.png",
+          "operation": "create",
+          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
+        },
+        {
+          "path": "frontend/src/lib/menuScreenshotAssets.ts",
           "operation": "modify",
-          "description": "Confirm the 'Review us on Google' anchor continues to use `href={SOCIAL_LINKS.google}` and retains `target=\"_blank\"` and `rel=\"noopener noreferrer\"`, without changing any user-facing English text."
+          "description": "Update MENU_SCREENSHOT_ASSETS to reference the optimized screenshot URLs (using the new files under frontend/public/assets/generated/) so fewer bytes are transferred on mobile data."
+        },
+        {
+          "path": "frontend/src/components/MenuScreenshotGallery.tsx",
+          "operation": "modify",
+          "description": "Prioritize above-the-fold screenshot rendering by setting the first screenshot to eager load + high fetch priority, while keeping the existing loading state and improving graceful error fallback (no broken layout). Also add stable sizing attributes to reduce layout shift."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a mobile-targeted preload hint for the first menu screenshot without introducing conflicting head hints or breaking other pages.",
+      "acceptanceCriteria": [
+        "The app includes a preload hint for the first menu screenshot (the first entry in MENU_SCREENSHOT_ASSETS) targeted for mobile viewports where appropriate.",
+        "Preload does not introduce console errors or duplicate/conflicting resource hints in the document head."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add a single <link rel=\"preload\" as=\"image\"> hint for the first menu screenshot asset (the first entry in MENU_SCREENSHOT_ASSETS), scoped with a mobile media query (e.g., max-width) to avoid unnecessary preloads on desktop and to prevent duplicate/conflicting hints."
         }
       ]
     }

@@ -1,8 +1,19 @@
 // Single source of truth for all brand assets
+// Asset paths are relative to the public directory and will be resolved by Vite
 export const BRAND_ASSETS = {
   logo: '/assets/generated/taste-tales-logo.dim_512x512.png',
   favicon: '/assets/generated/taste-tales-favicon.dim_64x64.png',
-  hero: '/assets/generated/taste-tales-hero-ambience.dim_1920x1080.png',
+  // Optimized hero images for performance
+  hero: '/assets/generated/taste-tales-hero-food-eye-catching-optimized.dim_1280x720.png',
+  heroMobile: '/assets/generated/taste-tales-hero-food-eye-catching-mobile.dim_640x360.png',
+  heroOriginal: '/assets/generated/taste-tales-hero-food-eye-catching.dim_1920x1080.png',
+} as const;
+
+// Indian cooking themed watermark images for performance
+export const WATERMARK_ASSETS = {
+  tile1: '/assets/generated/indian-cooking-watermark-01-optimized.dim_1200x800.png',
+  tile2: '/assets/generated/indian-cooking-watermark-02-optimized.dim_1200x800.png',
+  tile3: '/assets/generated/indian-cooking-watermark-03-optimized.dim_1200x800.png',
 } as const;
 
 // Gallery images for the Gallery page

@@ -21,6 +21,12 @@ export default function LogoMotif({ size = 'md', className = '' }: LogoMotifProp
     lg: 'text-base',
   };
 
+  const dimensions = {
+    sm: { width: '32', height: '32' },
+    md: { width: '48', height: '48' },
+    lg: { width: '64', height: '64' },
+  };
+
   if (imageError) {
     // Fallback: Show text-based brand mark with decorative opacity
     return (
@@ -38,6 +44,10 @@ export default function LogoMotif({ size = 'md', className = '' }: LogoMotifProp
       alt="" 
       className={`${sizeClasses[size]} opacity-20 ${className}`}
       aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      width={dimensions[size].width}
+      height={dimensions[size].height}
       onError={() => setImageError(true)}
     />
   );

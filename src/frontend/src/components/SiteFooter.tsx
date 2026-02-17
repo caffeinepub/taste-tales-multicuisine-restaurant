@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { SiFacebook, SiInstagram, SiX, SiGoogle } from 'react-icons/si';
+import { SiFacebook, SiInstagram, SiGoogle } from 'react-icons/si';
 import { MapPin, Phone, Clock } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import { SOCIAL_LINKS } from '@/lib/socialLinks';
@@ -51,21 +51,6 @@ export default function SiteFooter() {
                   aria-label="Visit our Instagram page"
                 >
                   <SiInstagram className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="h-9 w-9 transition-colors hover:text-primary hover:bg-primary/10"
-                asChild
-              >
-                <a 
-                  href={SOCIAL_LINKS.twitter}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Visit our Twitter page"
-                >
-                  <SiX className="h-4 w-4" />
                 </a>
               </Button>
             </div>

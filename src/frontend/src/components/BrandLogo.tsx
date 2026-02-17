@@ -40,6 +40,7 @@ export default function BrandLogo({ size = 'md', className = '', showText = fals
       src={BRAND_ASSETS.logo}
       alt={showText ? "Taste & Tales Logo" : "Taste & Tales"}
       className={`${sizeClasses[size]} ${className}`}
+      decoding="async"
       onError={() => setImageError(true)}
       width={size === 'lg' ? '128' : size === 'xl' ? '48' : '48'}
       height={size === 'lg' ? '128' : size === 'xl' ? '48' : '48'}

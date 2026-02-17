@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-review-us-on-google-section-so-the-google-button-link-opens-the-provided-google-reviews-url-for-taste-tales-replace-the-current-placeholder-social-links-google-value-used-in-the-footer",
-      "featureTitle": "Update the 'Review us on Google' section so the Google button/link opens the provided Google Reviews URL for Taste & Tales (replace the current placeholder `SOCIAL_LINKS.google` value used in the footer).",
+      "featureId": "feature-optimize-the-menu-page-screenshot-image-loading-for-mobile-users-on-slow-mobile-data-by-reducing-bytes-transferred-and-prioritizing-above-the-fold-menu-screenshot-rendering",
+      "featureTitle": "Optimize the Menu page screenshot image loading for mobile users on slow/mobile data by reducing bytes transferred and prioritizing above-the-fold menu screenshot rendering.",
       "files": [
-        "frontend/src/lib/socialLinks.ts"
+        "frontend/src/components/MenuScreenshotGallery.tsx",
+        "frontend/src/lib/menuScreenshotAssets.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,7 +17,26 @@
         "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-4"
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-resource-hints-to-improve-perceived-performance-for-menu-screenshots-on-mobile-by-preloading-the-first-menu-screenshot-on-the-menu-page-or-at-the-document-level-without-breaking-other-pages",
+      "featureTitle": "Add resource hints to improve perceived performance for menu screenshots on mobile by preloading the first menu screenshot on the Menu page (or at the document level) without breaking other pages.",
+      "files": [
+        "frontend/index.html"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

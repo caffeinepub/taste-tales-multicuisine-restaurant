@@ -33,6 +33,10 @@ export default function GalleryImage({ src, alt, onClick }: GalleryImageProps) {
         src={src}
         alt={alt}
         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+        decoding="async"
+        width="1200"
+        height="800"
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setHasError(true);

@@ -5,6 +5,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/s
 import { Menu, Phone } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
 import HeaderSearch from '@/components/HeaderSearch';
+import { ORDER_ONLINE_LINKS } from '@/lib/orderOnlineLinks';
+import { BOOKING_URL } from '@/lib/bookingLinks';
 
 export default function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,11 +23,11 @@ export default function SiteHeader() {
   ];
 
   const handleOrderOnline = () => {
-    window.open('https://www.zomato.com', '_blank');
+    window.open(ORDER_ONLINE_LINKS.zomato, '_blank', 'noopener,noreferrer');
   };
 
   const handleBookTable = () => {
-    navigate({ to: '/contact' });
+    window.open(BOOKING_URL, '_blank', 'noopener,noreferrer');
   };
 
   const handleSearch = (query: string) => {

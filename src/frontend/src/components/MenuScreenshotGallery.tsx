@@ -11,7 +11,8 @@ export default function MenuScreenshotGallery({ screenshots }: MenuScreenshotGal
       <div className="relative">
         <MenuScreenshotImage 
           url={screenshots[0]} 
-          index={0} 
+          index={0}
+          priority={true}
         />
       </div>
     </div>
@@ -21,9 +22,10 @@ export default function MenuScreenshotGallery({ screenshots }: MenuScreenshotGal
 interface MenuScreenshotImageProps {
   url: string;
   index: number;
+  priority?: boolean;
 }
 
-function MenuScreenshotImage({ url, index }: MenuScreenshotImageProps) {
+function MenuScreenshotImage({ url, index, priority = false }: MenuScreenshotImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -37,9 +39,12 @@ function MenuScreenshotImage({ url, index }: MenuScreenshotImageProps) {
   };
 
   if (hasError) {
-    // Render nothing visible when image fails to load
-    // This maintains layout and keeps navigation functional
-    return <div className="w-full min-h-[400px]" />;
+    // Render stable fallback when image fails to load
+    return (
+      <div className="w-full min-h-[400px] bg-muted/20 rounded-lg border border-border flex items-center justify-center">
+        <p className="text-muted-foreground text-sm">Unable to load menu screenshot {index + 1}</p>
+      </div>
+    );
   }
 
   return (
@@ -54,6 +59,11 @@ function MenuScreenshotImage({ url, index }: MenuScreenshotImageProps) {
         alt={`Menu screenshot ${index + 1}`}
         onLoad={handleLoad}
         onError={handleError}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
+        decoding="async"
+        width={900}
+        height={1600}
         className={`w-full h-auto object-contain transition-opacity duration-300 ${
           isLoading ? 'opacity-0' : 'opacity-100'
         }`}
