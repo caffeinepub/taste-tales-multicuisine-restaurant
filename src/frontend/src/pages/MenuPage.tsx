@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { menuCategories } from '@/data/menuData';
-import { MENU_SCREENSHOT_ASSETS } from '@/lib/menuScreenshotAssets';
-import MenuScreenshotGallery from '@/components/MenuScreenshotGallery';
 import MenuCategoryCarousel from '@/components/MenuCategoryCarousel';
 import { ORDER_ONLINE_LINKS } from '@/lib/orderOnlineLinks';
 
@@ -60,13 +58,6 @@ export default function MenuPage() {
           </div>
         </div>
       </section>
-
-      {/* Menu Screenshots Section */}
-      <Section>
-        <div className="max-w-4xl mx-auto">
-          <MenuScreenshotGallery screenshots={MENU_SCREENSHOT_ASSETS} />
-        </div>
-      </Section>
 
       {/* Search Bar */}
       <Section className="pt-8 pb-4">

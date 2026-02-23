@@ -2,11 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-optimize-the-menu-page-screenshot-image-loading-for-mobile-users-on-slow-mobile-data-by-reducing-bytes-transferred-and-prioritizing-above-the-fold-menu-screenshot-rendering",
-      "featureTitle": "Optimize the Menu page screenshot image loading for mobile users on slow/mobile data by reducing bytes transferred and prioritizing above-the-fold menu screenshot rendering.",
+      "featureId": "feature-add-four-custom-images-to-the-what-makes-us-special-section-in-aboutpage-tsx-one-for-each-value-card-global-culinary-journey-premium-quality-ingredients-hygiene-safety-first-family-friendly-ambiance-with-visual-elements-that-incorporate-the-taste-and-tales-brand-identity",
+      "featureTitle": "Add four custom images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card (Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, Family-Friendly Ambiance), with visual elements that incorporate the Taste and Tales brand identity",
       "files": [
-        "frontend/src/components/MenuScreenshotGallery.tsx",
-        "frontend/src/lib/menuScreenshotAssets.ts"
+        "frontend/src/lib/brandAssets.ts",
+        "frontend/src/pages/AboutPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -18,25 +18,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-resource-hints-to-improve-perceived-performance-for-menu-screenshots-on-mobile-by-preloading-the-first-menu-screenshot-on-the-menu-page-or-at-the-document-level-without-breaking-other-pages",
-      "featureTitle": "Add resource hints to improve perceived performance for menu screenshots on mobile by preloading the first menu screenshot on the Menu page (or at the document level) without breaking other pages.",
-      "files": [
-        "frontend/index.html"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "blob-storage@4.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
       ],
       "confidence": "high"
     }

@@ -1,85 +1,45 @@
 {
   "kind": "build_request",
-  "title": "Improve menu image loading speed on mobile data",
-  "projectName": "Taste & Tales",
+  "title": "Add Taste and Tales themed images to About section",
+  "projectName": "Taste and Tales",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Optimize the Menu page screenshot image loading for mobile users on slow/mobile data by reducing bytes transferred and prioritizing above-the-fold menu screenshot rendering.",
-      "target": "frontend",
+      "text": "Add four custom images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card (Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, Family-Friendly Ambiance), with visual elements that incorporate the Taste and Tales brand identity",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-latest"
         ],
         "quotes": [
-          "I opened the website in mobile but the images of menu wont load up rapidly under mobile data"
+          "in About section add images having indication of Taste and Tales of each part of \"What makes us special\" so that customer finds it attractive"
         ]
       },
       "acceptanceCriteria": [
-        "On the /menu page, the first visible menu screenshot uses high fetch priority (e.g., eager load / fetchpriority=high) so it starts downloading immediately when the page is opened.",
-        "Menu screenshot assets used on mobile are smaller/optimized versions (reduced dimensions and/or compression) compared to the current originals, while preserving acceptable readability.",
-        "MENU_SCREENSHOT_ASSETS is updated to reference the optimized screenshot asset URLs (or uses responsive selection that serves optimized assets on mobile).",
-        "The UI continues to show a clear loading state while the image loads and degrades gracefully if an image fails to load (no broken layout)."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Add resource hints to improve perceived performance for menu screenshots on mobile by preloading the first menu screenshot on the Menu page (or at the document level) without breaking other pages.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "images of menu wont load up rapidly under mobile data"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The app includes a preload hint for the first menu screenshot (the first entry in MENU_SCREENSHOT_ASSETS) targeted for mobile viewports where appropriate.",
-        "Preload does not introduce console errors or duplicate/conflicting resource hints in the document head."
+        "Each of the four value cards displays a unique, branded image above or beside the text content",
+        "Images visually represent their respective value proposition while incorporating Taste and Tales brand elements",
+        "Images are rendered from frontend/public/assets/generated as static assets",
+        "Layout remains responsive and attractive on all screen sizes"
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui or any paths listed in frontend.immutablePaths (compose existing components instead).",
-    "Keep all changes within the existing single-frontend React app; no new backend services or external CDNs."
+    "Do not modify the core text content of the four value propositions",
+    "Maintain the existing responsive grid layout structure"
   ],
   "nonGoals": [
-    "Do not add new menu features (e.g., ordering flow, new menu sections, real-time updates).",
-    "Do not implement third-party image CDNs or external image optimization services."
+    "Changing the About page's story section or brand heritage content",
+    "Modifying other pages or sections outside the About page",
+    "Adding animations or interactive elements to the images"
   ],
   "imageRequirements": {
-    "required": [],
-    "edits": [
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002328-3.png > Screenshot 2026-02-10 002328-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002401-3.png > Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002353-3.png > Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002516-3.png > Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002407-3.png > Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002319-3.png > Screenshot 2026-02-10 002319-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002312-3.png > Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002531-3.png > Screenshot 2026-02-10 002531-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002254-4.png > Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002414-3.png > Screenshot 2026-02-10 002414-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002346-3.png > Screenshot 2026-02-10 002346-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002305-3.png > Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002502-3.png > Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002338-3.png > Screenshot 2026-02-10 002338-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002509-3.png > Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002450-3.png > Screenshot 2026-02-10 002450-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002457-3.png > Screenshot 2026-02-10 002457-3-optimized.dim_900x1600.png)",
-      "Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002523-3.png > Screenshot 2026-02-10 002523-3-optimized.dim_900x1600.png)"
-    ]
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
+    "required": [
+      "Illustration of diverse global dishes and cultural food elements representing worldwide cuisines with Taste and Tales branding (global-culinary-journey.dim_400x300.png)",
+      "Fresh premium ingredients composition with quality indicators and Taste and Tales visual identity (premium-ingredients.dim_400x300.png)",
+      "Clean, professional kitchen environment with hygiene symbols and Taste and Tales brand elements (hygiene-safety.dim_400x300.png)",
+      "Warm family dining scene with welcoming atmosphere incorporating Taste and Tales brand motifs (family-friendly.dim_400x300.png)"
+    ],
+    "edits": []
   }
 }

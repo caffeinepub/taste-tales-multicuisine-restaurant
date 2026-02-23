@@ -67,3 +67,11 @@ export const GALLERY_IMAGES = [
     alt: 'Seating Area',
   },
 ] as const;
+
+// Value proposition images for About page
+export const VALUE_IMAGES = {
+  globalCulinary: '/assets/generated/global-culinary-journey.dim_400x300.png',
+  premiumIngredients: '/assets/generated/premium-ingredients.dim_400x300.png',
+  hygieneSafety: '/assets/generated/hygiene-safety.dim_400x300.png',
+  familyFriendly: '/assets/generated/family-friendly.dim_400x300.png',
+} as const;

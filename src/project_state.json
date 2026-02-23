@@ -3,25 +3,15 @@
   "projectStateVersion": 3,
   "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [
-    "Menu images load slowly on mobile when using mobile data (performance/slow loading issue)."
-  ],
-  "isFixRequest": true,
-  "imageRequirements": "## Edit Images\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002328-3.png > Screenshot 2026-02-10 002328-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002401-3.png > Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002353-3.png > Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002516-3.png > Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002407-3.png > Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002319-3.png > Screenshot 2026-02-10 002319-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002312-3.png > Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002531-3.png > Screenshot 2026-02-10 002531-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002254-4.png > Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002414-3.png > Screenshot 2026-02-10 002414-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002346-3.png > Screenshot 2026-02-10 002346-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002305-3.png > Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002502-3.png > Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002338-3.png > Screenshot 2026-02-10 002338-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002509-3.png > Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002450-3.png > Screenshot 2026-02-10 002450-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002457-3.png > Screenshot 2026-02-10 002457-3-optimized.dim_900x1600.png)\n- Compress/resize and export a mobile-optimized version ( /assets/menu-screenshots/Screenshot 2026-02-10 002523-3.png > Screenshot 2026-02-10 002523-3-optimized.dim_900x1600.png)",
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Illustration of diverse global dishes and cultural food elements representing worldwide cuisines with Taste and Tales branding (global-culinary-journey.dim_400x300.png)\n- Fresh premium ingredients composition with quality indicators and Taste and Tales visual identity (premium-ingredients.dim_400x300.png)\n- Clean, professional kitchen environment with hygiene symbols and Taste and Tales brand elements (hygiene-safety.dim_400x300.png)\n- Warm family dining scene with welcoming atmosphere incorporating Taste and Tales brand motifs (family-friendly.dim_400x300.png)",
   "existing_features": [
     {
-      "id": "feature-optimize-the-menu-page-screenshot-image-loading-for-mobile-users-on-slow-mobile-data-by-reducing-bytes-transferred-and-prioritizing-above-the-fold-menu-screenshot-rendering",
-      "title": "Optimize the Menu page screenshot image loading for mobile users on slow/mobile data by reducing bytes transferred and prioritizing above-the-fold menu screenshot rendering.",
+      "id": "feature-add-four-custom-images-to-the-what-makes-us-special-section-in-aboutpage-tsx-one-for-each-value-card-global-culinary-journey-premium-quality-ingredients-hygiene-safety-first-family-friendly-ambiance-with-visual-elements-that-incorporate-the-taste-and-tales-brand-identity",
+      "title": "Add four custom images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card (Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, Family-Friendly Ambiance), with visual elements that incorporate the Taste and Tales brand identity",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-resource-hints-to-improve-perceived-performance-for-menu-screenshots-on-mobile-by-preloading-the-first-menu-screenshot-on-the-menu-page-or-at-the-document-level-without-breaking-other-pages",
-      "title": "Add resource hints to improve perceived performance for menu screenshots on mobile by preloading the first menu screenshot on the Menu page (or at the document level) without breaking other pages.",
-      "reqIds": [
-        "REQ-2"
       ],
       "version": 1
     }
@@ -29,12 +19,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Improve menu image loading performance on mobile, especially under slow/mobile data connections",
+      "summary": "Add images with Taste and Tales indication to each part of 'What makes us special' in About section",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Taste & Tales",
+  "projectName": "Taste and Tales",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

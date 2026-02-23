@@ -1,64 +1,26 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-17T18:57:59.912Z",
+  "generatedAt": "2026-02-22T12:35:29.729Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Optimize the Menu page screenshot image loading for mobile users on slow/mobile data by reducing bytes transferred and prioritizing above-the-fold menu screenshot rendering.",
+        "summary": "Add four custom images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card (Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, Family-Friendly Ambiance), with visual elements that incorporate the Taste and Tales brand identity",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002328-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002319-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002531-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002414-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002346-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002338-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002450-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002457-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002523-3-optimized.dim_900x1600.png",
-          "frontend/src/lib/menuScreenshotAssets.ts",
-          "frontend/src/components/MenuScreenshotGallery.tsx"
+          "frontend/src/lib/brandAssets.ts",
+          "frontend/src/pages/AboutPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png",
-          "frontend/public/assets/generated/Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png",
-          "frontend/src/lib/menuScreenshotAssets.ts",
-          "frontend/src/components/MenuScreenshotGallery.tsx"
-        ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Add resource hints to improve perceived performance for menu screenshots on mobile by preloading the first menu screenshot on the Menu page (or at the document level) without breaking other pages.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/index.html"
-        ],
-        "matchedFiles": [
-          "frontend/index.html"
+          "frontend/src/lib/brandAssets.ts",
+          "frontend/src/pages/AboutPage.tsx"
         ]
       }
     ]
@@ -68,18 +30,12 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png",
-    "frontend/public/assets/generated/Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png",
-    "frontend/src/components/MenuScreenshotGallery.tsx",
-    "frontend/src/lib/menuScreenshotAssets.ts",
+    "frontend/public/assets/generated/family-friendly.dim_400x300.png",
+    "frontend/public/assets/generated/global-culinary-journey.dim_400x300.png",
+    "frontend/public/assets/generated/hygiene-safety.dim_400x300.png",
+    "frontend/public/assets/generated/premium-ingredients.dim_400x300.png",
+    "frontend/src/lib/brandAssets.ts",
+    "frontend/src/pages/AboutPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

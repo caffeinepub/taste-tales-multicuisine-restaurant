@@ -4,6 +4,7 @@ import LogoMotif from '@/components/LogoMotif';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Utensils, Heart, Shield, Users } from 'lucide-react';
+import { VALUE_IMAGES } from '@/lib/brandAssets';
 
 export default function AboutPage() {
   const values = [
@@ -11,21 +12,29 @@ export default function AboutPage() {
       icon: Utensils,
       title: 'Global Cuisines',
       description: 'We bring together the finest flavours from around the world – North Indian, Chinese, Mexican, Thai, Italian, Fast Food, Desserts & Shakes – each crafted with authenticity and care.',
+      image: VALUE_IMAGES.globalCulinary,
+      imageAlt: 'Global Culinary Journey - Taste & Tales',
     },
     {
       icon: Heart,
       title: 'Quality Ingredients',
       description: 'Every dish is prepared with premium, fresh ingredients sourced thoughtfully to ensure authentic taste, nutrition, and the highest culinary standards.',
+      image: VALUE_IMAGES.premiumIngredients,
+      imageAlt: 'Premium Quality Ingredients - Taste & Tales',
     },
     {
       icon: Shield,
       title: 'Hygiene First',
       description: 'We maintain the highest standards of cleanliness and food safety, ensuring a safe and comfortable dining experience for your entire family.',
+      image: VALUE_IMAGES.hygieneSafety,
+      imageAlt: 'Hygiene & Safety First - Taste & Tales',
     },
     {
       icon: Users,
       title: 'Family Friendly',
       description: 'Our warm, welcoming atmosphere is thoughtfully designed for families, friends, and celebrations of all kinds, creating memories that last.',
+      image: VALUE_IMAGES.familyFriendly,
+      imageAlt: 'Family-Friendly Ambiance - Taste & Tales',
     },
   ];
 
@@ -97,19 +106,31 @@ export default function AboutPage() {
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {values.map((value, index) => (
-            <Card key={index} className="border-2 transition-all hover:shadow-warm">
-              <CardContent className="p-6">
-                <div className="flex gap-4">
-                  <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <value.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl font-semibold mb-2">
-                      {value.title}
-                    </h3>
-                    <p className="text-muted-foreground">
-                      {value.description}
-                    </p>
+            <Card key={index} className="border-2 transition-all hover:shadow-warm overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative w-full h-48 overflow-hidden bg-muted">
+                  <img
+                    src={value.image}
+                    alt={value.imageAlt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    width={400}
+                    height={300}
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex gap-4">
+                    <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <value.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-semibold mb-2">
+                        {value.title}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {value.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </CardContent>

@@ -1,132 +1,27 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Taste & Tales – Faster menu screenshot loading on mobile",
+  "title": "Add Taste and Tales themed images to About section",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Serve optimized menu screenshot assets and prioritize the first above-the-fold image load while keeping loading/error states stable.",
+      "summary": "Add four custom branded images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card representing Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, and Family-Friendly Ambiance",
       "acceptanceCriteria": [
-        "On the /menu page, the first visible menu screenshot uses high fetch priority (e.g., eager load / fetchpriority=high) so it starts downloading immediately when the page is opened.",
-        "Menu screenshot assets used on mobile are smaller/optimized versions (reduced dimensions and/or compression) compared to the current originals, while preserving acceptable readability.",
-        "MENU_SCREENSHOT_ASSETS is updated to reference the optimized screenshot asset URLs (or uses responsive selection that serves optimized assets on mobile).",
-        "The UI continues to show a clear loading state while the image loads and degrades gracefully if an image fails to load (no broken layout)."
+        "Each of the four value cards displays a unique, branded image above or beside the text content",
+        "Images visually represent their respective value proposition while incorporating Taste and Tales brand elements",
+        "Images are rendered from frontend/public/assets/generated as static assets",
+        "Layout remains responsive and attractive on all screen sizes"
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002328-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002401-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002353-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002516-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002407-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002319-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002312-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002531-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002254-4-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002414-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002346-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002305-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002502-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002338-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002509-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002450-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002457-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/public/assets/generated/Screenshot 2026-02-10 002523-3-optimized.dim_900x1600.png",
-          "operation": "create",
-          "description": "Add the compressed/resized mobile-optimized menu screenshot asset."
-        },
-        {
-          "path": "frontend/src/lib/menuScreenshotAssets.ts",
+          "path": "frontend/src/lib/brandAssets.ts",
           "operation": "modify",
-          "description": "Update MENU_SCREENSHOT_ASSETS to reference the optimized screenshot URLs (using the new files under frontend/public/assets/generated/) so fewer bytes are transferred on mobile data."
+          "description": "Add constants for the four value proposition images: global-culinary-journey.dim_400x300.png, premium-ingredients.dim_400x300.png, hygiene-safety.dim_400x300.png, and family-friendly.dim_400x300.png. Reference the exact generated filenames using the workspace path frontend/public/assets/generated/<filename>."
         },
         {
-          "path": "frontend/src/components/MenuScreenshotGallery.tsx",
+          "path": "frontend/src/pages/AboutPage.tsx",
           "operation": "modify",
-          "description": "Prioritize above-the-fold screenshot rendering by setting the first screenshot to eager load + high fetch priority, while keeping the existing loading state and improving graceful error fallback (no broken layout). Also add stable sizing attributes to reduce layout shift."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Add a mobile-targeted preload hint for the first menu screenshot without introducing conflicting head hints or breaking other pages.",
-      "acceptanceCriteria": [
-        "The app includes a preload hint for the first menu screenshot (the first entry in MENU_SCREENSHOT_ASSETS) targeted for mobile viewports where appropriate.",
-        "Preload does not introduce console errors or duplicate/conflicting resource hints in the document head."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Add a single <link rel=\"preload\" as=\"image\"> hint for the first menu screenshot asset (the first entry in MENU_SCREENSHOT_ASSETS), scoped with a mobile media query (e.g., max-width) to avoid unnecessary preloads on desktop and to prevent duplicate/conflicting hints."
+          "description": "Import the four value proposition image constants from brandAssets. Modify the 'What Makes Us Special' grid section to include an <img> element for each value card that displays the corresponding image (global-culinary-journey.dim_400x300.png for Global Culinary Journey, premium-ingredients.dim_400x300.png for Premium Quality Ingredients, hygiene-safety.dim_400x300.png for Hygiene & Safety First, family-friendly.dim_400x300.png for Family-Friendly Ambiance). Position images above or beside the card content while maintaining the existing responsive grid layout and preserving all text content unchanged."
         }
       ]
     }
