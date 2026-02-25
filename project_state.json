@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Illustration of diverse global dishes and cultural food elements representing worldwide cuisines with Taste and Tales branding (global-culinary-journey.dim_400x300.png)\n- Fresh premium ingredients composition with quality indicators and Taste and Tales visual identity (premium-ingredients.dim_400x300.png)\n- Clean, professional kitchen environment with hygiene symbols and Taste and Tales brand elements (hygiene-safety.dim_400x300.png)\n- Warm family dining scene with welcoming atmosphere incorporating Taste and Tales brand motifs (family-friendly.dim_400x300.png)",
+  "existing_features": [
+    {
+      "id": "feature-add-four-custom-images-to-the-what-makes-us-special-section-in-aboutpage-tsx-one-for-each-value-card-global-culinary-journey-premium-quality-ingredients-hygiene-safety-first-family-friendly-ambiance-with-visual-elements-that-incorporate-the-taste-and-tales-brand-identity",
+      "title": "Add four custom images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card (Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, Family-Friendly Ambiance), with visual elements that incorporate the Taste and Tales brand identity",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add images with Taste and Tales indication to each part of 'What makes us special' in About section",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Taste and Tales",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

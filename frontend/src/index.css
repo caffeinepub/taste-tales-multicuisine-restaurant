@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.5rem;
+        /* Warm amber + wood + teal palette - light mode */
+        --background: 0.98 0.01 60;
+        --foreground: 0.25 0.02 30;
+        --card: 1 0 0;
+        --card-foreground: 0.25 0.02 30;
+        --popover: 1 0 0;
+        --popover-foreground: 0.25 0.02 30;
+        /* Teal/aqua primary */
+        --primary: 0.58 0.12 195;
+        --primary-foreground: 0.98 0.01 60;
+        /* Warm wood secondary */
+        --secondary: 0.65 0.08 45;
+        --secondary-foreground: 0.98 0.01 60;
+        /* Soft cream muted */
+        --muted: 0.94 0.02 65;
+        --muted-foreground: 0.50 0.02 30;
+        /* Warm amber accent */
+        --accent: 0.78 0.12 65;
+        --accent-foreground: 0.25 0.02 30;
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.98 0.01 60;
+        --border: 0.88 0.02 65;
+        --input: 0.88 0.02 65;
+        --ring: 0.58 0.12 195;
+        /* Chart colors with teal + amber theme */
+        --chart-1: 0.58 0.12 195;
+        --chart-2: 0.78 0.12 65;
+        --chart-3: 0.65 0.08 45;
+        --chart-4: 0.48 0.10 180;
+        --chart-5: 0.70 0.10 55;
+        --sidebar: 0.98 0.01 60;
+        --sidebar-foreground: 0.25 0.02 30;
+        --sidebar-primary: 0.58 0.12 195;
+        --sidebar-primary-foreground: 0.98 0.01 60;
+        --sidebar-accent: 0.94 0.02 65;
+        --sidebar-accent-foreground: 0.25 0.02 30;
+        --sidebar-border: 0.88 0.02 65;
+        --sidebar-ring: 0.58 0.12 195;
+    }
+
+    .dark {
+        /* Dark mode with warm amber + wood + teal tones */
+        --background: 0.20 0.02 35;
+        --foreground: 0.95 0.01 60;
+        --card: 0.25 0.02 35;
+        --card-foreground: 0.95 0.01 60;
+        --popover: 0.25 0.02 35;
+        --popover-foreground: 0.95 0.01 60;
+        /* Lighter teal for dark mode */
+        --primary: 0.65 0.14 195;
+        --primary-foreground: 0.98 0.01 60;
+        /* Warm wood tone */
+        --secondary: 0.45 0.06 45;
+        --secondary-foreground: 0.95 0.01 60;
+        --muted: 0.32 0.02 35;
+        --muted-foreground: 0.70 0.02 60;
+        /* Warm amber accent */
+        --accent: 0.72 0.14 65;
+        --accent-foreground: 0.20 0.02 35;
+        --destructive: 0.60 0.20 25;
+        --destructive-foreground: 0.95 0.01 60;
+        --border: 0.32 0.02 35;
+        --input: 0.32 0.02 35;
+        --ring: 0.65 0.14 195;
+        --chart-1: 0.65 0.14 195;
+        --chart-2: 0.72 0.14 65;
+        --chart-3: 0.45 0.06 45;
+        --chart-4: 0.55 0.12 180;
+        --chart-5: 0.68 0.10 55;
+        --sidebar: 0.25 0.02 35;
+        --sidebar-foreground: 0.95 0.01 60;
+        --sidebar-primary: 0.65 0.14 195;
+        --sidebar-primary-foreground: 0.98 0.01 60;
+        --sidebar-accent: 0.32 0.02 35;
+        --sidebar-accent-foreground: 0.95 0.01 60;
+        --sidebar-border: 0.32 0.02 35;
+        --sidebar-ring: 0.65 0.14 195;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 600;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "build_request",
+  "title": "Add Taste and Tales themed images to About section",
+  "projectName": "Taste and Tales",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add four custom images to the 'What Makes Us Special' section in AboutPage.tsx, one for each value card (Global Culinary Journey, Premium Quality Ingredients, Hygiene & Safety First, Family-Friendly Ambiance), with visual elements that incorporate the Taste and Tales brand identity",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "in About section add images having indication of Taste and Tales of each part of \"What makes us special\" so that customer finds it attractive"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each of the four value cards displays a unique, branded image above or beside the text content",
+        "Images visually represent their respective value proposition while incorporating Taste and Tales brand elements",
+        "Images are rendered from frontend/public/assets/generated as static assets",
+        "Layout remains responsive and attractive on all screen sizes"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify the core text content of the four value propositions",
+    "Maintain the existing responsive grid layout structure"
+  ],
+  "nonGoals": [
+    "Changing the About page's story section or brand heritage content",
+    "Modifying other pages or sections outside the About page",
+    "Adding animations or interactive elements to the images"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Illustration of diverse global dishes and cultural food elements representing worldwide cuisines with Taste and Tales branding (global-culinary-journey.dim_400x300.png)",
+      "Fresh premium ingredients composition with quality indicators and Taste and Tales visual identity (premium-ingredients.dim_400x300.png)",
+      "Clean, professional kitchen environment with hygiene symbols and Taste and Tales brand elements (hygiene-safety.dim_400x300.png)",
+      "Warm family dining scene with welcoming atmosphere incorporating Taste and Tales brand motifs (family-friendly.dim_400x300.png)"
+    ],
+    "edits": []
+  }
+}
